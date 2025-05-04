@@ -1,0 +1,96 @@
+"use client";
+
+import { useRef, useEffect, useState } from "react";
+import { Button } from "flowbite-react";
+import { HiDownload, HiMail, HiArrowDown } from "react-icons/hi";
+import CompNavbar from "../../components/Navbar/CompNavbar";
+import { useDynamicHeight } from "../../hooks/useDynamicHeight";
+
+export default function Hero() {
+  const navbarRef = useRef<HTMLDivElement>(null);
+  const [navbarHeight, setNavbarHeight] = useState(64); // Valor padrão inicial
+  const heroHeight = useDynamicHeight(navbarHeight);
+
+  useEffect(() => {
+    if (navbarRef.current) {
+      setNavbarHeight(navbarRef.current.offsetHeight);
+    }
+  }, []);
+
+  return (
+    <>
+      <CompNavbar ref={navbarRef} />
+
+      <aside
+        style={{ height: heroHeight }}
+        className="flex flex-col-reverse items-center justify-center bg-gradient-to-b from-gray-900 to-gray-800 px-6 py-8 md:flex-row md:px-12"
+      >
+        {/* Avatar */}
+        <div className="mt-6 flex-shrink-0 md:mt-0 md:mr-8">
+          <img
+            src="/images/avatar.jpg"
+            alt="Cauan Gabriel"
+            className="h-24 md:h-32 w-24 md:w-32 rounded-full object-cover ring-2 ring-gray-100 transition-transform duration-300 ease-in-out md:hover:scale-105 md:h-40 md:w-40 md:h-48 md:w-48"
+          />
+        </div>
+
+        {/* Text Content */}
+        <div className="w-full max-w-xl text-center md:text-left">
+          <h1 className="text-3xl font-bold text-white md:text-4xl md:text-5xl">
+            Hello, I&apos;m{" "}
+            <span className="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent">
+              Cauan Gabriel
+            </span>
+          </h1>
+          <p className="mt-3 text-base leading-relaxed text-gray-400 md:text-lg md:mt-4">
+            Junior Developer & Graphic Designer. I build full‑stack web
+            applications with HTML, CSS, JavaScript, PHP and MySQL, and craft
+            visual experiences in Photoshop.
+          </p>
+
+          {/* Call to actions */}
+          <div className="mt-6 flex flex-col gap-4 md:flex-row">
+            <Button
+              onClick={() => {
+                const link = document.createElement("a");
+                link.href = "/cv.pdf";
+                link.download =
+                  "Cauan Gabriel da Silva Resende Nascimento - CV.pdf";
+                link.click();
+              }}
+              color="light"
+              outline={true}
+              size="lg"
+              className="inline-flex w-full transform items-center justify-center rounded-full bg-blue-500 px-4 py-2 text-lg font-medium text-white transition-transform md:hover:scale-105 hover:cursor-pointer hover:bg-blue-800 focus:ring-2 focus:ring-blue-600 focus:outline-none md:w-auto"
+              pill={true}
+            >
+              <HiDownload className="mr-2 h-5 w-5" />
+              Download CV
+            </Button>
+            <a
+              href="https://wa.link/uudby2"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-full transform items-center justify-center rounded-full bg-green-500 px-4 py-2 text-lg font-medium text-white transition-transform md:hover:scale-105 hover:bg-green-600 focus:ring-2 focus:ring-green-400 focus:outline-none md:w-auto"
+            >
+              <HiMail className="mr-2 h-5 w-5" />
+              Contact Me
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      {/* Scroll indicator */}
+      <div className="relative -mt-20 pb-12 text-center">
+        <a href="#about">
+          <div className="inline-flex animate-bounce flex-col items-center justify-center">
+            <p className="mb-2 text-sm font-medium text-gray-400">
+              Explore more about me
+            </p>
+            <HiArrowDown className="h-6 w-6 text-emerald-400" />
+          </div>
+        </a>
+      </div>
+    </>
+  );
+}
