@@ -83,11 +83,11 @@ export default function Hero() {
       {/* Scroll indicator */}
       <div className="relative -mt-20 pb-12 text-center">
         <a href="#about">
-          <div className="inline-flex animate-bounce flex-col items-center justify-center">
-            <p className="mb-2 text-sm font-medium text-gray-400">
+          <div className="group inline-flex animate-bounce flex-col items-center justify-center">
+            <p className="mb-2 text-sm font-medium text-gray-400 hover:text-emerald-400 transition-colors duration-300">  
               Explore more about me
             </p>
-            <HiArrowDown className="h-6 w-6 text-emerald-400" />
+            <HiArrowDown className="h-6 w-6 text-emerald-400 group-hover:text-gray-50 transition-colors duration-300" />
           </div>
         </a>
       </div>

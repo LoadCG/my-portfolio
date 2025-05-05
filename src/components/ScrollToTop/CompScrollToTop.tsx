@@ -35,7 +35,7 @@ export default function CompScrollToTop() {
         <button
           onClick={scrollToTop}
           aria-label="Voltar ao topo"
-          className="p-3 bg-emerald-500 cursor-pointer text-white rounded-full shadow-lg hover:bg-emerald-600 transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+          className="p-3 bg-emerald-500 cursor-pointer text-white rounded-full shadow-lg hover:bg-emerald-600 transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gray-300"
         >
           <HiArrowUp className="w-6 h-6" />
         </button>

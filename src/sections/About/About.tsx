@@ -30,9 +30,9 @@ export default function About() {
           </span>{" "}
           - whether it's debugging a Java application or perfecting a design
           layout. My academic projects like the{" "}
-          <span className="font-semibold text-emerald-400">
+          <a href="#projects" className="font-semibold text-emerald-400 cursor-pointer hover:text-emerald-500">
             Chrysalis E-commerce
-          </span>{" "}
+          </a>{" "}
           (PHP/MySQL + Tailwind) taught me the value of{" "}
           <span className="font-semibold text-white">
             end-to-end development

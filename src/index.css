@@ -4,5 +4,10 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 html {
-    scroll-behavior: smooth;
-  }
+  scroll-behavior: smooth;
+}
+img {
+  background: #1f2937; /* Cor do tema (gray-800) */
+  opacity: 100%;
+  transition: opacity 0.3s ease;
+}
