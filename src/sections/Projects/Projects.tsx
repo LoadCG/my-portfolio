@@ -19,7 +19,7 @@ const projects: Project[] = [
     title: "Chrysalis E-commerce",
     description:
       "E-commerce Chrysalis is a platform for buying and selling products made with HTML, CSS, Javascript, Tailwind CSS, and PHP with MySQL.",
-    image: "../../../public/images/development/chrysalis.jpg",
+    image: "/images/development/chrysalis.jpg", // Caminho corrigido
     link: "https://github.com/LoadCG/Chrysalisphp2",
     category: "development",
   },
@@ -28,7 +28,7 @@ const projects: Project[] = [
     title: "Le Parfum Page",
     description:
       "Virtual perfumery (Le Parfum) landing page. Built by me and three classmates for an English/IT project. Elegant, informative, user-friendly.",
-    image: "../../../public/images/development/leParfum.png",
+    image: "/images/development/leParfum.png", // Caminho corrigido
     link: "https://github.com/fakersl/LandingPageIngles",
     category: "development",
   },
@@ -37,11 +37,10 @@ const projects: Project[] = [
     title: "Ki Delicia Restaurant",
     description:
       "Ki Delicia is a restaurant from Minas Gerais that offers a variety of dishes. The logo were designed by me as a personal project for fun.",
-    image: "../../../public/images/design/restauranteKiDelicia.jpg",
+    image: "/images/design/restauranteKiDelicia.jpg", // Caminho corrigido
     link: "",
     category: "design",
   },
-  // Add more projects as needed
 ];
 
 export default function Projects() {
@@ -54,7 +53,10 @@ export default function Projects() {
   );
 
   return (
-    <section id="projects" className="min-h-screen bg-transparent bg-gradient-to-b from-gray-900 via-gray-900 to-gray-950 px-4 py-16">
+    <section
+      id="projects"
+      className="min-h-screen bg-transparent bg-gradient-to-b from-gray-900 via-gray-900 to-gray-950 px-4 py-16"
+    >
       <div className="mx-auto max-w-6xl">
         {/* Enhanced Header */}
         <div className="mb-16 text-center">
@@ -77,7 +79,7 @@ export default function Projects() {
             className={`flex items-center rounded-xl px-6 py-3 transition-all ${
               activeTab === 0
                 ? "bg-emerald-600 text-white shadow-lg"
-                : "bg-gray-800 text-gray-400 hover:bg-gray-700 cursor-pointer hover:scale-105 hover:mr-2"
+                : "cursor-pointer bg-gray-800 text-gray-400 hover:mr-2 hover:scale-105 hover:bg-gray-700"
             }`}
             onClick={() => setActiveTab(0)}
           >
@@ -88,7 +90,7 @@ export default function Projects() {
             className={`flex items-center rounded-xl px-6 py-3 transition-all ${
               activeTab === 1
                 ? "bg-blue-500 text-white shadow-lg"
-                : "bg-gray-800 text-gray-400 hover:bg-gray-700 cursor-pointer hover:scale-105 hover:ml-2"
+                : "cursor-pointer bg-gray-800 text-gray-400 hover:ml-2 hover:scale-105 hover:bg-gray-700"
             }`}
             onClick={() => setActiveTab(1)}
           >
@@ -132,7 +134,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
   return (
     <Card
-      className="group relative h-full overflow-hidden bg-transparent bg-gradient-to-b from-gray-900 via-gray-900 to-gray-950 hover:shadow-xl border-none ring-0 hover:ring-1 hover:ring-gray-900 hover:shadow-gray-800 transition-all duration-300"
+      className="group relative h-full overflow-hidden border-none bg-transparent bg-gradient-to-b from-gray-900 via-gray-900 to-gray-950 ring-0 transition-all duration-300 hover:shadow-xl hover:ring-1 hover:shadow-gray-800 hover:ring-gray-900"
       imgSrc={project.image}
       imgAlt={project.title}
       theme={{
