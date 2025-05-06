@@ -4,7 +4,7 @@ import { Info } from 'lucide-react';
 
 export const Pricing: React.FC = () => {
   // Function to generate WhatsApp links with customized messages
-  const getWhatsAppLink = (plan: string) => {
+  const getWhatsAppLink = (plan: 'ecommerce' | 'landing' | 'brand') => {
     const baseUrl = "https://api.whatsapp.com/send?phone=5512991121980&text=";
     const messages = {
       ecommerce: encodeURIComponent(
