@@ -26,12 +26,13 @@ export default function Hero() {
         className="flex flex-col-reverse items-center justify-center bg-gradient-to-b from-gray-900 to-gray-800 px-6 py-8 md:flex-row md:px-12"
       >
         {/* Avatar */}
-        <div className="mt-6 flex-shrink-0 md:mt-0 md:mr-8">
+        <div className="mt-6 flex-shrink-0 md:mt-0 md:mr-8 hover:scale-105 transition-all duration-500 ease-in-out">
           <img
             src="/images/avatar.jpg"
             alt="Cauan Gabriel"
-            className="h-24 w-24 rounded-full object-cover ring-2 ring-gray-100 transition-transform duration-300 ease-in-out md:h-48 md:w-48 md:hover:scale-105"
+            className="h-24 w-24 md:h-48 md:w-48 rounded-full object-cover ring-2 ring-gray-100"
           />
+
         </div>
 
         {/* Text Content */}
@@ -84,7 +85,7 @@ export default function Hero() {
       <div className="relative -mt-20 pb-12 text-center">
         <a href="#about">
           <div className="group inline-flex animate-bounce flex-col items-center justify-center">
-            <p className="mb-2 text-sm font-medium text-gray-400 hover:text-emerald-400 transition-colors duration-300">  
+            <p className="mb-2 text-sm font-medium text-gray-400 hover:text-emerald-400 transition-colors duration-300">
               Explore more about me
             </p>
             <HiArrowDown className="h-6 w-6 text-emerald-400 group-hover:text-gray-50 transition-colors duration-300" />

@@ -2,7 +2,7 @@ import { FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
 
 export function Footer() {
   return (
-    <footer className="bg-transparent bg-gradient-to-b from-gray-950 to-black pb-6 px-4 sm:px-6">
+    <footer className="bg-gray-950 pb-6 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
         <hr className="border-gray-700 mb-6" />
 

@@ -36,7 +36,7 @@ const projects: Project[] = [
     id: 3,
     title: "Ki Delicia Restaurant",
     description:
-      "Ki Delicia is a restaurant from Minas Gerais that offers a variety of dishes. The logo were designed by me as a personal project for fun.",
+      "Ki Delicia Restaurant is a fictional restaurant from Minas Gerais. The logo were designed by me as a personal project for fun.",
     image: "/images/design/restauranteKiDelicia.jpg", // Caminho corrigido
     link: "",
     category: "design",
@@ -55,7 +55,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="min-h-screen bg-transparent bg-gradient-to-b from-gray-900 via-gray-900 to-gray-950 px-4 py-16"
+      className="min-h-screen bg-gray-900 px-4 py-16"
     >
       <div className="mx-auto max-w-6xl">
         {/* Enhanced Header */}

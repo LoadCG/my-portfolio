@@ -20,7 +20,7 @@ const CompNavbar = forwardRef<HTMLDivElement>((_, ref) => {
   return (
     <div ref={ref}>
       <Navbar fluid className="bg-transparent bg-gradient-to-b from-gray-950 via-gray-900 to-gray-900">
-        <NavbarBrand href="#">
+        <NavbarBrand href="">
           <span className="self-center text-xl font-semibold whitespace-nowrap text-white">
             Cauan Gabriel
           </span>
@@ -40,7 +40,7 @@ const CompNavbar = forwardRef<HTMLDivElement>((_, ref) => {
           <NavbarToggle />
         </div>
         <NavbarCollapse>
-          <NavbarLink href="#" active className="text-white hover:text-emerald-400 cursor-default">
+          <NavbarLink href="" active className="text-white hover:text-emerald-400 cursor-default">
             Home
           </NavbarLink>
           <NavbarLink href="#about" className="text-white hover:text-emerald-400">
@@ -49,12 +49,12 @@ const CompNavbar = forwardRef<HTMLDivElement>((_, ref) => {
           <NavbarLink href="#projects" className="text-white hover:text-emerald-400">
             Projects
           </NavbarLink>
-          {/* <NavbarLink href="#" className="text-white hover:text-emerald-400">
+          <NavbarLink href="#pricing" className="text-white hover:text-emerald-400">
             Pricing
           </NavbarLink>
-          <NavbarLink href="#" className="text-white hover:text-emerald-400">
+          <NavbarLink href="#contact" className="text-white hover:text-emerald-400">
             Contact
-          </NavbarLink> */}
+          </NavbarLink>
         </NavbarCollapse>
       </Navbar>
     </div>
