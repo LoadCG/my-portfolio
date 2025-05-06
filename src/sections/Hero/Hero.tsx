@@ -44,9 +44,7 @@ export default function Hero() {
             </span>
           </h1>
           <p className="mt-3 text-base leading-relaxed text-gray-400 md:mt-4 md:text-lg">
-            Junior Developer & Graphic Designer. I build full‑stack web
-            applications with HTML, CSS, JavaScript, PHP and MySQL, and craft
-            visual experiences in Photoshop.
+            With a foundation as a certified IT technician, coupled with my experience as a graphic designer and my current studies in Systems Analysis and Development Technology, I offer a versatile skillset. I am capable of building full-stack, multi-platform applications and designing visually attractive assets for clients.
           </p>
 
           {/* Call to actions */}
