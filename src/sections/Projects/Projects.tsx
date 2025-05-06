@@ -18,7 +18,7 @@ const projects: Project[] = [
     id: 1,
     title: "Chrysalis E-commerce",
     description:
-      "E-commerce Chrysalis is a platform for buying and selling products made with HTML, CSS, Javascript, Tailwind CSS, and PHP with MySQL.",
+      "E-commerce Chrysalis is a clothing webstore made with HTML, CSS, Javascript, Tailwind CSS, and PHP with MySQL. It is a project made at my technical education for learning purposes.",
     image: "/images/development/chrysalis.jpg", // Caminho corrigido
     link: "https://github.com/LoadCG/Chrysalisphp2",
     category: "development",
@@ -28,7 +28,7 @@ const projects: Project[] = [
     title: "Le Parfum Page",
     description:
       "Virtual perfumery (Le Parfum) landing page. Built by me and three classmates for an English/IT project. Elegant, informative, user-friendly.",
-    image: "/images/development/leParfum.png", // Caminho corrigido
+    image: "/images/development/leParfum.png",
     link: "https://github.com/fakersl/LandingPageIngles",
     category: "development",
   },
@@ -37,9 +37,18 @@ const projects: Project[] = [
     title: "Ki Delicia Restaurant",
     description:
       "Ki Delicia Restaurant is a fictional restaurant from Minas Gerais. The logo were designed by me as a personal project for fun.",
-    image: "/images/design/restauranteKiDelicia.jpg", // Caminho corrigido
+    image: "/images/design/restauranteKiDelicia.jpg",
     link: "",
     category: "design",
+  },
+  {
+    id: 4,
+    title: "My Portfolio",
+    description:
+      "This website! It was developed by me using Vite, Flowbite, TailwindCSS and React. It is a personal project to showcase my portfolio. It is a work in progress.",
+    image: "/images/development/portfolio.jpg",
+    link: "https://github.com/LoadCG/my-portfolio",
+    category: "development",
   },
 ];
 
@@ -76,22 +85,20 @@ export default function Projects() {
         {/* Styled Tabs */}
         <div className="mb-12 flex justify-center gap-2">
           <button
-            className={`flex items-center rounded-xl px-6 py-3 transition-all ${
-              activeTab === 0
+            className={`flex items-center rounded-xl px-6 py-3 transition-all ${activeTab === 0
                 ? "bg-emerald-600 text-white shadow-lg"
                 : "cursor-pointer bg-gray-800 text-gray-400 hover:mr-2 hover:scale-105 hover:bg-gray-700"
-            }`}
+              }`}
             onClick={() => setActiveTab(0)}
           >
             <HiOutlineCode className="mr-2 h-5 w-5" />
             Development
           </button>
           <button
-            className={`flex items-center rounded-xl px-6 py-3 transition-all ${
-              activeTab === 1
+            className={`flex items-center rounded-xl px-6 py-3 transition-all ${activeTab === 1
                 ? "bg-blue-500 text-white shadow-lg"
                 : "cursor-pointer bg-gray-800 text-gray-400 hover:ml-2 hover:scale-105 hover:bg-gray-700"
-            }`}
+              }`}
             onClick={() => setActiveTab(1)}
           >
             <HiOutlinePhotograph className="mr-2 h-5 w-5" />
