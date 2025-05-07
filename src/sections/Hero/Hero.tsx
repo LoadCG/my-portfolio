@@ -104,7 +104,7 @@ export default function Hero() {
       </aside>
 
       {/* Scroll indicator */}
-      <div className="relative -mt-20 pb-12 text-center">
+      <div className="hidden md:block relative -mt-20 pb-12 text-center">
         <a href="#about">
           <div className="group inline-flex animate-bounce flex-col items-center justify-center">
             <p className="mb-2 text-sm font-medium text-gray-400 hover:text-emerald-400 transition-colors duration-300">
