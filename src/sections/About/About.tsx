@@ -7,7 +7,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-gray-800 to-gray-900 px-4 py-8 md:flex-row"
+      className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-gray-800 to-gray-900 px-4 py-8 md:flex-row mt-10 sm:mt-8 md:mt-0"
     >
       <div className="w-full max-w-5xl text-center md:px-8 md:text-left">
         <h1 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
