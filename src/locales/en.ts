@@ -2,14 +2,14 @@ export default {
   hero: {
     title: "Hello, I'm",
     subtitle:
-      "With a foundation as a certified IT technician, coupled with my experience as a graphic designer and my current studies in Systems Analysis and Development Technology, I offer a versatile skillset. I am capable of building full-stack, multi-platform applications and designing visually attractive assets for clients.",
+      "With a foundation as a certified IT technician, coupled with my experience as a graphic designer and my current studies in Systems Analysis and Development Technology, I offer a versatile skillset. I am capable of building full-stack and multi-platform applications and designing visually attractive assets that generate a positive impact for your brand.",
     downloadCv: "Download CV",
     contactMe: "Contact Me",
-    scrollText: "Explore more about me",
+    scrollText: "Learn more about me",
   },
   about: {
-    titlePart1: "Want to know more",
-    titlePart2: "about me",
+    titlePart1: "Know more",
+    titlePart2: "About Me",
     content: `I'm an 18-year-old Brazilian developer passionate about merging <strong>code with creativity</strong>. My journey began in 2020 with basic IT courses, evolving into <strong>full-stack development</strong> through my technical education at Colégio Comercial de Caçapava, where I built systems in languages like Java, React and PHP/MySQL and designed UI prototypes in Figma.<br/><br/>What drives me is the <strong>problem-solving process</strong> - whether it's debugging a Java application or perfecting a design layout or flyer. My academic projects like the <link>Chrysalis E-commerce</link> (PHP/MySQL + Tailwind) taught me the value of <strong>end-to-end development</strong>.<br/><br/>While I'm pursuing my degree in Systems Analysis, I'm actively enhancing my <strong>front-end skills</strong> with React and exploring data fundamentals through <strong>Python Essentials</strong>. My 7-year Photoshop experience helps me create <strong>visually cohesive projects</strong> that balance functionality and aesthetics.`,
     timeline: {
       technical: {
@@ -37,10 +37,12 @@ export default {
     development: "Development",
     design: "Graphic Design",
     viewProject: "View Project",
-    designAlert:
-      "Sorry, this design project has not been published separately yet. Would you like to see my Instagram?",
-    devAlert:
-      "Sorry, this development project has not been published separately yet. Would you like to see my GitHub?",
+    designAlertTitle: "Design Project",
+    designAlert: "This design project is available exclusively on Instagram. Would you like to view it?",
+    modal: {
+      openInstagram: "View on Instagram",
+      cancel: "Cancel"
+    },
     projectsList: {
       chrysalis: {
         title: "Chrysalis E-commerce",
@@ -55,7 +57,7 @@ export default {
       kiDelicia: {
         title: "Ki Delicia Restaurant",
         description:
-          "Ki Delicia Restaurant is a fictional restaurant from Minas Gerais. The logo were designed by me as a personal project for fun.",
+          "Ki Delicia Restaurant is a fictional restaurant from Minas Gerais. The logo was designed by me as a personal project for fun.",
       },
       portfolio: {
         title: "My Portfolio",
@@ -114,8 +116,8 @@ export default {
     popular: "Most Popular",
   },
   contact: {
-    titleWhite: "Let's",
-    title: "Work Together",
+    titleWhite: "Let's Work",
+    title: "Together",
     subtitle:
       "Get in touch to discuss your project or just say hello. I'm available for freelance opportunities and collaborations.",
     options: {

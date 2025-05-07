@@ -15,7 +15,6 @@ export default function About() {
           <span className="bg-transparent bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent">
             {t('about.titlePart2')}
           </span>
-          ?
         </h1>
         <p 
           className="mt-4 text-base leading-relaxed text-gray-400 sm:text-lg"

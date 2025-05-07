@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "flowbite-react";
 import { HiOutlineCode, HiOutlinePhotograph } from "react-icons/hi";
 import { useTranslation } from 'react-i18next';
-
 interface Project {
   id: number;
   titleKey: string;
@@ -82,8 +81,8 @@ export default function Projects() {
         <div className="mb-12 flex justify-center gap-2">
           <button
             className={`flex items-center rounded-xl px-6 py-3 transition-all ${activeTab === 0
-                ? "bg-emerald-600 text-white shadow-lg"
-                : "cursor-pointer bg-gray-800 text-gray-400 hover:mr-2 hover:scale-105 hover:bg-gray-700"
+              ? "bg-emerald-600 text-white shadow-lg"
+              : "cursor-pointer bg-gray-800 text-gray-400 hover:mr-2 hover:scale-105 hover:bg-gray-700"
               }`}
             onClick={() => setActiveTab(0)}
           >
@@ -92,8 +91,8 @@ export default function Projects() {
           </button>
           <button
             className={`flex items-center rounded-xl px-6 py-3 transition-all ${activeTab === 1
-                ? "bg-blue-500 text-white shadow-lg"
-                : "cursor-pointer bg-gray-800 text-gray-400 hover:ml-2 hover:scale-105 hover:bg-gray-700"
+              ? "bg-blue-500 text-white shadow-lg"
+              : "cursor-pointer bg-gray-800 text-gray-400 hover:ml-2 hover:scale-105 hover:bg-gray-700"
               }`}
             onClick={() => setActiveTab(1)}
           >
@@ -116,64 +115,121 @@ export default function Projects() {
 import { TFunction } from 'i18next';
 
 const ProjectCard = ({ project, t }: { project: Project; t: TFunction }) => {
-  const handleProjectClick = () => {
-    if (!project.link || project.link === "") {
-      const confirmMessage =
-        project.category === "design"
-          ? t('projects.designAlert')
-          : t('projects.devAlert');
+  const [showModal, setShowModal] = useState(false);
 
-      const redirectUrl =
-        project.category === "design"
-          ? "https://www.instagram.com/design_cg.srn/"
-          : "https://github.com/LoadCG";
-
-      const confirm = window.confirm(confirmMessage);
-      if (confirm) {
-        window.open(redirectUrl, "_blank");
+  // Fechar modal com ESC
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && showModal) {
+        setShowModal(false);
       }
-    } else {
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [showModal]);
+
+  // Fechar modal ao clicar fora
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      setShowModal(false);
+    }
+  };
+  const handleProjectClick = () => {
+    if (project.link) {
       window.open(project.link, "_blank");
+    } else {
+      if (project.category === "design") {
+        setShowModal(true);
+      } else {
+        const confirmMessage = t('projects.devAlert');
+        const confirm = window.confirm(confirmMessage);
+        if (confirm) window.open("https://github.com/LoadCG", "_blank");
+      }
     }
   };
 
   return (
-    <Card
-      className="group relative h-full overflow-hidden border-none bg-transparent bg-gradient-to-b from-gray-900 via-gray-900 to-gray-950 ring-0 transition-all duration-300 hover:shadow-xl hover:ring-1 hover:shadow-gray-800 hover:ring-gray-900"
-      imgSrc={project.image}
-      imgAlt={t(project.titleKey)}
-      theme={{
-        img: {
-          base: "mx-auto h-48 rounded-t-lg object-cover transition-transform duration-300",
-        },
-        root: { base: "flex h-full flex-col" },
-      }}
-    >
-      <div className="flex h-full flex-col justify-between">
-        <div>
-          <h5 className="mb-3 text-xl font-bold text-white">{t(project.titleKey)}</h5>
-          <p className="mb-4 text-gray-400">{t(project.descriptionKey)}</p>
-        </div>
-        <button
-          onClick={handleProjectClick}
-          className="inline-flex cursor-pointer items-center justify-center rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-medium text-white transition-all hover:bg-emerald-700 hover:shadow-md"
-        >
-          {t('projects.viewProject')}
-          <svg
-            className="ml-2 h-4 w-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+    <>
+      <Card
+        className="group relative h-full overflow-hidden border-none bg-transparent bg-gradient-to-b from-gray-900 via-gray-900 to-gray-950 ring-0 transition-all duration-300 hover:shadow-xl hover:ring-1 hover:shadow-gray-800 hover:ring-gray-900"
+        imgSrc={project.image}
+        imgAlt={t(project.titleKey)}
+        theme={{
+          img: {
+            base: "mx-auto h-48 rounded-t-lg object-cover transition-transform duration-300",
+          },
+          root: { base: "flex h-full flex-col" },
+        }}
+      >
+        <div className="flex h-full flex-col justify-between">
+          <div>
+            <h5 className="mb-3 text-xl font-bold text-white">{t(project.titleKey)}</h5>
+            <p className="mb-4 text-gray-400">{t(project.descriptionKey)}</p>
+          </div>
+          <button
+            onClick={handleProjectClick}
+            className="inline-flex cursor-pointer items-center justify-center rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-medium text-white transition-all hover:bg-emerald-700 hover:shadow-md"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-            />
-          </svg>
-        </button>
+            {t('projects.viewProject')}
+            <svg
+              className="ml-2 h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
+          </button>
+        </div>
+      </Card>
+
+      <div
+        onClick={handleBackdropClick}
+        className={`fixed inset-0 z-50 bg-black/50 transition-all ${showModal ? 'visible opacity-100' : 'invisible opacity-0'}`}
+      >
+        <div className="absolute left-1/2 top-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 transform p-4">
+          <div className="rounded-xl bg-gray-800 shadow-2xl">
+            <div className="border-b border-gray-700 p-6">
+              <h3 className="text-2xl font-bold bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent text-center">
+                {t('projects.designAlertTitle')}
+              </h3>
+            </div>
+
+            <div className="p-6 space-y-6">
+              <p className="text-gray-300 text-lg text-center">
+                {t('projects.designAlert')}
+              </p>
+
+              <div className="flex justify-center gap-4">
+                <button
+                  className="flex items-center rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-6 py-3 transition-all duration-300 ring-2 ring-emerald-400 hover:ring-0 hover:scale-105 cursor-pointer hover:shadow-lg"
+                  onClick={() => {
+                    window.open("https://www.instagram.com/design_cg.srn/", "_blank");
+                    setShowModal(false);
+                  }}
+                >
+                  <HiOutlinePhotograph className="mr-2 h-5 w-5" />
+                  {t('projects.modal.openInstagram')}
+                </button>
+
+                <button
+                  className="rounded-xl cursor-pointer ring-2 ring-gray-600 hover:ring-0 bg-gray-700 hover:bg-gray-600 text-gray-300 px-6 py-3 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                  onClick={() => setShowModal(false)}
+                >
+                  {t('projects.modal.cancel')}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </Card>
+
+    </>
   );
 };

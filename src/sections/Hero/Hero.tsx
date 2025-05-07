@@ -29,7 +29,7 @@ export default function Hero() {
         className="flex flex-col-reverse items-center justify-center bg-gradient-to-b from-gray-900 to-gray-800 px-6 py-8 md:flex-row md:px-12"
       >
         {/* Avatar */}
-        <div className="mt-6 flex-shrink-0 md:mt-0 md:mr-16 hover:scale-105 transition-all duration-500 ease-in-out">
+        <div className="mt-6 flex-shrink-0 md:mt-0 md:mr-16 hover:scale-105 transition-all duration-500 ease-in-out active:scale-95 cursor-grab active:cursor-grabbing ">
           <img
             src="/images/avatar.jpg"
             alt="Cauan Gabriel"

@@ -2,14 +2,14 @@ export default {
   hero: {
     title: "Olá, eu sou",
     subtitle:
-      "Com uma base como técnico de informática certificado, somada à minha experiência como designer gráfico e meus estudos atuais em Tecnologia em Análise e Desenvolvimento de Sistemas, eu ofereço um conjunto de habilidades versátil. Sou capaz de construir aplicações full-stack e multiplataforma, além de criar materiais visualmente atraentes para clientes.",
+      "Com uma base como técnico de informática certificado, somada à minha experiência como designer gráfico e meus estudos atuais: Tecnólogo em Análise e Desenvolvimento de Sistemas, possuo um conjunto de habilidades versátil. Sou capaz de construir aplicações full-stack e multiplataforma, além de criar artes visualmente atraentes que geram impacto positivo para sua marca.",
     downloadCv: "Baixar CV",
     contactMe: "Entrar em Contato",
     scrollText: "Saiba mais sobre mim",
   },
   about: {
-    titlePart1: "Quer saber mais",
-    titlePart2: "sobre mim",
+    titlePart1: "Saiba mais",
+    titlePart2: "Sobre Mim",
     content: `Sou um desenvolvedor brasileiro de 18 anos apaixonado por unir <strong>código e criatividade</strong>. Minha jornada começou em 2020 com cursos básicos de tecnologia, evoluindo para o <strong>desenvolvimento full-stack</strong> através da minha formação técnica no Colégio Comercial de Caçapava, onde construí sistemas em linguagens como Java, React e PHP/MySQL e protótipos de UI no Figma.<br/><br/>O que me motiva é o <strong>processo de resolução de problemas</strong> - seja depurando uma aplicação Java ou aperfeiçoando um layout de design ou flyer. Meus projetos acadêmicos como o <link>Chrysalis E-commerce</link> (PHP/MySQL + Tailwind) me ensinaram o valor do <strong>desenvolvimento ponta a ponta</strong>.<br/><br/>Enquanto curso Tecnólogo em Análise e Desenvolvimento de Sistemas, estou aprimorando ativamente minhas <strong>habilidades em front-end</strong> com React e explorando fundamentos de dados através do <strong>Python Essentials</strong>. Minha experiência de 7 anos com Photoshop me ajuda a criar <strong>projetos visualmente coesos</strong> que equilibram funcionalidade e estética.`,
     timeline: {
       technical: {
@@ -37,10 +37,12 @@ export default {
     development: "Desenvolvimento",
     design: "Design Gráfico",
     viewProject: "Ver Projeto",
-    designAlert:
-      "Desculpe, este projeto de design ainda não foi publicado separadamente. Gostaria de ver meu Instagram?",
-    devAlert:
-      "Desculpe, este projeto de desenvolvimento ainda não foi publicado separadamente. Gostaria de ver meu GitHub?",
+    designAlertTitle: "Projeto de Design",
+    designAlert: "Este projeto de design está disponível exclusivamente no Instagram. Gostaria de visualizá-lo?",
+    modal: {
+      openInstagram: "Ver no Instagram",
+      cancel: "Cancelar"
+    },
     projectsList: {
       chrysalis: {
         title: "Chrysalis E-commerce",
@@ -114,8 +116,8 @@ export default {
     popular: "Mais Popular",
   },
   contact: {
-    titleWhite: "Vamos",
-    title: "Trabalhar Juntos",
+    titleWhite: "Vamos Trabalhar",
+    title: "Juntos",
     subtitle:
       "Entre em contato para discutir seu projeto ou apenas para dizer olá. Estou disponível para oportunidades freelancer e colaborações.",
     options: {
