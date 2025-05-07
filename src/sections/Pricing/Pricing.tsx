@@ -1,35 +1,46 @@
 import React from 'react';
 import { Button, Tooltip } from 'flowbite-react';
 import { Info } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export const Pricing: React.FC = () => {
-  // Function to generate WhatsApp links with customized messages
+  const { t } = useTranslation();
+
   const getWhatsAppLink = (plan: 'ecommerce' | 'landing' | 'brand') => {
     const baseUrl = "https://api.whatsapp.com/send?phone=5512991121980&text=";
     const messages = {
       ecommerce: encodeURIComponent(
-        "Olá Cauan! Estou interessado(a) no plano *E-commerce* ($599+).\n\n" +
-        "🔹 Recursos que preciso:\n" +
-        "• Catálogo de produtos completo\n" +
-        "• Carrinho de compras funcional\n" +
-        "• Integração com métodos de pagamento\n\n" +
-        "Você poderia me explicar como funciona seu processo de desenvolvimento?"
+        t('pricing.plans.ecommerce.message', {
+          plan: t('pricing.plans.ecommerce.title'),
+          price: t('pricing.plans.ecommerce.price'),
+          features: "\n• " + [
+            t('pricing.plans.ecommerce.features.catalog'),
+            t('pricing.plans.ecommerce.features.cart'),
+            t('pricing.plans.ecommerce.features.payment')
+          ].join("\n• ")
+        })
       ),
       landing: encodeURIComponent(
-        "Oi Cauan! Quero solicitar uma *Landing Page* ($199) para meu negócio.\n\n" +
-        "🔹 Meus requisitos:\n" +
-        "• Design moderno e responsivo\n" +
-        "• 5 seções bem estruturadas\n" +
-        "• Formulário de contato integrado\n\n" +
-        "Qual o prazo médio para entrega?"
+        t('pricing.plans.landing.message', {
+          plan: t('pricing.plans.landing.title'),
+          price: t('pricing.plans.landing.price'),
+          features: "\n• " + [
+            t('pricing.plans.landing.features.responsive'),
+            t('pricing.plans.landing.features.sections'),
+            t('pricing.plans.landing.features.contact')
+          ].join("\n• ")
+        })
       ),
       brand: encodeURIComponent(
-        "Olá Cauan! Preciso de um serviço de *Identidade Visual* ($149).\n\n" +
-        "🔹 Elementos essenciais:\n" +
-        "• Logo principal e variações\n" +
-        "• Paleta de cores profissional\n" +
-        "• Guia de aplicação básico\n\n" +
-        "Você tem exemplos de trabalhos similares?"
+        t('pricing.plans.brand.message', {
+          plan: t('pricing.plans.brand.title'),
+          price: t('pricing.plans.brand.price'),
+          features: "\n• " + [
+            t('pricing.plans.brand.features.logo'),
+            t('pricing.plans.brand.features.colors'),
+            t('pricing.plans.brand.features.guide')
+          ].join("\n• ")
+        })
       )
     };
     return `${baseUrl}${messages[plan]}`;
@@ -37,110 +48,93 @@ export const Pricing: React.FC = () => {
 
   return (
     <section id="pricing" className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-900 to-gray-950 px-4 py-16">
-      {/* Header */}
       <div className="mx-auto max-w-6xl text-center">
         <h1 className="text-4xl font-bold text-white md:text-5xl">
-          Pricing{' '}
+          {t('pricing.titleWhite')}{' '}
           <span className="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent">
-            Options
+            {t('pricing.title')}
           </span>
         </h1>
         <p className="mt-4 text-gray-400">
-          Choose the plan that best fits your full-stack development and graphic design needs.
+          {t('pricing.subtitle')}
         </p>
       </div>
 
-      {/* Pricing Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 max-w-6xl mx-auto">
         {/* E-commerce Card */}
         <div className="relative border-2 border-emerald-400 rounded-xl p-6 transform transition-all group hover:scale-105">
           <div className="absolute top-0 right-0 bg-emerald-600 text-white px-3 py-1 rounded-bl-lg rounded-tr-lg text-sm">
-            Most Popular
+            {t('pricing.popular')}
           </div>
-          <h3 className="text-xl font-bold text-white">E-commerce</h3>
-          <p className="text-gray-400">Complete online store solution</p>
+          <h3 className="text-xl font-bold text-white">{t('pricing.plans.ecommerce.title')}</h3>
+          <p className="text-gray-400">{t('pricing.plans.ecommerce.description')}</p>
           <div className="my-6">
-            <span className="text-4xl font-bold text-white">$599+</span>
-            <span className="text-gray-400">/project</span>
+            <span className="text-4xl font-bold text-white">{t('pricing.plans.ecommerce.price')}</span>
+            <span className="text-gray-400">/{t('pricing.plans.pricePerProject')}</span>
           </div>
           <ul className="space-y-3 text-gray-400">
             <li className="flex items-center">
-              • Product catalog{' '}
-              <Tooltip content="Product listing with filters and categories">
+              • {t('pricing.plans.ecommerce.features.catalog')}{' '}
+              <Tooltip content={t('pricing.plans.ecommerce.tooltips.catalog')}>
                 <Info className="ml-1 h-4 w-4 text-gray-500 hover:text-white" />
               </Tooltip>
             </li>
             <li className="flex items-center">
-              • Shopping cart system
+              • {t('pricing.plans.ecommerce.features.cart')}
             </li>
             <li className="flex items-center">
-              • Payment integration{' '}
-              <Tooltip content="Stripe, PayPal or local payment methods">
+              • {t('pricing.plans.ecommerce.features.payment')}{' '}
+              <Tooltip content={t('pricing.plans.ecommerce.tooltips.payment')}>
                 <Info className="ml-1 h-4 w-4 text-gray-500 hover:text-white" />
               </Tooltip>
             </li>
-            <li className="text-sm text-emerald-300">Only 2 slots/month</li>
+            <li className="text-sm text-emerald-300">{t('pricing.plans.ecommerce.features.slots')}</li>
           </ul>
-          <a 
-            href={getWhatsAppLink('ecommerce')} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="block w-full"
-          >
+          <a href={getWhatsAppLink('ecommerce')} target="_blank" rel="noopener noreferrer" className="block w-full">
             <Button className="mt-8 w-full animate-pulse bg-emerald-500 hover:bg-emerald-600 cursor-pointer">
-              Choose Plan
+              {t('pricing.button')}
             </Button>
           </a>
         </div>
 
         {/* Landing Page Card */}
         <div className="border border-gray-700 rounded-xl p-6 transform transition-all group hover:scale-105 hover:border-emerald-400">
-          <h3 className="text-xl font-bold text-white">Landing Page</h3>
-          <p className="text-gray-400">Professional one-page website</p>
+          <h3 className="text-xl font-bold text-white">{t('pricing.plans.landing.title')}</h3>
+          <p className="text-gray-400">{t('pricing.plans.landing.description')}</p>
           <div className="my-6">
-            <span className="text-4xl font-bold text-white">$199</span>
-            <span className="text-gray-400">/project</span>
+            <span className="text-4xl font-bold text-white">{t('pricing.plans.landing.price')}</span>
+            <span className="text-gray-400">/{t('pricing.plans.pricePerProject')}</span>
           </div>
           <ul className="space-y-3 text-gray-400">
-            <li>• Fully responsive design</li>
-            <li>• 5 customized sections</li>
-            <li>• Contact form integration</li>
-            <li className="text-sm text-emerald-300">Only 5 slots/month</li>
+            <li>• {t('pricing.plans.landing.features.responsive')}</li>
+            <li>• {t('pricing.plans.landing.features.sections')}</li>
+            <li>• {t('pricing.plans.landing.features.contact')}</li>
+            <li className="text-sm text-emerald-300">{t('pricing.plans.landing.features.slots')}</li>
           </ul>
-          <a 
-            href={getWhatsAppLink('landing')} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="block w-full"
-          >
+          <a href={getWhatsAppLink('landing')} target="_blank" rel="noopener noreferrer" className="block w-full">
             <Button className="mt-8 w-full bg-blue-600 hover:bg-blue-700 cursor-pointer">
-              Choose Plan
+              {t('pricing.button')}
             </Button>
           </a>
         </div>
 
         {/* Brand Identity Card */}
         <div className="border border-gray-700 rounded-xl p-6 transform transition-all group hover:scale-105 hover:border-emerald-400">
-          <h3 className="text-xl font-bold text-white">Brand Identity</h3>
-          <p className="text-gray-400">Complete visual identity package</p>
+          <h3 className="text-xl font-bold text-white">{t('pricing.plans.brand.title')}</h3>
+          <p className="text-gray-400">{t('pricing.plans.brand.description')}</p>
           <div className="my-6">
-            <span className="text-4xl font-bold text-white">$149</span>
-            <span className="text-gray-400">/package</span>
+            <span className="text-4xl font-bold text-white">{t('pricing.plans.brand.price')}</span>
+            <span className="text-gray-400">/{t('pricing.plans.pricePerPackage')}</span>
           </div>
           <ul className="space-y-3 text-gray-400">
-            <li>• Main logo + variations</li>
-            <li>• Professional color palette</li>
-            <li>• Basic style guide</li>
-            <li className="text-sm text-emerald-300">Only 3 slots/month</li>
+            <li>• {t('pricing.plans.brand.features.logo')}</li>
+            <li>• {t('pricing.plans.brand.features.colors')}</li>
+            <li>• {t('pricing.plans.brand.features.guide')}</li>
+            <li className="text-sm text-emerald-300">{t('pricing.plans.brand.features.slots')}</li>
           </ul>
-          <a 
-            href={getWhatsAppLink('brand')} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="block w-full"
-          >
+          <a href={getWhatsAppLink('brand')} target="_blank" rel="noopener noreferrer" className="block w-full">
             <Button className="mt-8 w-full bg-green-600 hover:bg-green-700 cursor-pointer">
-              Choose Plan
+              {t('pricing.button')}
             </Button>
           </a>
         </div>

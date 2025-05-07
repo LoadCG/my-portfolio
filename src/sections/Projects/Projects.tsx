@@ -3,57 +3,55 @@
 import { useState } from "react";
 import { Card } from "flowbite-react";
 import { HiOutlineCode, HiOutlinePhotograph } from "react-icons/hi";
+import { useTranslation } from 'react-i18next';
 
 interface Project {
   id: number;
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
   image: string;
   link: string;
   category: "design" | "development";
 }
 
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Chrysalis E-commerce",
-    description:
-      "E-commerce Chrysalis is a clothing webstore made with HTML, CSS, Javascript, Tailwind CSS, and PHP with MySQL. It is a project made at my technical education for learning purposes.",
-    image: "/images/development/chrysalis.jpg", // Caminho corrigido
-    link: "https://github.com/LoadCG/Chrysalisphp2",
-    category: "development",
-  },
-  {
-    id: 2,
-    title: "Le Parfum Page",
-    description:
-      "Virtual perfumery (Le Parfum) landing page. Built by me and three classmates for an English/IT project. Elegant, informative, user-friendly.",
-    image: "/images/development/leParfum.png",
-    link: "https://github.com/fakersl/LandingPageIngles",
-    category: "development",
-  },
-  {
-    id: 3,
-    title: "Ki Delicia Restaurant",
-    description:
-      "Ki Delicia Restaurant is a fictional restaurant from Minas Gerais. The logo were designed by me as a personal project for fun.",
-    image: "/images/design/restauranteKiDelicia.jpg",
-    link: "",
-    category: "design",
-  },
-  {
-    id: 4,
-    title: "My Portfolio",
-    description:
-      "This website! It was developed by me using Vite, Flowbite, TailwindCSS and React. It is a personal project to showcase my portfolio. It is a work in progress.",
-    image: "/images/development/portfolio.jpg",
-    link: "https://github.com/LoadCG/my-portfolio",
-    category: "development",
-  },
-];
-
 export default function Projects() {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<number>(0);
+
+  const projects: Project[] = [
+    {
+      id: 1,
+      titleKey: "projects.projectsList.chrysalis.title",
+      descriptionKey: "projects.projectsList.chrysalis.description",
+      image: "/images/development/chrysalis.jpg",
+      link: "https://github.com/LoadCG/Chrysalisphp2",
+      category: "development",
+    },
+    {
+      id: 2,
+      titleKey: "projects.projectsList.leParfum.title",
+      descriptionKey: "projects.projectsList.leParfum.description",
+      image: "/images/development/leParfum.png",
+      link: "https://github.com/fakersl/LandingPageIngles",
+      category: "development",
+    },
+    {
+      id: 3,
+      titleKey: "projects.projectsList.kiDelicia.title",
+      descriptionKey: "projects.projectsList.kiDelicia.description",
+      image: "/images/design/restauranteKiDelicia.jpg",
+      link: "",
+      category: "design",
+    },
+    {
+      id: 4,
+      titleKey: "projects.projectsList.portfolio.title",
+      descriptionKey: "projects.projectsList.portfolio.description",
+      image: "/images/development/portfolio.jpg",
+      link: "https://github.com/LoadCG/my-portfolio",
+      category: "development",
+    },
+  ];
 
   const filteredProjects = projects.filter((project) =>
     activeTab === 0
@@ -70,15 +68,13 @@ export default function Projects() {
         {/* Enhanced Header */}
         <div className="mb-16 text-center">
           <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-            My{" "}
+            {t('projects.titleWhite')}{" "}
             <span className="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent">
-              Projects
+              {t('projects.title')}
             </span>
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-gray-400">
-            Browse through selected works that represent my dual expertise in
-            building digital experiences and crafting compelling visual
-            narratives.
+            {t('projects.subtitle')}
           </p>
         </div>
 
@@ -92,7 +88,7 @@ export default function Projects() {
             onClick={() => setActiveTab(0)}
           >
             <HiOutlineCode className="mr-2 h-5 w-5" />
-            Development
+            {t('projects.development')}
           </button>
           <button
             className={`flex items-center rounded-xl px-6 py-3 transition-all ${activeTab === 1
@@ -102,14 +98,14 @@ export default function Projects() {
             onClick={() => setActiveTab(1)}
           >
             <HiOutlinePhotograph className="mr-2 h-5 w-5" />
-            Graphic Design
+            {t('projects.design')}
           </button>
         </div>
 
         {/* Projects Grid with Animation */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {filteredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard key={project.id} project={project} t={t} />
           ))}
         </div>
       </div>
@@ -117,13 +113,15 @@ export default function Projects() {
   );
 }
 
-const ProjectCard = ({ project }: { project: Project }) => {
+import { TFunction } from 'i18next';
+
+const ProjectCard = ({ project, t }: { project: Project; t: TFunction }) => {
   const handleProjectClick = () => {
     if (!project.link || project.link === "") {
       const confirmMessage =
         project.category === "design"
-          ? "Sorry, this design project has not been published separately yet. Would you like to see my Instagram?"
-          : "Sorry, this development project has not been published separately yet. Would you like to see my GitHub?";
+          ? t('projects.designAlert')
+          : t('projects.devAlert');
 
       const redirectUrl =
         project.category === "design"
@@ -143,7 +141,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
     <Card
       className="group relative h-full overflow-hidden border-none bg-transparent bg-gradient-to-b from-gray-900 via-gray-900 to-gray-950 ring-0 transition-all duration-300 hover:shadow-xl hover:ring-1 hover:shadow-gray-800 hover:ring-gray-900"
       imgSrc={project.image}
-      imgAlt={project.title}
+      imgAlt={t(project.titleKey)}
       theme={{
         img: {
           base: "mx-auto h-48 rounded-t-lg object-cover transition-transform duration-300",
@@ -153,14 +151,14 @@ const ProjectCard = ({ project }: { project: Project }) => {
     >
       <div className="flex h-full flex-col justify-between">
         <div>
-          <h5 className="mb-3 text-xl font-bold text-white">{project.title}</h5>
-          <p className="mb-4 text-gray-400">{project.description}</p>
+          <h5 className="mb-3 text-xl font-bold text-white">{t(project.titleKey)}</h5>
+          <p className="mb-4 text-gray-400">{t(project.descriptionKey)}</p>
         </div>
         <button
           onClick={handleProjectClick}
           className="inline-flex cursor-pointer items-center justify-center rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-medium text-white transition-all hover:bg-emerald-700 hover:shadow-md"
         >
-          View Project
+          {t('projects.viewProject')}
           <svg
             className="ml-2 h-4 w-4"
             fill="none"

@@ -6,10 +6,9 @@ import { HiArrowUp } from 'react-icons/hi';
 export default function CompScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Mostra o botão quando o usuário rolar 300px para baixo
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
+      if (window.pageYOffset > 180) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -21,7 +20,6 @@ export default function CompScrollToTop() {
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
-  // Função para rolar suavemente até o topo
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,

@@ -1,5 +1,9 @@
 import { CompHorizontalTimeline } from "../../components/HorizontalTimeline/CompHorizontalTimeline.tsx";
+import { useTranslation } from 'react-i18next';
+
 export default function About() {
+  const { t } = useTranslation();
+
   return (
     <section
       id="about"
@@ -7,50 +11,16 @@ export default function About() {
     >
       <div className="w-full max-w-5xl text-center md:px-8 md:text-left">
         <h1 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
-          Want to know more{" "}
+          {t('about.titlePart1')}{" "}
           <span className="bg-transparent bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent">
-            about me
+            {t('about.titlePart2')}
           </span>
           ?
         </h1>
-        <p className="mt-4 text-base leading-relaxed text-gray-400 sm:text-lg">
-          I'm an 18-year-old Brazilian developer passionate about merging{" "}
-          <span className="font-semibold text-white">code with creativity</span>.{" "}
-          My journey began in 2020 with basic IT courses, evolving into{" "}
-          <span className="font-semibold text-white">
-            full-stack development
-          </span>{" "}
-          through my technical education where I built PHP/MySQL systems and
-          designed UI prototypes in Photoshop.
-          <br />
-          <br />
-          What drives me is the{" "}
-          <span className="font-semibold text-white">
-            problem-solving process
-          </span>{" "}
-          - whether it's debugging a Java application or perfecting a design
-          layout. My academic projects like the{" "}
-          <a href="#projects" className="font-semibold text-emerald-400 cursor-pointer hover:text-emerald-500">
-            Chrysalis E-commerce
-          </a>{" "}
-          (PHP/MySQL + Tailwind) taught me the value of{" "}
-          <span className="font-semibold text-white">
-            end-to-end development
-          </span>
-          .
-          <br />
-          <br />
-          While pursuing my degree in Systems Analysis, I'm actively enhancing
-          my{" "}
-          <span className="font-semibold text-white">front-end skills</span> with
-          React and exploring data fundamentals through{" "}
-          <span className="font-semibold text-white">Python Essentials</span>.
-          My 7-year Photoshop experience helps me create{" "}
-          <span className="font-semibold text-white">
-            visually cohesive projects
-          </span>{" "}
-          that balance functionality and aesthetics.
-        </p>
+        <p 
+          className="mt-4 text-base leading-relaxed text-gray-400 sm:text-lg"
+          dangerouslySetInnerHTML={{ __html: t('about.content') }}
+        />
 
         <CompHorizontalTimeline />
       </div>

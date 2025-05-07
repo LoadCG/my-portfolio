@@ -7,7 +7,36 @@ html {
   scroll-behavior: smooth;
 }
 img {
-  background: #1f2937; /* Cor do tema (gray-800) */
+  background: #1f2937; /* #1f2937 = tailwind gray-800 */
   opacity: 100%;
   transition: opacity 0.3s ease;
+}
+
+select {
+  -moz-appearance: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+option {
+  background-color: #1f2937;
+  color: white;
+}
+
+option:hover {
+  background-color: #374151 !important;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-indent: 1px;
+  text-overflow: "";
+}
+
+select:focus {
+  outline: none;
 }
