@@ -36,10 +36,10 @@ export default function Projects() {
     },
     {
       id: 3,
-      titleKey: "projects.projectsList.kiDelicia.title",
-      descriptionKey: "projects.projectsList.kiDelicia.description",
-      image: "/images/design/restauranteKiDelicia.jpg",
-      link: "",
+      titleKey: "projects.projectsList.sae.title",
+      descriptionKey: "projects.projectsList.sae.description",
+      image: "/images/design/logo_sae.png",
+      link: "https://www.instagram.com/treinamentos.sae/", // Link to the Instagram page of the company
       category: "design",
     },
     {
@@ -50,6 +50,14 @@ export default function Projects() {
       link: "https://github.com/LoadCG/my-portfolio",
       category: "development",
     },
+    {
+      id: 5,
+      titleKey: "projects.projectsList.kiDelicia.title",
+      descriptionKey: "projects.projectsList.kiDelicia.description",
+      image: "/images/design/restauranteKiDelicia.jpg",
+      link: "",
+      category: "design",
+    },    
   ];
 
   const filteredProjects = projects.filter((project) =>

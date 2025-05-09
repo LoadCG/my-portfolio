@@ -64,6 +64,11 @@ export default {
         description:
           "This website! It was developed by me using Vite, Flowbite, TailwindCSS and React. It is a personal project to showcase my portfolio. It is a work in progress.",
       },
+      sae: {
+        title: "SAE Logo",
+        description:
+          "Logo for the company Treinamentos SAE (Salvamento em Ambientes Extremos), a real company focused on safety and rescue training. The project was developed by me as a freelance graphic designer.",
+      },
     },
   },
   pricing: {
