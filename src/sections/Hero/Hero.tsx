@@ -31,7 +31,7 @@ export default function Hero() {
         {/* Avatar */}
         <div className="mt-6 flex-shrink-0 md:mt-0 md:mr-16 hover:scale-105 transition-all duration-500 ease-in-out active:scale-95 cursor-grab active:cursor-grabbing ">
           <img
-            src="/images/avatar.jpg"
+            src="/images/avatar.png"
             alt="Cauan Gabriel"
             className="h-14 sm:h-28 w-14 sm:w-28 md:h-78 md:w-78 rounded-full object-cover ring-2 ring-gray-100"
           />
