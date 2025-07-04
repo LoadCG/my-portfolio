@@ -38,10 +38,11 @@ export default {
     design: "Graphic Design",
     viewProject: "View Project",
     designAlertTitle: "Design Project",
-    designAlert: "This design project is available exclusively on Instagram. Would you like to view it?",
+    designAlert:
+      "This design project is available exclusively on Instagram. Would you like to view it?",
     modal: {
       openInstagram: "View on Instagram",
-      cancel: "Cancel"
+      cancel: "Cancel",
     },
     projectsList: {
       chrysalis: {
@@ -54,10 +55,10 @@ export default {
         description:
           "Virtual perfumery (Le Parfum) landing page. Built by me and three classmates for an English/IT project. Elegant, informative, user-friendly.",
       },
-      kiDelicia: {
-        title: "Ki Delicia Restaurant",
+      brutalism: {
+        title: "Brutalism Design",
         description:
-          "Ki Delicia Restaurant is a fictional restaurant from Minas Gerais. The logo was designed by me as a personal project for fun.",
+          "I explored Brutalism Design in Photoshop, creating pieces with robust shapes, striking textures and raw aesthetics. The focus was on simplicity and visual impact, communicating messages with strength and clarity.",
       },
       portfolio: {
         title: "My Portfolio",

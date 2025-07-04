@@ -38,10 +38,11 @@ export default {
     design: "Design Gráfico",
     viewProject: "Ver Projeto",
     designAlertTitle: "Projeto de Design",
-    designAlert: "Este projeto de design está disponível exclusivamente no Instagram. Gostaria de visualizá-lo?",
+    designAlert:
+      "Este projeto de design está disponível exclusivamente no Instagram. Gostaria de visualizá-lo?",
     modal: {
       openInstagram: "Ver no Instagram",
-      cancel: "Cancelar"
+      cancel: "Cancelar",
     },
     projectsList: {
       chrysalis: {
@@ -54,10 +55,10 @@ export default {
         description:
           "Uma landing page de perfumaria virtual chamada Le Parfum. Desenvolvida por mim e três colegas para um projeto de Inglês durante o curso técnico. Elegante, informativa e de fácil usabilidade.",
       },
-      kiDelicia: {
-        title: "Restaurante Ki Delicia",
+      brutalism: {
+        title: "Design Brutalista",
         description:
-          "Restaurante Ki Delicia é um estabelecimento fictício de Minas Gerais. A logo foi desenhada por mim como um projeto pessoal por diversão.",
+          "Explorei o Design Brutalista no Photoshop, criando peças com formas robustas, texturas marcantes e estética crua. O foco foi na simplicidade e impacto visual, comunicando mensagens com força e clareza.",
       },
       portfolio: {
         title: "Meu Portfolio",

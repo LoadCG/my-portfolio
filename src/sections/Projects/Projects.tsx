@@ -52,12 +52,12 @@ export default function Projects() {
     },
     {
       id: 5,
-      titleKey: "projects.projectsList.kiDelicia.title",
-      descriptionKey: "projects.projectsList.kiDelicia.description",
-      image: "/images/design/restauranteKiDelicia.jpg",
+      titleKey: "projects.projectsList.brutalism.title",
+      descriptionKey: "projects.projectsList.brutalism.description",
+      image: "/images/design/zootopiaBrutalism.png",
       link: "",
       category: "design",
-    },    
+    },
   ];
 
   const filteredProjects = projects.filter((project) =>
