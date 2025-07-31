@@ -2,7 +2,7 @@ export default {
   hero: {
     title: "Olá, eu sou",
     subtitle:
-      "Com uma base como técnico de informática certificado, somada à minha experiência como designer gráfico e meus estudos atuais: Tecnólogo em Análise e Desenvolvimento de Sistemas, possuo um conjunto de habilidades versátil. Sou capaz de construir aplicações full-stack e multiplataforma, além de criar artes visualmente atraentes que geram impacto positivo para sua marca.",
+      "Atuo como designer gráfico em uma agência e curso Análise e Desenvolvimento de Sistemas. Com base técnica em informática e perfil criativo, uno lógica e estética para desenvolver soluções visuais e funcionais que geram impacto real e fortalecem marcas no ambiente digital.",
     downloadCv: "Baixar CV",
     contactMe: "Entrar em Contato",
     scrollText: "Saiba mais sobre mim",
@@ -10,22 +10,24 @@ export default {
   about: {
     titlePart1: "Saiba mais",
     titlePart2: "Sobre Mim",
-    content: `Sou um desenvolvedor brasileiro de 18 anos apaixonado por unir <strong>código e criatividade</strong>. Minha jornada começou em 2020 com cursos básicos de tecnologia, evoluindo para o <strong>desenvolvimento full-stack</strong> através da minha formação técnica no Colégio Comercial de Caçapava, onde construí sistemas em linguagens como Java, React e PHP/MySQL e protótipos de UI no Figma.<br/><br/>O que me motiva é o <strong>processo de resolução de problemas</strong> - seja depurando uma aplicação Java ou aperfeiçoando um layout de design ou flyer. Meus projetos acadêmicos como o <link>Chrysalis E-commerce</link> (PHP/MySQL + Tailwind) me ensinaram o valor do <strong>desenvolvimento ponta a ponta</strong>.<br/><br/>Enquanto curso Tecnólogo em Análise e Desenvolvimento de Sistemas, estou aprimorando ativamente minhas <strong>habilidades em front-end</strong> com React e explorando fundamentos de dados através do <strong>Python Essentials</strong>. Minha experiência de 7 anos com Photoshop me ajuda a criar <strong>projetos visualmente coesos</strong> que equilibram funcionalidade e estética.`,
+    content: `Sou <strong>designer gráfico profissional</strong> e <strong>desenvolvedor front-end em formação</strong>. Durante o dia, atuo em uma agência de design, onde crio campanhas publicitárias, materiais impressos, peças para redes sociais e textos criativos — vivência que me ensinou a <strong>pensar estrategicamente</strong> em cada pixel e palavra. À noite, estudo Análise e Desenvolvimento de Sistemas na Fatec, e sigo me aprofundando de forma autodidata em <strong>React e Tailwind CSS</strong> para transformar ideias criativas em interfaces funcionais.<br/><br/>
+              Minha jornada começou em <strong>2017 com o Photoshop</strong>, mas ganhou base sólida no curso técnico de Informática, onde aprendi desde <strong>POO com Java</strong> até desenvolvimento web com <strong>PHP, HTML, CSS e JavaScript</strong>. Essa formação dupla — prática em design e técnica em programação — me permite enxergar cada projeto digital sob dois ângulos: <strong>a experiência do usuário</strong> e <strong>a robustez do código</strong>.<br/><br/>
+              Meu objetivo é claro: ser um <strong>profissional híbrido</strong>, capaz de liderar projetos que exigem tanto <strong>design impactante</strong> quanto <strong>desenvolvimento preciso</strong>. Seja compondo um banner que converte ou componentizando uma interface em React, busco sempre o equilíbrio entre <strong>forma e função</strong>.`,
     timeline: {
       technical: {
         time: "2022 - 2024",
-        title: "Formação Técnica",
-        body: "Imersão em fundamentos de desenvolvimento de software: Java (POO, GUI e PostgreSQL), criação de interfaces web responsivas (HTML, CSS, JavaScript, Bootstrap e Tailwind CSS), e modelagem de bancos de dados com PHP e MySQL.",
+        title: "Técnico em Informática",
+        body: "Formação sólida em desenvolvimento web e programação orientada a objetos. Estudei HTML, CSS, JavaScript, PHP/MySQL, Java e prototipação no Figma, desenvolvendo sistemas completos como o projeto Chrysalis E-commerce, que uniu lógica, UI e experiência do usuário.",
       },
       design: {
-        time: "2017-Atualmente",
-        title: "Jornada em Design Gráfico",
-        body: "Experiência de sete anos na criação de flyers impactantes para artistas e mídias sociais, demonstrando aptidão para design gráfico. Atualmente construindo um portfólio em design.",
+        time: "2017 - Atualmente",
+        title: "Design Gráfico na Prática",
+        body: "Iniciei com Photoshop em 2017 e, desde então, criei peças gráficas para mídias sociais, artistas e campanhas. Hoje atuo como designer gráfico em uma agência, desenvolvendo materiais para o ambiente digital e impresso com foco estratégico e criativo.",
       },
       current: {
         time: "Atualmente",
-        title: "Meu Foco Atual",
-        body: "Enquanto curso Tecnólogo em Análise e Desenvolvimento de Sistemas, estou aprofundando conhecimentos em React, estudando Java para fundamentos de sistemas e explorando Python para futuros projetos com dados. Buscando minha primeira experiência profissional em desenvolvimento.",
+        title: "Desenvolvimento Contínuo",
+        body: "Curso Análise e Desenvolvimento de Sistemas na Fatec e estudo React e Tailwind CSS por conta própria. Busco unir meus conhecimentos técnicos e criativos para entregar interfaces modernas, responsivas e com propósito.",
       },
     },
   },

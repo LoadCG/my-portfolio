@@ -1,31 +1,33 @@
 export default {
   hero: {
-    title: "Hello, I'm",
+    title: "Hi, I'm",
     subtitle:
-      "With a foundation as a certified IT technician, coupled with my experience as a graphic designer and my current studies in Systems Analysis and Development Technology, I offer a versatile skillset. I am capable of building full-stack and multi-platform applications and designing visually attractive assets that generate a positive impact for your brand.",
+      "I work as a graphic designer at an agency and study Systems Analysis and Development. With a technical background in IT and a creative mindset, I combine logic and aesthetics to create visual and functional solutions that make a real impact and strengthen brands in the digital space.",
     downloadCv: "Download CV",
     contactMe: "Contact Me",
     scrollText: "Learn more about me",
   },
   about: {
-    titlePart1: "Know more",
+    titlePart1: "Learn more",
     titlePart2: "About Me",
-    content: `I'm an 18-year-old Brazilian developer passionate about merging <strong>code with creativity</strong>. My journey began in 2020 with basic IT courses, evolving into <strong>full-stack development</strong> through my technical education at Colégio Comercial de Caçapava, where I built systems in languages like Java, React and PHP/MySQL and designed UI prototypes in Figma.<br/><br/>What drives me is the <strong>problem-solving process</strong> - whether it's debugging a Java application or perfecting a design layout or flyer. My academic projects like the <link>Chrysalis E-commerce</link> (PHP/MySQL + Tailwind) taught me the value of <strong>end-to-end development</strong>.<br/><br/>While I'm pursuing my degree in Systems Analysis, I'm actively enhancing my <strong>front-end skills</strong> with React and exploring data fundamentals through <strong>Python Essentials</strong>. My 7-year Photoshop experience helps me create <strong>visually cohesive projects</strong> that balance functionality and aesthetics.`,
+    content: `I'm a <strong>professional graphic designer</strong> and a <strong>front-end developer in progress</strong>. During the day, I work at a design agency where I create advertising campaigns, printed materials, social media assets, and creative copy — an experience that taught me to <strong>think strategically</strong> about every pixel and word. At night, I study Systems Analysis and Development at Fatec, and continue learning independently, diving into <strong>React and Tailwind CSS</strong> to turn creative ideas into functional interfaces.<br/><br/>
+            My journey began in <strong>2017 with Photoshop</strong>, and was solidified through my technical course in IT, where I learned everything from <strong>OOP with Java</strong> to web development using <strong>PHP, HTML, CSS, and JavaScript</strong>. This dual background — hands-on design and technical programming — allows me to approach digital projects from two perspectives: <strong>user experience</strong> and <strong>code structure</strong>.<br/><br/>
+            My goal is clear: to become a <strong>true hybrid professional</strong>, capable of leading projects that demand both <strong>impactful design</strong> and <strong>precise development</strong>. Whether designing a high-converting banner or building a component-based interface in React, I always aim to balance <strong>form and function</strong>.`,
     timeline: {
       technical: {
         time: "2022 - 2024",
-        title: "Technical Education",
-        body: "Immersed in software development fundamentals: Java development (OOP, GUI, and PostgreSQL), responsive web interface creation (HTML, CSS, JavaScript, Bootstrap, and Tailwind CSS), and database modeling with PHP and MySQL.",
+        title: "Technical Degree in IT",
+        body: "Solid training in web development and object-oriented programming. I studied HTML, CSS, JavaScript, PHP/MySQL, Java, and prototyping in Figma, building complete systems like the Chrysalis E-commerce project, which combined logic, UI, and user experience.",
       },
       design: {
-        time: "2017-Present",
-        title: "Visual Design Journey",
-        body: "Seven years of experience in designing impactful flyers for artists and social media, demonstrating a keen eye for graphic design. Actively building a portfolio in design.",
+        time: "2017 - Present",
+        title: "Graphic Design in Practice",
+        body: "I started with Photoshop in 2017 and since then have created visual pieces for social media, artists, and campaigns. Today, I work as a graphic designer at an agency, producing both digital and print materials with a strategic and creative focus.",
       },
       current: {
-        time: "Now",
-        title: "Current Focus",
-        body: "While I'm studying Systems Analysis and Development Technology, I'm deepening my React knowledge, studying Java for system fundamentals, and exploring Python for future data projects. Seeking my first professional experience in development.",
+        time: "Present",
+        title: "Ongoing Development",
+        body: "I'm currently studying Systems Analysis and Development at Fatec while independently learning React and Tailwind CSS. My goal is to combine technical and creative skills to deliver modern, responsive, and meaningful user interfaces.",
       },
     },
   },
