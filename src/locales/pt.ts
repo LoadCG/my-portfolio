@@ -10,7 +10,7 @@ export default {
   about: {
     titlePart1: "Saiba mais",
     titlePart2: "Sobre Mim",
-    content: `Sou <strong>designer gráfico profissional</strong> e <strong>desenvolvedor front-end em formação</strong>. Durante o dia, atuo em uma agência de design, onde crio campanhas publicitárias, materiais impressos, peças para redes sociais e textos criativos — vivência que me ensinou a <strong>pensar estrategicamente</strong> em cada pixel e palavra. À noite, estudo Análise e Desenvolvimento de Sistemas na Fatec, e sigo me aprofundando de forma autodidata em <strong>React e Tailwind CSS</strong> para transformar ideias criativas em interfaces funcionais.<br/><br/>
+    content: `Sou <strong>designer gráfico profissional</strong> e <strong>desenvolvedor front-end em formação</strong>. Durante o dia, atuo em uma agência de design, onde crio campanhas publicitárias, materiais impressos, peças para redes sociais e textos criativos — vivência que me ensinou a <strong>pensar estrategicamente</strong> em cada pixel e palavra. À noite, estudo Análise e Desenvolvimento de Sistemas na Fatec São José dos Campos - Prof. Jessen Vidal, e sigo me aprofundando de forma autodidata em <strong>React e Tailwind CSS</strong> para transformar ideias criativas em interfaces funcionais.<br/><br/>
               Minha jornada começou em <strong>2017 com o Photoshop</strong>, mas ganhou base sólida no curso técnico de Informática, onde aprendi desde <strong>POO com Java</strong> até desenvolvimento web com <strong>PHP, HTML, CSS e JavaScript</strong>. Essa formação dupla — prática em design e técnica em programação — me permite enxergar cada projeto digital sob dois ângulos: <strong>a experiência do usuário</strong> e <strong>a robustez do código</strong>.<br/><br/>
               Meu objetivo é claro: ser um <strong>profissional híbrido</strong>, capaz de liderar projetos que exigem tanto <strong>design impactante</strong> quanto <strong>desenvolvimento preciso</strong>. Seja compondo um banner que converte ou componentizando uma interface em React, busco sempre o equilíbrio entre <strong>forma e função</strong>.`,
     timeline: {
@@ -27,7 +27,7 @@ export default {
       current: {
         time: "Atualmente",
         title: "Desenvolvimento Contínuo",
-        body: "Curso Análise e Desenvolvimento de Sistemas na Fatec e estudo React e Tailwind CSS por conta própria. Busco unir meus conhecimentos técnicos e criativos para entregar interfaces modernas, responsivas e com propósito.",
+        body: "Curso Análise e Desenvolvimento de Sistemas na Fatec São José dos Campos - Prof. Jessen Vidal e estudo React e Tailwind CSS por conta própria. Busco unir meus conhecimentos técnicos e criativos para entregar interfaces modernas, responsivas e com propósito.",
       },
     },
   },

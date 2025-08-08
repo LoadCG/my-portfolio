@@ -10,7 +10,7 @@ export default {
   about: {
     titlePart1: "Learn more",
     titlePart2: "About Me",
-    content: `I'm a <strong>professional graphic designer</strong> and a <strong>front-end developer in progress</strong>. During the day, I work at a design agency where I create advertising campaigns, printed materials, social media assets, and creative copy — an experience that taught me to <strong>think strategically</strong> about every pixel and word. At night, I study Systems Analysis and Development at Fatec, and continue learning independently, diving into <strong>React and Tailwind CSS</strong> to turn creative ideas into functional interfaces.<br/><br/>
+    content: `I'm a <strong>professional graphic designer</strong> and a <strong>front-end developer in progress</strong>. During the day, I work at a design agency where I create advertising campaigns, printed materials, social media assets, and creative copy — an experience that taught me to <strong>think strategically</strong> about every pixel and word. At night, I study Systems Analysis and Development at Fatec São José dos Campos - Prof. Jessen Vidal, and continue learning independently, diving into <strong>React and Tailwind CSS</strong> to turn creative ideas into functional interfaces.<br/><br/>
             My journey began in <strong>2017 with Photoshop</strong>, and was solidified through my technical course in IT, where I learned everything from <strong>OOP with Java</strong> to web development using <strong>PHP, HTML, CSS, and JavaScript</strong>. This dual background — hands-on design and technical programming — allows me to approach digital projects from two perspectives: <strong>user experience</strong> and <strong>code structure</strong>.<br/><br/>
             My goal is clear: to become a <strong>true hybrid professional</strong>, capable of leading projects that demand both <strong>impactful design</strong> and <strong>precise development</strong>. Whether designing a high-converting banner or building a component-based interface in React, I always aim to balance <strong>form and function</strong>.`,
     timeline: {
@@ -27,7 +27,7 @@ export default {
       current: {
         time: "Present",
         title: "Ongoing Development",
-        body: "I'm currently studying Systems Analysis and Development at Fatec while independently learning React and Tailwind CSS. My goal is to combine technical and creative skills to deliver modern, responsive, and meaningful user interfaces.",
+        body: "I'm currently studying Systems Analysis and Development at Fatec São José dos Campos - Prof. Jessen Vidal while independently learning React and Tailwind CSS. My goal is to combine technical and creative skills to deliver modern, responsive, and meaningful user interfaces.",
       },
     },
   },
