@@ -23,7 +23,7 @@ export default function App() {
       <Projects />
       <Pricing />
       <Contact />
-      <Footer />
+      <Footer /> 
     </div>
   );
 }
