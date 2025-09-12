@@ -26,7 +26,7 @@ export function CompHorizontalTimeline() {
         <TimelinePoint icon={HiAcademicCap} />
         <TimelineContent>
           <TimelineTime>{t('about.timeline.technical.time')}</TimelineTime>
-          <TimelineTitle>{t('about.timeline.technical.title')}</TimelineTitle>
+          <TimelineTitle class="text-white dark:text-white">{t('about.timeline.technical.title')}</TimelineTitle>
           <TimelineBody>
             {t('about.timeline.technical.body')}
           </TimelineBody>
@@ -38,7 +38,7 @@ export function CompHorizontalTimeline() {
         <TimelinePoint icon={HiAdjustments} />
         <TimelineContent>
           <TimelineTime>{t('about.timeline.design.time')}</TimelineTime>
-          <TimelineTitle>{t('about.timeline.design.title')}</TimelineTitle>
+          <TimelineTitle class="text-white dark:text-white">{t('about.timeline.design.title')}</TimelineTitle>
           <TimelineBody>
             {t('about.timeline.design.body')}
           </TimelineBody>
@@ -50,7 +50,7 @@ export function CompHorizontalTimeline() {
         <TimelinePoint icon={HiArrowRight} />
         <TimelineContent>
           <TimelineTime>{t('about.timeline.current.time')}</TimelineTime>
-          <TimelineTitle>{t('about.timeline.current.title')}</TimelineTitle>
+          <TimelineTitle class="text-white dark:text-white">{t('about.timeline.current.title')}</TimelineTitle>
           <TimelineBody>
             {t('about.timeline.current.body')}
           </TimelineBody>
