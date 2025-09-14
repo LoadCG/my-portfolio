@@ -218,7 +218,7 @@ const ProjectCard = ({ project, t }: { project: Project; t: TFunction }) => {
                 <button
                   className="flex items-center rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-6 py-3 transition-all duration-300 ring-2 ring-emerald-400 hover:ring-0 hover:scale-105 cursor-pointer hover:shadow-lg"
                   onClick={() => {
-                    window.open("https://www.instagram.com/design_cg.srn/", "_blank");
+                    window.open("https://www.instagram.com/muone_mkt/", "_blank");
                     setShowModal(false);
                   }}
                 >
