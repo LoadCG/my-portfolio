@@ -38,7 +38,7 @@ export default function Contact() {
           </a>
 
           <a
-            href="https://www.instagram.com/design_cg.srn/"
+            href="https://www.instagram.com/muone_mkt/"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex flex-col items-center justify-center rounded-xl bg-gray-800 p-6 transition-all hover:bg-gray-700 hover:shadow-lg"
