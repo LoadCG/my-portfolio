@@ -27,7 +27,7 @@ export default function Contact() {
             href="https://wa.link/uudby2"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col items-center justify-center rounded-xl bg-gray-800 p-6 transition-all hover:bg-gray-700 hover:shadow-lg"
+            className="group flex flex-col items-center justify-center rounded-xl bg-gray-900 p-6 transition-all hover:bg-gray-800 hover:shadow-lg"
           >
             <FaWhatsapp className="mb-4 h-12 w-12 text-green-500 group-hover:text-green-400" />
             <h3 className="mb-2 text-xl font-semibold text-white">{t('contact.options.whatsapp.title')}</h3>
@@ -41,7 +41,7 @@ export default function Contact() {
             href="https://www.instagram.com/muone_mkt/"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col items-center justify-center rounded-xl bg-gray-800 p-6 transition-all hover:bg-gray-700 hover:shadow-lg"
+            className="group flex flex-col items-center justify-center rounded-xl bg-gray-900 p-6 transition-all hover:bg-gray-800 hover:shadow-lg"
           >
             <FaInstagram className="mb-4 h-12 w-12 text-pink-500 group-hover:text-pink-400" />
             <h3 className="mb-2 text-xl font-semibold text-white">{t('contact.options.instagram.title')}</h3>
@@ -55,7 +55,7 @@ export default function Contact() {
             href="https://www.linkedin.com/in/cauan-gabriel-nascimento-a3a1492ab/"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col items-center justify-center rounded-xl bg-gray-800 p-6 transition-all hover:bg-gray-700 hover:shadow-lg"
+            className="group flex flex-col items-center justify-center rounded-xl bg-gray-900 p-6 transition-all hover:bg-gray-800 hover:shadow-lg"
           >
             <FaLinkedin className="mb-4 h-12 w-12 text-blue-500 group-hover:text-blue-400" />
             <h3 className="mb-2 text-xl font-semibold text-white">{t('contact.options.linkedin.title')}</h3>
@@ -65,7 +65,7 @@ export default function Contact() {
             </span>
           </a>
 
-          <div className="group flex flex-col items-center justify-center rounded-xl bg-gray-800 p-6 transition-all hover:bg-gray-700 hover:shadow-lg duration-500 ease-in-out">
+          <div className="group flex flex-col items-center justify-center rounded-xl bg-gray-900 p-6 transition-all hover:bg-gray-800 hover:shadow-lg duration-500 ease-in-out">
             <HiLocationMarker className="mb-4 h-12 w-12 text-red-500 group-hover:text-red-400" />
             <h3 className="mb-2 text-xl font-semibold text-white">{t('contact.options.location.title')}</h3>
             <p className="text-center text-gray-400">
