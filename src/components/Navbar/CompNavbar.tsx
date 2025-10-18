@@ -20,7 +20,7 @@ const CompNavbar = forwardRef<HTMLDivElement>((_, ref) => {
             Cauan Gabriel
           </span>
         </NavbarBrand>
-        
+
         <div className="flex md:order-2 gap-4">
           <LanguageSwitcher />
           <NavbarToggle />
@@ -36,9 +36,9 @@ const CompNavbar = forwardRef<HTMLDivElement>((_, ref) => {
           <NavbarLink href="#projects" className="text-white hover:text-emerald-400">
             {t('nav.projects')}
           </NavbarLink>
-          <NavbarLink href="#pricing" className="text-white hover:text-emerald-400">
+          {/* <NavbarLink href="#pricing" className="text-white hover:text-emerald-400">
             {t('nav.pricing')}
-          </NavbarLink>
+          </NavbarLink> */}
           <NavbarLink href="#contact" className="text-white hover:text-emerald-400">
             {t('nav.contact')}
           </NavbarLink>
