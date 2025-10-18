@@ -57,10 +57,10 @@ export default {
         description:
           "Uma landing page de perfumaria virtual chamada Le Parfum. Desenvolvida por mim e três colegas para um projeto de Inglês durante o curso técnico. Elegante, informativa e de fácil usabilidade.",
       },
-      brutalism: {
-        title: "Design Brutalista",
+      draflavia: {
+        title: "Dra. Flávia Loureiro",
         description:
-          "Explorei o Design Brutalista no Photoshop, criando peças com formas robustas, texturas marcantes e estética crua. O foco foi na simplicidade e impacto visual, comunicando mensagens com força e clareza.",
+          "Projeto de rebranding e identidade visual desenvolvido pela Agência Wiks para a cirurgiã plástica Dra. Flávia Loureiro, da Clínica Rejuvenate (RJ). Renovei o design das redes sociais, criando uma comunicação mais sofisticada, elegante e alinhada ao público da marca.",
       },
       portfolio: {
         title: "Meu Portfolio",
@@ -71,6 +71,11 @@ export default {
         title: "Logo SAE",
         description:
           "Logo para a empresa Treinamentos SAE(Salvamento em Ambientes Extremos), empresa real focada em treinamentos de segurança e resgate. O projeto foi desenvolvido por mim como designer gráfico freelancer.",
+      },
+      opampeiro: {
+        title: "O Pampeiro",
+        description:
+          "Projeto desenvolvido na Agência Wiks para o restaurante O Pampeiro, tradicional churrascaria e pizzaria localizada em Lorena - SP. Realizei a reformulação visual das redes sociais, criando uma identidade mais atraente e alinhada ao conceito de rodízio e experiência gastronômica da marca.",
       },
     },
   },

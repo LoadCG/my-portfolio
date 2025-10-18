@@ -52,10 +52,18 @@ export default function Projects() {
     },
     {
       id: 5,
-      titleKey: "projects.projectsList.brutalism.title",
-      descriptionKey: "projects.projectsList.brutalism.description",
-      image: "/images/design/zootopiaBrutalism.png",
-      link: "",
+      titleKey: "projects.projectsList.draflavia.title",
+      descriptionKey: "projects.projectsList.draflavia.description",
+      image: "/images/design/draflavia.png",
+      link: "https://www.behance.net/gallery/236818369/Social-Media-Esttica-Cirurgia-Plastica",
+      category: "design",
+    },
+    {
+      id: 6,
+      titleKey: "projects.projectsList.opampeiro.title",
+      descriptionKey: "projects.projectsList.opampeiro.description",
+      image: "/images/design/opampeiro.png",
+      link: "https://www.behance.net/gallery/234000133/Restaurante-O-Pampeiro",
       category: "design",
     },
   ];

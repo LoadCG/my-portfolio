@@ -57,10 +57,10 @@ export default {
         description:
           "Virtual perfumery (Le Parfum) landing page. Built by me and three classmates for an English/IT project. Elegant, informative, user-friendly.",
       },
-      brutalism: {
-        title: "Brutalism Design",
+      draflavia: {
+        title: "Dr. Flávia Loureiro",
         description:
-          "I explored Brutalism Design in Photoshop, creating pieces with robust shapes, striking textures and raw aesthetics. The focus was on simplicity and visual impact, communicating messages with strength and clarity.",
+          "Rebranding and visual identity project developed by Agência Wiks for Dr. Flávia Loureiro, a plastic surgeon at Clínica Rejuvenate (RJ). I redesigned her social media presence, creating a more sophisticated, elegant, and audience-focused visual communication.",
       },
       portfolio: {
         title: "My Portfolio",
@@ -71,6 +71,11 @@ export default {
         title: "SAE Logo",
         description:
           "Logo for the company Treinamentos SAE (Salvamento em Ambientes Extremos), a real company focused on safety and rescue training. The project was developed by me as a freelance graphic designer.",
+      },
+      opampeiro: {
+        title: "O Pampeiro",
+        description:
+          "Social media rebranding project developed at Agência Wiks for O Pampeiro, a traditional steakhouse and pizzeria located in Lorena, São Paulo. I created a more appealing and cohesive visual identity, reflecting the restaurant’s rodízio-style dining experience and warm atmosphere.",
       },
     },
   },
