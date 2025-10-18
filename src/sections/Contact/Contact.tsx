@@ -8,7 +8,7 @@ export default function Contact() {
   const { t } = useTranslation();
 
   return (
-    <section id="contact" className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 px-4 py-16">
+    <section id="contact" className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-900 to-gray-950 px-4 py-16">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 text-center">
           <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">

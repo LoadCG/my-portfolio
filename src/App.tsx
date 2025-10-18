@@ -3,7 +3,7 @@ import About from "./sections/About/About";
 import CompScrollToTop from "./components/ScrollToTop/CompScrollToTop";
 import Projects from "./sections/Projects/Projects";
 import { Footer } from './sections/Footer/Footer';
-import Pricing from "./sections/Pricing/Pricing";
+// import Pricing from "./sections/Pricing/Pricing";
 import Contact from "./sections/Contact/Contact";
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
@@ -21,9 +21,9 @@ export default function App() {
       <About />
       <CompScrollToTop />
       <Projects />
-      <Pricing />
+      {/* <Pricing /> */}
       <Contact />
-      <Footer /> 
+      <Footer />
     </div>
   );
 }
