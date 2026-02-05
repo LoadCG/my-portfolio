@@ -49,7 +49,7 @@ export default function Projects() {
       id: 4,
       titleKey: "projects.projectsList.portfolio.title",
       descriptionKey: "projects.projectsList.portfolio.description",
-      image: "/images/development/portfolio.jpg",
+      image: "/images/development/portfolio.png",
       link: "https://github.com/LoadCG/my-portfolio",
       category: "development",
     },
