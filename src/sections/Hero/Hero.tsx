@@ -33,6 +33,9 @@ export default function Hero() {
           <img
             src="/images/avatar.png"
             alt="Cauan Gabriel"
+            width={312}
+            height={312}
+            fetchPriority="high"
             className="h-14 sm:h-28 w-14 sm:w-28 md:h-78 md:w-78 rounded-full object-cover ring-2 ring-gray-100"
           />
         </div>

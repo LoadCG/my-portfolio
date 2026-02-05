@@ -200,7 +200,7 @@ const ProjectCard = ({ project, t }: { project: Project; t: TFunction }) => {
         imgAlt={t(project.titleKey)}
         theme={{
           img: {
-            base: "mx-auto h-48 rounded-t-lg object-cover transition-transform duration-300",
+            base: "mx-auto h-48 w-full rounded-t-lg object-cover transition-transform duration-300",
           },
           root: { base: "flex h-full flex-col" },
         }}
