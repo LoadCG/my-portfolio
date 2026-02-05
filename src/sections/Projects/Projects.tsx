@@ -13,9 +13,12 @@ interface Project {
   category: "design" | "development";
 }
 
+const INITIAL_PROJECTS_COUNT = 3;
+
 export default function Projects() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<number>(0);
+  const [expanded, setExpanded] = useState(false);
 
   const projects: Project[] = [
     {
@@ -66,6 +69,14 @@ export default function Projects() {
       link: "https://www.behance.net/gallery/234000133/Restaurante-O-Pampeiro",
       category: "design",
     },
+    {
+      id: 7,
+      titleKey: "projects.projectsList.setembroamarelobotica.title",
+      descriptionKey: "projects.projectsList.setembroamarelobotica.description",
+      image: "/images/design/setembroamarelobotica.png",
+      link: "https://www.behance.net/gallery/237477329/SETEMBRO-AMARELO-ENDOMARKETING",
+      category: "design",
+    },
   ];
 
   const filteredProjects = projects.filter((project) =>
@@ -73,6 +84,11 @@ export default function Projects() {
       ? project.category === "development"
       : project.category === "design",
   );
+
+  const displayedProjects = expanded
+    ? filteredProjects
+    : filteredProjects.slice(0, INITIAL_PROJECTS_COUNT);
+  const hasMoreThanInitial = filteredProjects.length > INITIAL_PROJECTS_COUNT;
 
   return (
     <section
@@ -100,7 +116,7 @@ export default function Projects() {
               ? "bg-emerald-600 text-white shadow-lg"
               : "cursor-pointer bg-gray-800 text-gray-400 hover:mr-2 hover:scale-105 hover:bg-gray-700"
               }`}
-            onClick={() => setActiveTab(0)}
+            onClick={() => { setActiveTab(0); setExpanded(false); }}
           >
             <HiOutlineCode className="mr-2 h-5 w-5" />
             {t('projects.development')}
@@ -110,7 +126,7 @@ export default function Projects() {
               ? "bg-blue-500 text-white shadow-lg"
               : "cursor-pointer bg-gray-800 text-gray-400 hover:ml-2 hover:scale-105 hover:bg-gray-700"
               }`}
-            onClick={() => setActiveTab(1)}
+            onClick={() => { setActiveTab(1); setExpanded(false); }}
           >
             <HiOutlinePhotograph className="mr-2 h-5 w-5" />
             {t('projects.design')}
@@ -119,10 +135,21 @@ export default function Projects() {
 
         {/* Projects Grid with Animation */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {filteredProjects.map((project) => (
+          {displayedProjects.map((project) => (
             <ProjectCard key={project.id} project={project} t={t} />
           ))}
         </div>
+
+        {hasMoreThanInitial && (
+          <div className="mt-10 flex justify-center">
+            <button
+              onClick={() => setExpanded(!expanded)}
+              className="cursor-pointer rounded-xl bg-gray-800 px-6 py-3 text-gray-300 transition-all hover:bg-gray-700 hover:text-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+            >
+              {expanded ? t('projects.viewLess') : t('projects.viewMore')}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -39,6 +39,8 @@ export default {
     development: "Desenvolvimento",
     design: "Design Gráfico",
     viewProject: "Ver Projeto",
+    viewMore: "Ver mais",
+    viewLess: "Ver menos",
     designAlertTitle: "Projeto de Design",
     designAlert:
       "Este projeto de design está disponível exclusivamente no Instagram. Gostaria de visualizá-lo?",
@@ -76,6 +78,11 @@ export default {
         title: "O Pampeiro",
         description:
           "Projeto desenvolvido na Agência Wiks para o restaurante O Pampeiro, tradicional churrascaria e pizzaria localizada em Lorena - SP. Realizei a reformulação visual das redes sociais, criando uma identidade mais atraente e alinhada ao conceito de rodízio e experiência gastronômica da marca.",
+      },
+      setembroamarelobotica: {
+        title: "Acolher é um ato de coragem",
+        description:
+          "Campanha de Setembro Amarelo desenvolvida para a Botica, rede de farmácias alopáticas do Piauí. Sob o título 'Acolher é um ato de coragem', criei peças de endomarketing para conscientização e acolhimento sobre saúde mental.",
       },
     },
   },

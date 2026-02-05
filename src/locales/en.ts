@@ -39,6 +39,8 @@ export default {
     development: "Development",
     design: "Graphic Design",
     viewProject: "View Project",
+    viewMore: "View more",
+    viewLess: "View less",
     designAlertTitle: "Design Project",
     designAlert:
       "This design project is available exclusively on Instagram. Would you like to view it?",
@@ -76,6 +78,11 @@ export default {
         title: "O Pampeiro",
         description:
           "Social media rebranding project developed at Agência Wiks for O Pampeiro, a traditional steakhouse and pizzeria located in Lorena, São Paulo. I created a more appealing and cohesive visual identity, reflecting the restaurant’s rodízio-style dining experience and warm atmosphere.",
+      },
+      setembroamarelobotica: {
+        title: "To Care Is an Act of Courage",
+        description:
+          "Yellow September campaign developed for Botica, an allopathic pharmacy chain in Piauí. Under the title 'To Care Is an Act of Courage', I created internal marketing pieces to raise awareness and foster support around mental health.",
       },
     },
   },
