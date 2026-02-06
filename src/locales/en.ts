@@ -170,6 +170,7 @@ export default {
       instagram: "Instagram",
       linkedin: "LinkedIn",
       github: "GitHub",
+      behance: "Behance",
     },
   },
   nav: {
