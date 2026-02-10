@@ -11,12 +11,12 @@ export default function Contact() {
     <section id="contact" className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-900 to-gray-950 px-4 py-16">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
             {t('contact.titleWhite')}{' '}
             <span className="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent">
               {t('contact.title')}
             </span>
-          </h1>
+          </h2>
           <p className="mx-auto max-w-2xl text-lg text-gray-400">
             {t('contact.subtitle')}
           </p>

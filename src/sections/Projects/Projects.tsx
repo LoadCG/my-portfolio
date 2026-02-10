@@ -98,12 +98,12 @@ export default function Projects() {
       <div className="mx-auto max-w-6xl">
         {/* Enhanced Header */}
         <div className="mb-16 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
             {t('projects.titleWhite')}{" "}
             <span className="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent">
               {t('projects.title')}
             </span>
-          </h1>
+          </h2>
           <p className="mx-auto max-w-2xl text-lg text-gray-400">
             {t('projects.subtitle')}
           </p>

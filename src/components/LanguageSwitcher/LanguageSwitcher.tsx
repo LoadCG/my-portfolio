@@ -10,7 +10,11 @@ export const LanguageSwitcher = () => {
 
   return (
     <div className="relative group my-auto">
+      <label htmlFor="language-select" className="sr-only">
+        {i18n.language === 'pt' ? 'Selecionar idioma' : 'Select language'}
+      </label>
       <select
+        id="language-select"
         value={i18n.language}
         onChange={handleLanguageChange}
         className="appearance-none bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-full py-1 pl-3 pr-6 text-sm text-white focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 transition-all cursor-pointer outline-none hover:bg-gray-800/90"

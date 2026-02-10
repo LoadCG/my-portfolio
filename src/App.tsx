@@ -17,12 +17,14 @@ export default function App() {
 
   return (
     <div className="App scroll-smooth bg-gray-800 antialiased">
-      <Hero />
-      <About />
-      <CompScrollToTop />
-      <Projects />
-      {/* <Pricing /> */}
-      <Contact />
+      <main>
+        <Hero />
+        <About />
+        <CompScrollToTop />
+        <Projects />
+        {/* <Pricing /> */}
+        <Contact />
+      </main>
       <Footer />
     </div>
   );

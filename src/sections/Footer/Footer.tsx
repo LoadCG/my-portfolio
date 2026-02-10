@@ -1,4 +1,4 @@
-import { FaInstagram, FaGithub, FaLinkedin, FaBehance } from "react-icons/fa";
+import { FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
 import { useTranslation } from 'react-i18next';
 
 export function Footer() {
@@ -24,7 +24,7 @@ export function Footer() {
             >
               <FaInstagram className="w-5 h-5" />
             </a>
-
+            
             <a
               href="https://www.linkedin.com/in/cauan-gabriel-nascimento-a3a1492ab/"
               className="text-gray-400 hover:text-blue-500 transition-colors"
@@ -41,16 +41,6 @@ export function Footer() {
               aria-label={t('footer.social.github')}
             >
               <FaGithub className="w-5 h-5" />
-            </a>
-
-            <a
-              href="https://www.behance.net/cauansilva1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-blue-600 transition-colors"
-              aria-label={t('footer.social.behance')}
-            >
-              <FaBehance className="w-5 h-5" />
             </a>
           </div>
         </div>
