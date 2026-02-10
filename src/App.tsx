@@ -8,6 +8,7 @@ import Contact from "./sections/Contact/Contact";
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import './i18n';
+import { Analytics } from '@vercel/analytics/react';
 export default function App() {
   const { t, i18n } = useTranslation();
 
@@ -26,6 +27,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <Analytics />
     </div>
   );
 }

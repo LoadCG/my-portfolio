@@ -7,6 +7,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import CompNavbar from "../../components/Navbar/CompNavbar";
 import { useDynamicHeight } from "../../hooks/useDynamicHeight";
 import { useTranslation } from 'react-i18next';
+import { track } from '@vercel/analytics';
 
 export default function Hero() {
   const { t } = useTranslation();
@@ -56,6 +57,7 @@ export default function Hero() {
           <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:justify-center md:justify-start">
             <Button
               onClick={() => {
+                track('download_cv');
                 const link = document.createElement("a");
                 link.href = "/cv.pdf";
                 link.download = "Cauan Gabriel da Silva Resende Nascimento - CV.pdf";
@@ -73,6 +75,7 @@ export default function Hero() {
 
             <a
               href="#contact"
+              onClick={() => track('click_contact_hero')}
               className="inline-flex min-w-[180px] max-w-full group transform items-center justify-center rounded-full bg-green-500 px-4 py-2 text-lg font-medium text-white transition-transform hover:bg-green-600 focus:ring-2 focus:ring-green-400 focus:outline-none hover:scale-105"
             >
               <div className="flex items-center">
@@ -88,6 +91,7 @@ export default function Hero() {
               href="https://github.com/LoadCG"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => track('click_github_hero')}
               className="inline-flex min-w-[180px] max-w-full transform items-center justify-center rounded-full bg-gray-800 px-4 py-2 text-lg font-medium text-white transition-transform hover:bg-gray-700 focus:ring-2 focus:ring-gray-600 focus:outline-none hover:scale-105"
             >
               <svg

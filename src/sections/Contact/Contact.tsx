@@ -3,6 +3,7 @@
 import { HiLocationMarker, HiOutlineMail } from "react-icons/hi";
 import { FaWhatsapp, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { useTranslation } from 'react-i18next';
+import { track } from '@vercel/analytics';
 
 export default function Contact() {
   const { t } = useTranslation();
@@ -27,6 +28,7 @@ export default function Contact() {
             href="https://wa.link/uudby2"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => track('click_whatsapp_contact')}
             className="group flex flex-col items-center justify-center rounded-xl bg-gray-900 p-6 transition-all hover:bg-gray-800 hover:shadow-lg"
           >
             <FaWhatsapp className="mb-4 h-12 w-12 text-green-500 group-hover:text-green-400" />
@@ -41,6 +43,7 @@ export default function Contact() {
             href="https://www.instagram.com/muone_mkt/"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => track('click_instagram_contact')}
             className="group flex flex-col items-center justify-center rounded-xl bg-gray-900 p-6 transition-all hover:bg-gray-800 hover:shadow-lg"
           >
             <FaInstagram className="mb-4 h-12 w-12 text-pink-500 group-hover:text-pink-400" />
@@ -55,6 +58,7 @@ export default function Contact() {
             href="https://www.linkedin.com/in/cauan-gabriel-nascimento-a3a1492ab/"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => track('click_linkedin_contact')}
             className="group flex flex-col items-center justify-center rounded-xl bg-gray-900 p-6 transition-all hover:bg-gray-800 hover:shadow-lg"
           >
             <FaLinkedin className="mb-4 h-12 w-12 text-blue-500 group-hover:text-blue-400" />
@@ -81,7 +85,11 @@ export default function Contact() {
           <p className="text-lg text-gray-400">
             <HiOutlineMail className="inline-block mx-2 h-5 w-5 mb-1 hover:text-gray-50 transition-colors duration-500 ease-in-out" />
             {t('contact.options.location.email')}{' '}
-            <a href="mailto:cauangabrielfac@gmail.com" className="hover:ml-1 hover:text-emerald-500 transition-all duration-500 ease-in-out text-emerald-400 hover:underline">
+            <a 
+              href="mailto:cauangabrielfac@gmail.com" 
+              onClick={() => track('click_email_contact')}
+              className="hover:ml-1 hover:text-emerald-500 transition-all duration-500 ease-in-out text-emerald-400 hover:underline"
+            >
               cauangabrielfac@gmail.com
             </a>
           </p>
