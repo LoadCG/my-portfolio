@@ -172,6 +172,10 @@ export default {
       github: "GitHub",
     },
   },
+  a11y: {
+    skipToContent: "Skip to content",
+    mainNav: "Main navigation",
+  },
   nav: {
     home: "Home",
     about: "About",

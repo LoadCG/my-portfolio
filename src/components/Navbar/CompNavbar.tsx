@@ -13,7 +13,7 @@ const CompNavbar = forwardRef<HTMLDivElement>((_, ref) => {
   const { t } = useTranslation();
 
   return (
-    <div ref={ref}>
+    <div ref={ref} role="navigation" aria-label={t('a11y.mainNav')}>
       <Navbar fluid className="bg-transparent bg-gradient-to-b from-gray-950 via-gray-900 to-gray-900">
         <NavbarBrand href="/">
           <span className="self-center text-xl font-semibold whitespace-nowrap text-white">

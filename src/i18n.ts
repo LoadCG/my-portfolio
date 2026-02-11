@@ -4,12 +4,16 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import enTranslations from "./locales/en";
 import ptTranslations from "./locales/pt";
 
+const setDocumentLang = (lng: string) => {
+  document.documentElement.lang = lng === "pt" ? "pt-BR" : lng;
+};
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     debug: false,
-    fallbackLng: "en",
+    fallbackLng: "pt",
     interpolation: {
       escapeValue: false,
     },
@@ -21,6 +25,11 @@ i18n
         translation: ptTranslations,
       },
     },
+  })
+  .then(() => {
+    setDocumentLang(i18n.language);
   });
+
+i18n.on("languageChanged", setDocumentLang);
 
 export default i18n;

@@ -18,7 +18,10 @@ export default function App() {
 
   return (
     <div className="App scroll-smooth bg-gray-800 antialiased">
-      <main>
+      <a href="#main" className="skip-link">
+        {t('a11y.skipToContent')}
+      </a>
+      <main id="main" tabIndex={-1}>
         <Hero />
         <About />
         <CompScrollToTop />

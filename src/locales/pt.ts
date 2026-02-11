@@ -172,6 +172,10 @@ export default {
       github: "GitHub",
     },
   },
+  a11y: {
+    skipToContent: "Pular para o conteúdo",
+    mainNav: "Navegação principal",
+  },
   nav: {
     home: "Início",
     about: "Sobre",
