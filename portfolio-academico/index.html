@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cauan G. - Dev. Fullstack & Designer</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', "sans-serif"],
+            },
+            colors: {
+              glass: "rgba(255, 255, 255, 0.03)",
+              glassBorder: "rgba(255, 255, 255, 0.08)",
+            },
+            animation: {
+              blob: "blob 7s infinite",
+            },
+            keyframes: {
+              blob: {
+                "0%": { transform: "translate(0px, 0px) scale(1)" },
+                "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                "100%": { transform: "translate(0px, 0px) scale(1)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  </head>
+  <body
+    class="overflow-x-hidden bg-[#07070a] font-sans text-white antialiased selection:bg-emerald-500/30"
+  >
+    <!-- Ambient Glowing Orbs -->
+    <div class="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+      <div
+        class="animate-blob absolute -top-[20%] -left-[10%] h-[500px] w-[500px] rounded-full bg-emerald-600/20 blur-[120px]"
+      ></div>
+      <div
+        class="animate-blob animation-delay-2000 absolute top-[20%] -right-[10%] h-[400px] w-[400px] rounded-full bg-blue-600/20 blur-[100px]"
+      ></div>
+      <div
+        class="animate-blob animation-delay-4000 absolute -bottom-[20%] left-[20%] h-[600px] w-[600px] rounded-full bg-purple-600/10 blur-[130px]"
+      ></div>
+    </div>
+    <a
+      href="#main"
+      class="sr-only z-50 focus:not-sr-only focus:absolute focus:bg-gray-900 focus:p-4 focus:text-white"
+    >
+      Pular para o conteúdo
+    </a>
+
+    <!-- Floating Navbar -->
+    <header
+      class="border-glassBorder bg-glass fixed top-4 left-1/2 z-50 w-[95%] max-w-5xl -translate-x-1/2 rounded-full border px-4 backdrop-blur-md transition-all duration-300 sm:px-6"
+    >
+      <nav>
+        <div class="flex h-16 items-center justify-between">
+          <!-- Logo -->
+          <div class="flex-shrink-0">
+            <a href="#" class="text-xl font-bold tracking-tight">Cauan G.</a>
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-4">
+              <a
+                href="#home"
+                class="rounded-md px-3 py-2 text-sm font-bold text-emerald-400 transition-colors"
+                >Início</a
+              >
+              <a
+                href="#about"
+                class="rounded-md px-3 py-2 text-sm font-medium text-gray-400 transition-colors hover:text-blue-400"
+                >Sobre</a
+              >
+              <a
+                href="#skills"
+                class="rounded-md px-3 py-2 text-sm font-medium text-gray-400 transition-colors hover:text-blue-400"
+                >Competências</a
+              >
+              <a
+                href="#courses"
+                class="rounded-md px-3 py-2 text-sm font-medium text-gray-400 transition-colors hover:text-blue-400"
+                >Cursos</a
+              >
+              <a
+                href="#projects"
+                class="rounded-md px-3 py-2 text-sm font-medium text-gray-400 transition-colors hover:text-blue-400"
+                >Projetos</a
+              >
+              <a
+                href="#contact"
+                class="rounded-md px-3 py-2 text-sm font-medium text-gray-400 transition-colors hover:text-blue-400"
+                >Contato</a
+              >
+            </div>
+          </div>
+
+          <!-- Mobile menu button -->
+          <div class="flex items-center md:hidden">
+            <button
+              id="mobile-menu-btn"
+              type="button"
+              class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+            >
+              <span class="sr-only">Abrir menu principal</span>
+              <i class="ph ph-list text-2xl" id="menu-icon-open"></i>
+              <i class="ph ph-x hidden text-2xl" id="menu-icon-close"></i>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div
+        class="border-glassBorder mt-2 hidden overflow-hidden rounded-2xl border bg-[#0a0a0f]/95 backdrop-blur-xl md:hidden"
+        id="mobile-menu"
+      >
+        <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+          <a
+            href="#home"
+            class="mobile-link block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:text-white"
+            >Início</a
+          >
+          <a
+            href="#about"
+            class="mobile-link block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:text-white"
+            >Sobre</a
+          >
+          <a
+            href="#skills"
+            class="mobile-link block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:text-white"
+            >Competências</a
+          >
+          <a
+            href="#courses"
+            class="mobile-link block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:text-white"
+            >Cursos</a
+          >
+          <a
+            href="#projects"
+            class="mobile-link block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:text-white"
+            >Projetos</a
+          >
+          <a
+            href="#contact"
+            class="mobile-link block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:text-white"
+            >Contato</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="relative z-10 flex flex-col items-center">
+      <!-- Hero Section -->
+      <section id="home" class="w-full">
+        <div
+          class="mx-auto flex min-h-screen max-w-7xl flex-col-reverse items-center justify-center px-6 py-8 pt-24 md:flex-row md:px-12 md:pt-0"
+        >
+          <!-- Avatar -->
+          <div
+            class="relative mt-6 flex-shrink-0 transition-transform duration-700 hover:scale-105 md:mt-0 md:mr-16"
+          >
+            <!-- Glowing background pulse behind avatar -->
+            <div
+              class="absolute inset-0 animate-pulse rounded-full bg-gradient-to-tr from-emerald-500 to-blue-500 opacity-40 blur-xl"
+            ></div>
+            <img
+              src="images/avatar.png"
+              alt="Cauan Gabriel"
+              fetchpriority="high"
+              class="border-glassBorder relative z-10 h-28 w-28 rounded-full border bg-[#0a0a0a] object-cover ring-2 ring-white/10 sm:h-36 sm:w-36 md:h-[312px] md:w-[312px]"
+            />
+          </div>
+
+          <!-- Text Content -->
+          <div class="fade-in w-full max-w-xl text-center md:text-left">
+            <h1 class="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+              <span
+                id="greeting"
+                class="mb-2 block text-xl font-medium text-emerald-400 sm:text-2xl"
+              ></span>
+              eu sou
+              <span
+                class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent"
+              >
+                Cauan Gabriel
+              </span>
+            </h1>
+            <p
+              class="mt-3 text-base leading-relaxed text-gray-400 md:mt-4 md:text-lg"
+            >
+              Atuo como designer gráfico em uma agência de publicidade e curso
+              Análise e Desenvolvimento de Sistemas. Com base técnica em
+              informática e perfil criativo, uno lógica e estética para
+              desenvolver soluções visuais e funcionais que geram impacto real e
+              fortalecem marcas no ambiente digital.
+            </p>
+
+            <!-- Call to actions -->
+            <div
+              class="mt-6 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:justify-center md:justify-start"
+            >
+              <!-- Botão Download CV -->
+              <a
+                href="cv.pdf"
+                download="Cauan Gabriel da Silva Resende Nascimento - CV.pdf"
+                class="inline-flex max-w-full min-w-[180px] transform items-center justify-center rounded-full bg-blue-500 px-4 py-2 text-lg font-medium text-white transition-transform hover:scale-105 hover:bg-blue-600 focus:ring-2 focus:ring-blue-600 focus:outline-none"
+              >
+                <i class="ph ph-download-simple mr-2 text-xl"></i>
+                Baixar CV
+              </a>
+
+              <!-- Botão WhatsApp -->
+              <a
+                href="#contact"
+                class="group inline-flex max-w-full min-w-[180px] transform items-center justify-center rounded-full bg-green-500 px-4 py-2 text-lg font-medium text-white transition-transform hover:scale-105 hover:bg-green-600 focus:ring-2 focus:ring-green-400 focus:outline-none"
+              >
+                <div class="flex items-center">
+                  <i class="ph ph-whatsapp-logo mr-2 text-xl"></i>
+                  Entrar em Contato
+                </div>
+                <div
+                  class="ml-3 flex h-8 w-8 items-center justify-center rounded-full bg-green-600 p-1 transition-transform group-hover:bg-green-700"
+                >
+                  <i class="ph ph-arrow-down text-sm text-white"></i>
+                </div>
+              </a>
+
+              <!-- Botão GitHub -->
+              <a
+                href="https://github.com/LoadCG"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex max-w-full min-w-[180px] transform items-center justify-center rounded-full border border-gray-600 bg-gray-800 px-4 py-2 text-lg font-medium text-white transition-transform hover:scale-105 hover:bg-gray-700 focus:ring-2 focus:ring-gray-600 focus:outline-none"
+              >
+                <i class="ph ph-github-logo mr-2 text-xl"></i>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="relative -mt-20 hidden pb-12 text-center md:block">
+          <a
+            href="#about"
+            class="group inline-flex animate-bounce flex-col items-center justify-center"
+          >
+            <p
+              class="mb-2 text-sm font-medium text-gray-400 transition-colors duration-300 group-hover:text-emerald-400"
+            >
+              Saiba mais sobre mim
+            </p>
+            <i
+              class="ph ph-arrow-down h-6 w-6 text-emerald-400 transition-colors duration-300 group-hover:text-white"
+            ></i>
+          </a>
+        </div>
+      </section>
+      <!-- About Section -->
+      <section
+        id="about"
+        class="flex min-h-screen w-full flex-col items-center justify-center px-4 py-20 sm:mt-8 md:mt-0 md:flex-row"
+      >
+        <div class="fade-in w-full max-w-5xl text-center md:px-8 md:text-left">
+          <h2 class="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+            Sobre Mim &
+            <span
+              class="block bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent sm:inline-block"
+            >
+              Formação Acadêmica
+            </span>
+          </h2>
+          <p class="mt-4 text-base leading-relaxed text-gray-400 sm:text-lg">
+            Sou <strong>designer gráfico profissional</strong> e
+            <strong>desenvolvedor front-end em formação</strong>. Durante o dia,
+            atuo em uma agência de design, onde crio campanhas publicitárias,
+            materiais impressos, peças para redes sociais e textos criativos —
+            vivência que me ensinou a
+            <strong>pensar estrategicamente</strong> em cada pixel e palavra. À
+            noite, estudo Análise e Desenvolvimento de Sistemas na Fatec São
+            José dos Campos - Prof. Jessen Vidal, e sigo me aprofundando de
+            forma autodidata em <strong>React e Tailwind CSS</strong> para
+            transformar ideias criativas em interfaces funcionais.<br /><br />
+            Minha jornada começou em <strong>2017 com o Photoshop</strong>, mas
+            ganhou base sólida no curso técnico de Informática, onde aprendi
+            desde <strong>POO com Java</strong> até desenvolvimento web com
+            <strong>PHP, HTML, CSS e JavaScript</strong>. Essa formação dupla —
+            prática em design e técnica em programação — me permite enxergar
+            cada projeto digital sob dois ângulos:
+            <strong>a experiência do usuário</strong> e
+            <strong>a robustez do código</strong>.<br /><br />
+            Meu objetivo é claro: ser um <strong>profissional híbrido</strong>,
+            capaz de liderar projetos que exigem tanto
+            <strong>design impactante</strong> quanto
+            <strong>desenvolvimento preciso</strong>. Seja compondo um banner
+            que converte ou componentizando uma interface em React, busco sempre
+            o equilíbrio entre <strong>forma e função</strong>.
+          </p>
+
+          <!-- Timeline (simplified vertical/horizontal flow) -->
+          <div class="mx-auto mt-12 w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+            <div
+              class="relative border-l border-gray-700 sm:flex sm:justify-between sm:border-t sm:border-l-0"
+            >
+              <!-- Item 1 -->
+              <div class="mb-10 ml-4 sm:mb-0 sm:ml-0 sm:flex-1 sm:pr-4">
+                <div
+                  class="absolute -left-1.5 flex h-3 w-3 items-center justify-center rounded-full bg-blue-500 ring-8 ring-gray-900 sm:relative sm:-top-3 sm:-left-3 sm:mx-auto sm:mb-6 sm:h-6 sm:w-6"
+                >
+                  <i
+                    class="ph ph-graduation-cap hidden text-white sm:block"
+                  ></i>
+                </div>
+                <div class="mt-2 sm:mt-0 sm:text-center md:text-left">
+                  <time
+                    class="mb-1 text-sm leading-none font-normal text-gray-500"
+                    >2022 - 2024</time
+                  >
+                  <h3 class="text-xl font-bold tracking-tight text-white">
+                    Técnico em Informática
+                  </h3>
+                  <p
+                    class="mb-4 text-base font-normal text-gray-400 transition-colors duration-300 hover:text-gray-300"
+                  >
+                    Formação sólida em desenvolvimento web e programação
+                    orientada a objetos. Estudei HTML, CSS, JavaScript,
+                    PHP/MySQL, Java e prototipação no Figma, desenvolvendo
+                    sistemas completos como o projeto Chrysalis E-commerce, que
+                    uniu lógica, UI e experiência do usuário.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="mb-10 ml-4 sm:mb-0 sm:ml-0 sm:flex-1 sm:px-4">
+                <div
+                  class="absolute -left-1.5 flex h-3 w-3 items-center justify-center rounded-full bg-blue-500 ring-8 ring-gray-900 sm:relative sm:-top-3 sm:-left-3 sm:mx-auto sm:mb-6 sm:h-6 sm:w-6"
+                >
+                  <i class="ph ph-palette hidden text-white sm:block"></i>
+                </div>
+                <div class="mt-2 sm:mt-0 sm:text-center md:text-left">
+                  <time
+                    class="mb-1 text-sm leading-none font-normal text-gray-500"
+                    >2017 - Atualmente</time
+                  >
+                  <h3 class="text-xl font-bold tracking-tight text-white">
+                    Design Gráfico na Prática
+                  </h3>
+                  <p
+                    class="text-base font-normal text-gray-400 transition-colors duration-300 hover:text-gray-300"
+                  >
+                    Iniciei com Photoshop em 2017 e, desde então, criei peças
+                    gráficas para mídias sociais, artistas e campanhas. Hoje
+                    atuo como designer gráfico em uma agência, desenvolvendo
+                    materiais para o ambiente digital e impresso com foco
+                    estratégico e criativo.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="mb-10 ml-4 sm:mb-0 sm:ml-0 sm:flex-1 sm:pl-4">
+                <div
+                  class="absolute -left-1.5 flex h-3 w-3 items-center justify-center rounded-full bg-blue-500 ring-8 ring-gray-900 sm:relative sm:-top-3 sm:-left-3 sm:mx-auto sm:mb-6 sm:h-6 sm:w-6"
+                >
+                  <i class="ph ph-arrow-right hidden text-white sm:block"></i>
+                </div>
+                <div class="mt-2 sm:mt-0 sm:text-center md:text-left">
+                  <time
+                    class="mb-1 text-sm leading-none font-normal text-gray-500"
+                    >Atualmente</time
+                  >
+                  <h3 class="text-xl font-bold tracking-tight text-white">
+                    Desenvolvimento Contínuo
+                  </h3>
+                  <p
+                    class="text-base font-normal text-gray-400 transition-colors duration-300 hover:text-gray-300"
+                  >
+                    Curso Análise e Desenvolvimento de Sistemas na Fatec São
+                    José dos Campos - Prof. Jessen Vidal e estudo React e
+                    Tailwind CSS por conta própria. Busco unir meus
+                    conhecimentos técnicos e criativos para entregar interfaces
+                    modernas, responsivas e com propósito.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Skills Section -->
+      <section id="skills" class="min-h-screen w-full px-4 py-20">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-16 text-center">
+            <h2
+              class="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl"
+            >
+              Minhas
+              <span
+                class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent"
+              >
+                Competências
+              </span>
+            </h2>
+            <p class="mx-auto max-w-2xl text-lg text-gray-400">
+              Habilidades técnicas (Hard Skills) constroem o projeto,
+              habilidades comportamentais (Soft Skills) constroem a ponte com as
+              pessoas.
+            </p>
+          </div>
+          <!-- Dynamic Skills Container -->
+          <div
+            id="skills-container"
+            class="grid grid-cols-1 gap-8 md:grid-cols-2"
+          >
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Courses Section -->
+      <section id="courses" class="relative min-h-screen w-full px-4 py-20">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-16 text-center">
+            <h2
+              class="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl"
+            >
+              Cursos
+              <span
+                class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent"
+              >
+                Complementares
+              </span>
+            </h2>
+            <p class="mx-auto max-w-2xl text-lg text-gray-400">
+              Formações extras e certificações que apoiam minha atuação como
+              desenvolvedor e designer.
+            </p>
+          </div>
+          <!-- Dynamic Courses Container -->
+          <div
+            id="courses-container"
+            class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+          >
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="relative min-h-screen w-full px-4 py-20">
+        <div class="mx-auto max-w-6xl">
+          <!-- Header -->
+          <div class="mb-16 text-center">
+            <h2
+              class="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl"
+            >
+              Meus
+              <span
+                class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent"
+              >
+                Projetos
+              </span>
+            </h2>
+            <p class="mx-auto max-w-2xl text-lg text-gray-400">
+              Navegue por trabalhos selecionados que representam minha dupla
+              expertise em construir experiências digitais e criar narrativas
+              visuais impactantes.
+            </p>
+          </div>
+
+          <!-- Tabs (JavaScript handles filtering) -->
+          <div
+            class="mb-12 flex flex-col justify-center gap-2 sm:flex-row sm:gap-4"
+          >
+            <button
+              id="tab-dev"
+              class="flex w-full cursor-pointer items-center justify-center rounded-xl bg-emerald-600 px-6 py-4 text-white shadow-lg transition-all sm:w-auto sm:py-3"
+            >
+              <i class="ph ph-code mr-2 text-xl"></i>
+              Desenvolvimento
+            </button>
+            <button
+              id="tab-design"
+              class="flex w-full cursor-pointer items-center justify-center rounded-xl bg-gray-800 px-6 py-4 text-gray-400 transition-all hover:scale-[1.02] hover:bg-gray-700 sm:w-auto sm:py-3 hover:sm:ml-2 sm:hover:scale-105"
+            >
+              <i class="ph ph-image mr-2 text-xl"></i>
+              Design Gráfico
+            </button>
+          </div>
+
+          <!-- Projects Grid (JavaScript handles injection) -->
+          <div
+            id="projects-container"
+            class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+          >
+            <!-- Injected via JavaScript -->
+          </div>
+
+          <!-- Load More Button -->
+          <div class="mt-12 text-center">
+            <button
+              id="load-more-btn"
+              class="hidden items-center justify-center rounded-xl border border-white/10 bg-white/5 px-8 py-3 text-sm font-medium text-emerald-400 backdrop-blur-md transition-all hover:bg-white/10 hover:shadow-lg hover:shadow-emerald-500/10"
+            >
+              Carregar Mais Projetos
+              <i class="ph ph-plus-circle ml-2 text-lg"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section
+        id="contact"
+        class="relative flex min-h-screen w-full flex-col items-center justify-center px-4 py-20"
+      >
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-16 text-center">
+            <h2
+              class="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl"
+            >
+              Vamos Trabalhar
+              <span
+                class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent"
+              >
+                Juntos
+              </span>
+            </h2>
+            <p class="mx-auto max-w-2xl text-lg text-gray-400">
+              Entre em contato para discutir seu projeto ou apenas para dizer
+              olá. Estou disponível para oportunidades freelancer e
+              colaborações.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <a
+              href="https://wa.link/uudby2"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex flex-col items-center justify-center rounded-xl bg-gray-900 p-6 transition-all hover:bg-gray-800 hover:shadow-lg hover:shadow-green-900/20"
+            >
+              <i
+                class="ph ph-whatsapp-logo mb-4 text-[48px] text-green-500 transition-colors group-hover:text-green-400"
+              ></i>
+              <h3 class="mb-2 text-xl font-semibold text-white">WhatsApp</h3>
+              <p class="text-center text-gray-400">Discussões de Projetos</p>
+              <span
+                class="mt-2 text-sm text-emerald-400 transition-colors duration-300 group-hover:text-emerald-300"
+                >Iniciar Chat →</span
+              >
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/cauan-gabriel-nascimento-a3a1492ab/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex flex-col items-center justify-center rounded-xl bg-gray-900 p-6 transition-all hover:bg-gray-800 hover:shadow-lg hover:shadow-blue-900/20"
+            >
+              <i
+                class="ph ph-linkedin-logo mb-4 text-[48px] text-blue-500 transition-colors group-hover:text-blue-400"
+              ></i>
+              <h3 class="mb-2 text-xl font-semibold text-white">LinkedIn</h3>
+              <p class="text-center text-gray-400">Rede Profissional</p>
+              <span
+                class="mt-2 text-sm text-blue-400 transition-colors duration-300 group-hover:text-blue-300"
+                >Conectar →</span
+              >
+            </a>
+
+            <a
+              href="https://github.com/LoadCG"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex flex-col items-center justify-center rounded-xl bg-gray-900 p-6 transition-all hover:bg-gray-800 hover:shadow-lg hover:shadow-purple-900/20"
+            >
+              <i
+                class="ph ph-github-logo mb-4 text-[48px] text-purple-500 transition-colors group-hover:text-purple-400"
+              ></i>
+              <h3 class="mb-2 text-xl font-semibold text-white">GitHub</h3>
+              <p class="text-center text-gray-400">Código Aberto & Projetos</p>
+              <span
+                class="mt-2 text-sm text-purple-400 transition-colors duration-300 group-hover:text-purple-300"
+                >Ver Repositório →</span
+              >
+            </a>
+
+            <a
+              href="https://www.behance.net/CauanGabriel"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex flex-col items-center justify-center rounded-xl bg-gray-900 p-6 transition-all hover:bg-gray-800 hover:shadow-lg hover:shadow-blue-900/20"
+            >
+              <i
+                class="ph ph-behance-logo mb-4 text-[48px] text-blue-600 transition-colors group-hover:text-blue-500"
+              ></i>
+              <h3 class="mb-2 text-xl font-semibold text-white">Behance</h3>
+              <p class="text-center text-gray-400">
+                Portfólio de Design Gráfico
+              </p>
+              <span
+                class="mt-2 text-sm text-blue-500 transition-colors duration-300 group-hover:text-blue-400"
+                >Ver Cases →</span
+              >
+            </a>
+
+            <a
+              href="mailto:cauangabrielfac@gmail.com"
+              class="group flex flex-col items-center justify-center rounded-xl bg-gray-900 p-6 transition-all duration-500 ease-in-out hover:bg-gray-800 hover:shadow-lg hover:shadow-emerald-900/20"
+            >
+              <i
+                class="ph ph-envelope-simple mb-4 text-[48px] text-emerald-500 group-hover:text-emerald-400"
+              ></i>
+              <h3 class="mb-2 text-xl font-semibold text-white">E-mail</h3>
+              <p class="text-center text-gray-400">Mensagem Direta</p>
+              <span
+                class="mt-2 text-sm text-emerald-500 transition-colors duration-300 group-hover:text-emerald-400"
+                >Enviar E-mail →</span
+              >
+            </a>
+
+            <div
+              class="group flex flex-col items-center justify-center rounded-xl bg-gray-900 p-6 transition-all duration-500 ease-in-out hover:bg-gray-800 hover:shadow-lg"
+            >
+              <i
+                class="ph ph-map-pin mb-4 text-[48px] text-red-500 group-hover:text-red-400"
+              ></i>
+              <h3 class="mb-2 text-xl font-semibold text-white">Localização</h3>
+              <p class="text-center text-gray-400">Caçapava-SP, Brasil</p>
+              <p class="text-center text-sm text-gray-400">
+                (Disponível Remoto)
+              </p>
+            </div>
+          </div>
+        </div>
+        </div>
+      </section>
+    </main>
+
+    <footer
+      class="border-glassBorder w-full border-t bg-black/50 py-8 text-center text-sm text-gray-400 backdrop-blur-md"
+    >
+      <p>
+        © <span id="current-year"></span> Cauan Gabriel. Todos os direitos
+        reservados.
+      </p>
+    </footer>
+
+    <!-- Back To Top Button -->
+    <button
+      id="back-to-top"
+      class="fixed right-6 bottom-6 z-50 flex h-12 w-12 translate-y-20 items-center justify-center rounded-full bg-emerald-600 text-white opacity-0 shadow-lg shadow-emerald-500/30 transition-all duration-500 hover:bg-emerald-500 hover:shadow-emerald-500/50 focus:ring-4 focus:ring-emerald-500/50 focus:outline-none"
+      aria-label="Voltar ao topo"
+    >
+      <i class="ph ph-caret-up text-xl"></i>
+    </button>
+
+    <!-- Custom Scripts -->
+    <script src="script.js"></script>
+  </body>
+</html>
