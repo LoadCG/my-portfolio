@@ -8,7 +8,7 @@ export default function CompScrollToTop() {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 180) {
+      if (window.pageYOffset > 300) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -16,7 +16,6 @@ export default function CompScrollToTop() {
     };
 
     window.addEventListener('scroll', toggleVisibility);
-
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
@@ -28,16 +27,13 @@ export default function CompScrollToTop() {
   };
 
   return (
-    <div className="fixed bottom-8 right-8 z-50 motion-safe:animate-bounce">
-      {isVisible && (
-        <button
-          onClick={scrollToTop}
-          aria-label="Voltar ao topo"
-          className="p-3 bg-emerald-500 cursor-pointer text-white rounded-full shadow-lg hover:bg-emerald-600 transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-gray-300"
-        >
-          <HiArrowUp className="w-6 h-6" />
-        </button>
-      )}
-    </div>
+    <button
+      onClick={scrollToTop}
+      aria-label="Voltar ao topo"
+      className={`fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-600 text-white shadow-lg shadow-emerald-500/30 transition-all duration-500 hover:bg-emerald-500 hover:shadow-emerald-500/50 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
+        }`}
+    >
+      <HiArrowUp className="h-6 w-6" />
+    </button>
   );
 }

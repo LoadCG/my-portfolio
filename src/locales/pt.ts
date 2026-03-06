@@ -10,9 +10,9 @@ export default {
   about: {
     titlePart1: "Saiba mais",
     titlePart2: "Sobre Mim",
-    content: `Sou <strong>designer gráfico profissional</strong> e <strong>desenvolvedor front-end em formação</strong>. Durante o dia, atuo em uma agência de design, onde crio campanhas publicitárias, materiais impressos, peças para redes sociais e textos criativos — vivência que me ensinou a <strong>pensar estrategicamente</strong> em cada pixel e palavra. À noite, estudo Análise e Desenvolvimento de Sistemas na Fatec São José dos Campos - Prof. Jessen Vidal, e sigo me aprofundando de forma autodidata em <strong>React e Tailwind CSS</strong> para transformar ideias criativas em interfaces funcionais.<br/><br/>
+    content: `Sou <strong>designer gráfico profissional</strong> e <strong>desenvolvedor front-end em formação</strong>. Durante o dia, atuo em uma agência de design, onde crio campanhas publicitárias, materiais impressos, peças para redes sociais e textos criativos — vivência que me ensinou a <strong>pensar estrategicamente</strong> em cada pixel e palavra. À noite, curso <strong>Análise e Desenvolvimento de Sistemas</strong> na Fatec São José dos Campos - Prof. Jessen Vidal, e sigo me aprofundando de forma autodidata em <strong>React e Tailwind CSS</strong> para transformar ideias criativas em interfaces funcionais.<br/><br/>
               Minha jornada começou em <strong>2017 com o Photoshop</strong>, mas ganhou base sólida no curso técnico de Informática, onde aprendi desde <strong>POO com Java</strong> até desenvolvimento web com <strong>PHP, HTML, CSS e JavaScript</strong>. Essa formação dupla — prática em design e técnica em programação — me permite enxergar cada projeto digital sob dois ângulos: <strong>a experiência do usuário</strong> e <strong>a robustez do código</strong>.<br/><br/>
-              Meu objetivo é claro: ser um <strong>profissional híbrido</strong>, capaz de liderar projetos que exigem tanto <strong>design impactante</strong> quanto <strong>desenvolvimento preciso</strong>. Seja compondo um banner que converte ou componentizando uma interface em React, busco sempre o equilíbrio entre <strong>forma e função</strong>.`,
+              Meu objetivo é claro: ser um <strong>profissional híbrido</strong>, capaz de liderar projetos que exigem tanto <strong>design impactante</strong> quanto <strong>desenvolvimento preciso</strong>. Seja compondo um banner que converte ou componentizando uma interface em <strong>React</strong>, busco sempre o equilíbrio entre <strong>forma e função</strong>.`,
     timeline: {
       technical: {
         time: "2022 - 2024",
@@ -156,6 +156,16 @@ export default {
         description: "Rede Profissional",
         action: "Conectar →",
       },
+      github: {
+        title: "GitHub",
+        description: "Código Aberto & Projetos",
+        action: "Ver Repositório →",
+      },
+      behance: {
+        title: "Behance",
+        description: "Portfólio de Design Gráfico",
+        action: "Ver Cases →",
+      },
       location: {
         title: "Localização",
         text: "Caçapava-SP, Brasil",
@@ -165,7 +175,7 @@ export default {
     },
   },
   footer: {
-    copyright: "© 2025 Cauan Gabriel. Todos os direitos reservados.",
+    copyright: "© {{year}} Cauan Gabriel. Todos os direitos reservados.",
     social: {
       instagram: "Instagram",
       linkedin: "LinkedIn",
@@ -176,9 +186,64 @@ export default {
     skipToContent: "Pular para o conteúdo",
     mainNav: "Navegação principal",
   },
+  skills: {
+    titleWhite: "Minhas",
+    title: "Competências",
+    subtitle:
+      "Habilidades técnicas (Hard Skills) constroem o projeto, habilidades comportamentais (Soft Skills) constroem a ponte com as pessoas.",
+    categories: {
+      frontend: "Front-end & Web",
+      design: "Design & UX/UI",
+      tools: "Ferramentas & Outros",
+    },
+    list: {
+      react: "React.js",
+      typescript: "TypeScript",
+      tailwind: "Tailwind CSS",
+      javascript: "JavaScript (ES6+)",
+      html: "HTML5 / CSS3",
+      php: "PHP & MySQL",
+      photoshop: "Adobe Photoshop",
+      illustrator: "Adobe Illustrator",
+      figma: "Figma (Prototipagem)",
+      branding: "Branding & Identidade",
+      git: "Git & GitHub",
+      responsive: "Design Responsivo",
+    },
+  },
+  courses: {
+    titleWhite: "Cursos",
+    title: "Complementares",
+    subtitle:
+      "Formações extras e certificações que apoiam minha atuação como desenvolvedor e designer.",
+    list: {
+      uiux: {
+        title: "Fundamentos de UI/UX Design",
+        school: "Origamid",
+        duration: "30h",
+      },
+      react: {
+        title: "React Completo",
+        school: "Origamid",
+        duration: "36h",
+      },
+      ignite: {
+        title: "Ignite ReactJS",
+        school: "Rocketseat",
+        duration: "Etapa de Especialização",
+      },
+      typography: {
+        title: "Tipografia Avançada",
+        school: "Adobe Education",
+        duration: "15h",
+      },
+    },
+  },
   nav: {
     home: "Início",
     about: "Sobre",
+    skills: "Competências",
+    courses: "Cursos",
     projects: "Projetos",
     pricing: "Planos",
     contact: "Contato",

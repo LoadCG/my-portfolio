@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Card } from "flowbite-react";
+import { useEffect, useState, useRef } from "react";
 import { HiOutlineCode, HiOutlinePhotograph } from "react-icons/hi";
 import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
+
 interface Project {
   id: number;
   titleKey: string;
@@ -19,6 +20,7 @@ export default function Projects() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<number>(0);
   const [expanded, setExpanded] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   const projects: Project[] = [
     {
@@ -42,7 +44,7 @@ export default function Projects() {
       titleKey: "projects.projectsList.sae.title",
       descriptionKey: "projects.projectsList.sae.description",
       image: "/images/design/logo_sae.png",
-      link: "https://www.instagram.com/treinamentos.sae/", // Link to the Instagram page of the company
+      link: "https://www.instagram.com/treinamentos.sae/",
       category: "design",
     },
     {
@@ -79,24 +81,31 @@ export default function Projects() {
     },
   ];
 
+  const devCount = projects.filter(p => p.category === 'development').length;
+  const designCount = projects.filter(p => p.category === 'design').length;
+
   const filteredProjects = projects.filter((project) =>
-    activeTab === 0
-      ? project.category === "development"
-      : project.category === "design",
+    activeTab === 0 ? project.category === "development" : project.category === "design"
   );
 
-  const displayedProjects = expanded
-    ? filteredProjects
-    : filteredProjects.slice(0, INITIAL_PROJECTS_COUNT);
+  const displayedProjects = expanded ? filteredProjects : filteredProjects.slice(0, INITIAL_PROJECTS_COUNT);
   const hasMoreThanInitial = filteredProjects.length > INITIAL_PROJECTS_COUNT;
 
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) el.classList.add('visible'); },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <section
-      id="projects"
-      className="min-h-screen bg-gray-900 px-4 py-16"
-    >
-      <div className="mx-auto max-w-6xl">
-        {/* Enhanced Header */}
+    <section id="projects" className="min-h-screen w-full px-4 py-20">
+      <div ref={sectionRef} className="magnetic-entrance mx-auto max-w-6xl">
+        {/* Header */}
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
             {t('projects.titleWhite')}{" "}
@@ -109,42 +118,62 @@ export default function Projects() {
           </p>
         </div>
 
-        {/* Styled Tabs */}
-        <div className="mb-12 flex justify-center gap-2">
-          <button
-            className={`flex items-center rounded-xl px-6 py-3 transition-all ${activeTab === 0
-              ? "bg-emerald-600 text-white shadow-lg"
-              : "cursor-pointer bg-gray-800 text-gray-400 hover:mr-2 hover:scale-105 hover:bg-gray-700"
-              }`}
-            onClick={() => { setActiveTab(0); setExpanded(false); }}
-          >
-            <HiOutlineCode className="mr-2 h-5 w-5" />
-            {t('projects.development')}
-          </button>
-          <button
-            className={`flex items-center rounded-xl px-6 py-3 transition-all ${activeTab === 1
-              ? "bg-blue-500 text-white shadow-lg"
-              : "cursor-pointer bg-gray-800 text-gray-400 hover:ml-2 hover:scale-105 hover:bg-gray-700"
-              }`}
-            onClick={() => { setActiveTab(1); setExpanded(false); }}
-          >
-            <HiOutlinePhotograph className="mr-2 h-5 w-5" />
-            {t('projects.design')}
-          </button>
+        {/* Tabs */}
+        <div className="relative mb-12 flex flex-col justify-center gap-2 sm:flex-row sm:gap-0">
+          <div className="relative flex w-full flex-col gap-2 rounded-2xl bg-white/5 p-1.5 backdrop-blur-md sm:w-auto sm:flex-row sm:gap-0 sm:rounded-full">
+            {/* Sliding Indicator */}
+            <div
+              className={`absolute top-1.5 bottom-1.5 hidden transition-all duration-300 sm:block ${activeTab === 0
+                ? 'left-1.5 w-[calc(50%-1.5px)] rounded-full bg-emerald-600 shadow-lg shadow-emerald-500/20'
+                : 'left-[calc(50%+1.5px)] w-[calc(50%-3px)] rounded-full bg-blue-500 shadow-lg shadow-blue-500/20'
+                }`}
+            />
+
+            <button
+              onClick={() => { setActiveTab(0); setExpanded(false); }}
+              data-cursor="hover"
+              data-cursor-color="emerald"
+              className={`relative z-10 flex w-full items-center justify-center rounded-xl px-8 py-3.5 text-sm font-bold transition-all sm:w-auto sm:rounded-full ${activeTab === 0 ? "text-white sm:bg-transparent bg-emerald-600" : "text-gray-400 hover:text-white"
+                }`}
+            >
+              <HiOutlineCode className="mr-2 text-xl" />
+              {t('projects.development')}
+              <span className={`ml-2 flex h-5 w-5 items-center justify-center rounded-full text-[10px] ${activeTab === 0 ? 'bg-white/20 text-white' : 'bg-white/10 text-gray-400'
+                }`}>
+                {devCount}
+              </span>
+            </button>
+
+            <button
+              onClick={() => { setActiveTab(1); setExpanded(false); }}
+              data-cursor="hover"
+              data-cursor-color="blue"
+              className={`relative z-10 flex w-full items-center justify-center rounded-xl px-8 py-3.5 text-sm font-bold transition-all sm:w-auto sm:rounded-full ${activeTab === 1 ? "text-white sm:bg-transparent bg-blue-500" : "text-gray-400 hover:text-white"
+                }`}
+            >
+              <HiOutlinePhotograph className="mr-2 text-xl" />
+              {t('projects.design')}
+              <span className={`ml-2 flex h-5 w-5 items-center justify-center rounded-full text-[10px] ${activeTab === 1 ? 'bg-white/20 text-white' : 'bg-white/10 text-gray-400'
+                }`}>
+                {designCount}
+              </span>
+            </button>
+          </div>
         </div>
 
-        {/* Projects Grid with Animation */}
+        {/* Grid */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {displayedProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} t={t} />
+          {displayedProjects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} t={t} index={index} />
           ))}
         </div>
 
+        {/* Load More Button */}
         {hasMoreThanInitial && (
-          <div className="mt-10 flex justify-center">
+          <div className="mt-12 text-center">
             <button
               onClick={() => setExpanded(!expanded)}
-              className="cursor-pointer rounded-xl bg-gray-800 px-6 py-3 text-gray-300 transition-all hover:bg-gray-700 hover:text-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+              className="inline-flex cursor-pointer items-center justify-center rounded-xl border border-white/10 bg-white/5 px-8 py-3 text-sm font-medium text-emerald-400 backdrop-blur-md transition-all hover:bg-white/10 hover:shadow-lg hover:shadow-emerald-500/10"
             >
               {expanded ? t('projects.viewLess') : t('projects.viewMore')}
             </button>
@@ -155,29 +184,25 @@ export default function Projects() {
   );
 }
 
-import { TFunction } from 'i18next';
-
-const ProjectCard = ({ project, t }: { project: Project; t: TFunction }) => {
+const ProjectCard = ({ project, t, index }: { project: Project; t: TFunction; index: number }) => {
   const [showModal, setShowModal] = useState(false);
 
-  // Fechar modal com ESC
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && showModal) {
         setShowModal(false);
       }
     };
-
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [showModal]);
 
-  // Fechar modal ao clicar fora
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       setShowModal(false);
     }
   };
+
   const handleProjectClick = () => {
     if (project.link) {
       window.open(project.link, "_blank");
@@ -194,64 +219,67 @@ const ProjectCard = ({ project, t }: { project: Project; t: TFunction }) => {
 
   return (
     <>
-      <Card
-        className="group relative h-full overflow-hidden border-none bg-transparent bg-gradient-to-b from-gray-900 via-gray-900 to-gray-950 ring-0 transition-all duration-300 hover:shadow-xl hover:ring-1 hover:shadow-gray-800 hover:ring-gray-900"
-        imgSrc={project.image}
-        imgAlt={t(project.titleKey)}
-        theme={{
-          img: {
-            base: "mx-auto h-48 w-full rounded-t-lg object-cover transition-transform duration-300",
-          },
-          root: { base: "flex h-full flex-col" },
-        }}
+      <div
+        style={{ transitionDelay: `${index * 150}ms` }}
+        className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-emerald-500/30 hover:shadow-2xl hover:shadow-emerald-500/10"
       >
-        <div className="flex h-full flex-col justify-between">
+        <div className="relative h-48 w-full overflow-hidden">
+          <img
+            src={project.image}
+            alt={`Banner do projeto ${t(project.titleKey)}`}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-700 ease-out will-change-transform group-hover:scale-110"
+          />
+          {/* Image Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07070a] via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-60" />
+        </div>
+
+        <div className="flex flex-1 flex-col justify-between p-6">
           <div>
-            <h5 className="mb-3 text-xl font-bold text-white">{t(project.titleKey)}</h5>
-            <p className="mb-4 text-gray-400">{t(project.descriptionKey)}</p>
+            <h5 className="mb-3 text-xl font-bold text-white transition-colors group-hover:text-emerald-400">
+              {t(project.titleKey)}
+            </h5>
+            <p className="mb-6 text-sm leading-relaxed text-gray-400">
+              {t(project.descriptionKey)}
+            </p>
           </div>
+
           <button
             onClick={handleProjectClick}
-            className="inline-flex cursor-pointer items-center justify-center rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-medium text-white transition-all hover:bg-emerald-700 hover:shadow-md"
+            aria-label={`${t('projects.viewProject')} ${t(project.titleKey)}`}
+            className="group/btn relative mt-auto inline-flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-white/5 px-4 py-3 text-sm font-bold text-white transition-all hover:bg-emerald-600 hover:text-white"
           >
-            {t('projects.viewProject')}
-            <svg
-              className="ml-2 h-4 w-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-              />
-            </svg>
+            <span className="relative z-10 flex items-center">
+              {t('projects.viewProject')}
+              <svg className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </span>
           </button>
         </div>
-      </Card>
+
+        {/* Inner Glow Effect */}
+        <div className="pointer-events-none absolute inset-0 rounded-2xl border border-white/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      </div>
 
       <div
         onClick={handleBackdropClick}
-        className={`fixed inset-0 z-50 bg-black/50 transition-all ${showModal ? 'visible opacity-100' : 'invisible opacity-0'}`}
+        className={`fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm transition-all duration-300 ${showModal ? 'visible opacity-100' : 'invisible opacity-0'}`}
       >
-        <div className="absolute left-1/2 top-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 transform p-4">
-          <div className="rounded-xl bg-gray-800 shadow-2xl">
-            <div className="border-b border-gray-700 p-6">
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent text-center">
+        <div className={`w-full max-w-md transform p-4 transition-transform duration-300 ${showModal ? 'scale-100' : 'scale-95'}`}>
+          <div className="overflow-hidden rounded-2xl border border-white/10 bg-gray-900 shadow-2xl">
+            <div className="border-b border-white/10 p-6 text-center">
+              <h3 className="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-2xl font-bold text-transparent">
                 {t('projects.designAlertTitle')}
               </h3>
             </div>
-
             <div className="p-6 space-y-6">
-              <p className="text-gray-300 text-lg text-center">
+              <p className="text-center text-lg text-gray-300">
                 {t('projects.designAlert')}
               </p>
-
-              <div className="flex justify-center gap-4">
+              <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
                 <button
-                  className="flex items-center rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-6 py-3 transition-all duration-300 ring-2 ring-emerald-400 hover:ring-0 hover:scale-105 cursor-pointer hover:shadow-lg"
+                  className="inline-flex cursor-pointer items-center justify-center rounded-xl bg-emerald-600 px-6 py-3 font-medium text-white transition-all hover:scale-105 hover:bg-emerald-500 hover:shadow-lg"
                   onClick={() => {
                     window.open("https://www.instagram.com/muone_mkt/", "_blank");
                     setShowModal(false);
@@ -260,9 +288,8 @@ const ProjectCard = ({ project, t }: { project: Project; t: TFunction }) => {
                   <HiOutlinePhotograph className="mr-2 h-5 w-5" />
                   {t('projects.modal.openInstagram')}
                 </button>
-
                 <button
-                  className="rounded-xl cursor-pointer ring-2 ring-gray-600 hover:ring-0 bg-gray-700 hover:bg-gray-600 text-gray-300 px-6 py-3 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                  className="inline-flex cursor-pointer items-center justify-center rounded-xl bg-white/10 px-6 py-3 font-medium text-gray-300 transition-all hover:scale-105 hover:bg-white/20 hover:text-white"
                   onClick={() => setShowModal(false)}
                 >
                   {t('projects.modal.cancel')}
@@ -272,7 +299,6 @@ const ProjectCard = ({ project, t }: { project: Project; t: TFunction }) => {
           </div>
         </div>
       </div>
-
     </>
   );
 };
