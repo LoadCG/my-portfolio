@@ -12,17 +12,43 @@ interface Project {
   image: string;
   link: string;
   category: "design" | "development";
+  isDynamic?: boolean;
 }
+
+import { supabase, ProjectRow } from "../../lib/supabase";
 
 const INITIAL_PROJECTS_COUNT = 3;
 
 export default function Projects() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [activeTab, setActiveTab] = useState<number>(0);
   const [expanded, setExpanded] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [dynamicProjects, setDynamicProjects] = useState<ProjectRow[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const projects: Project[] = [
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('projects')
+          .select('*')
+          .order('order_index', { ascending: true });
+
+        if (!error && data) {
+          setDynamicProjects(data);
+        }
+      } catch (err) {
+        console.error("Error fetching projects:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  const staticProjects: Project[] = [
     {
       id: 1,
       titleKey: "projects.projectsList.chrysalis.title",
@@ -80,6 +106,19 @@ export default function Projects() {
       category: "design",
     },
   ];
+
+  // Map dynamic projects to the Project interface
+  const mappedDynamic: Project[] = dynamicProjects.map(p => ({
+    id: parseInt(p.id.slice(0, 8), 16) || Math.random(), // Simple id conversion
+    titleKey: i18n.language === 'pt' ? p.title_pt : (i18n.language === 'es' ? p.title_es : p.title_en),
+    descriptionKey: i18n.language === 'pt' ? p.desc_pt : (i18n.language === 'es' ? p.desc_es : p.desc_en),
+    image: p.image_url,
+    link: p.link,
+    category: p.category,
+    isDynamic: true // Flag to skip translation key lookup
+  }));
+
+  const projects = dynamicProjects.length > 0 ? mappedDynamic : staticProjects;
 
   const devCount = projects.filter(p => p.category === 'development').length;
   const designCount = projects.filter(p => p.category === 'design').length;
@@ -164,9 +203,16 @@ export default function Projects() {
 
         {/* Grid */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {displayedProjects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} t={t} index={index} />
-          ))}
+          {loading ? (
+            // Skeleton Loader
+            [...Array(3)].map((_, i) => (
+              <div key={i} className="h-[450px] rounded-[2.5rem] bg-white/5 animate-pulse border border-white/10" />
+            ))
+          ) : (
+            displayedProjects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} t={t} index={index} />
+            ))
+          )}
         </div>
 
         {/* Load More Button */}
@@ -227,7 +273,7 @@ const ProjectCard = ({ project, t, index }: { project: Project; t: TFunction; in
         <div className="relative h-56 w-full overflow-hidden bg-[#07070a]">
           <img
             src={project.image}
-            alt={`Banner do projeto ${t(project.titleKey)}`}
+            alt={`Banner do projeto ${project.isDynamic ? project.titleKey : t(project.titleKey)}`}
             loading="lazy"
             className="block h-full w-full object-cover transition-opacity duration-700 ease-out will-change-transform [backface-visibility:hidden] [transform:translateZ(0)]"
           />
@@ -243,10 +289,10 @@ const ProjectCard = ({ project, t, index }: { project: Project; t: TFunction; in
         <div className="flex flex-1 flex-col justify-between p-8">
           <div>
             <h5 className="mb-3 text-2xl font-bold tracking-tight text-white transition-colors group-hover:text-emerald-400">
-              {t(project.titleKey)}
+              {project.isDynamic ? project.titleKey : t(project.titleKey)}
             </h5>
             <p className="mb-6 text-sm leading-relaxed text-slate-400 line-clamp-3">
-              {t(project.descriptionKey)}
+              {project.isDynamic ? project.descriptionKey : t(project.descriptionKey)}
             </p>
           </div>
 
