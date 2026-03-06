@@ -3,6 +3,7 @@ import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import enTranslations from "./locales/en";
 import ptTranslations from "./locales/pt";
+import esTranslations from "./locales/es";
 
 const setDocumentLang = (lng: string) => {
   document.documentElement.lang = lng === "pt" ? "pt-BR" : lng;
@@ -23,6 +24,9 @@ i18n
       },
       pt: {
         translation: ptTranslations,
+      },
+      es: {
+        translation: esTranslations,
       },
     },
   })

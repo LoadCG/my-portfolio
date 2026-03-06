@@ -23,10 +23,21 @@ export default function Hero() {
     // Calculate greeting based on local time
     const hour = new Date().getHours();
     const isPt = i18n.language === 'pt';
+    const isEs = i18n.language === 'es';
     let g = "";
-    if (hour >= 5 && hour < 12) g = isPt ? 'Bom dia 👋' : 'Good morning 👋';
-    else if (hour >= 12 && hour < 18) g = isPt ? 'Boa tarde 👋' : 'Good afternoon 👋';
-    else g = isPt ? 'Boa noite 👋' : 'Good evening 👋';
+    if (hour >= 5 && hour < 12) {
+      if (isPt) g = 'Bom dia 👋';
+      else if (isEs) g = '¡Buen día! 👋';
+      else g = 'Good morning 👋';
+    } else if (hour >= 12 && hour < 18) {
+      if (isPt) g = 'Boa tarde 👋';
+      else if (isEs) g = '¡Buenas tardes! 👋';
+      else g = 'Good afternoon 👋';
+    } else {
+      if (isPt) g = 'Boa noite 👋';
+      else if (isEs) g = '¡Buenas noches! 👋';
+      else g = 'Good evening 👋';
+    }
     setGreeting(g);
 
     const timer = setTimeout(() => setVisible(true), 100);
