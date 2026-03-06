@@ -223,12 +223,12 @@ const ProjectCard = ({ project, t, index }: { project: Project; t: TFunction; in
         style={{ transitionDelay: `${index * 150}ms` }}
         className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-emerald-500/30 hover:shadow-2xl hover:shadow-emerald-500/10"
       >
-        <div className="relative h-48 w-full overflow-hidden">
+        <div className="relative h-48 w-full overflow-hidden bg-[#07070a]">
           <img
             src={project.image}
             alt={`Banner do projeto ${t(project.titleKey)}`}
             loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-700 ease-out will-change-transform group-hover:scale-110"
+            className="block h-full w-full object-cover transition-transform duration-700 ease-out will-change-transform [backface-visibility:hidden] [transform:translateZ(0)] group-hover:scale-110"
           />
           {/* Image Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#07070a] via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-60" />
