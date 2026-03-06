@@ -8,29 +8,30 @@ import { useDynamicHeight } from "../../hooks/useDynamicHeight";
 import { useTranslation } from 'react-i18next';
 import { track } from '@vercel/analytics';
 
-function useGreeting() {
-  const { i18n } = useTranslation();
-  const hour = new Date().getHours();
-  const isPt = i18n.language === 'pt';
-  if (hour < 12) return isPt ? 'Bom dia 👋' : 'Good morning 👋';
-  if (hour < 18) return isPt ? 'Boa tarde 👋' : 'Good afternoon 👋';
-  return isPt ? 'Boa noite 👋' : 'Good evening 👋';
-}
-
 export default function Hero() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navbarRef = useRef<HTMLDivElement>(null);
   const [navbarHeight, setNavbarHeight] = useState(50);
   const heroHeight = useDynamicHeight(navbarHeight);
-  const greeting = useGreeting();
+  const [greeting, setGreeting] = useState("");
 
-  // Fade-in on mount
+  // Fade-in on mount + Dynamic Greeting
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     if (navbarRef.current) setNavbarHeight(navbarRef.current.offsetHeight);
-    const t = setTimeout(() => setVisible(true), 100);
-    return () => clearTimeout(t);
-  }, []);
+
+    // Calculate greeting based on local time
+    const hour = new Date().getHours();
+    const isPt = i18n.language === 'pt';
+    let g = "";
+    if (hour >= 5 && hour < 12) g = isPt ? 'Bom dia 👋' : 'Good morning 👋';
+    else if (hour >= 12 && hour < 18) g = isPt ? 'Boa tarde 👋' : 'Good afternoon 👋';
+    else g = isPt ? 'Boa noite 👋' : 'Good evening 👋';
+    setGreeting(g);
+
+    const timer = setTimeout(() => setVisible(true), 100);
+    return () => clearTimeout(timer);
+  }, [i18n.language]);
 
   return (
     <>

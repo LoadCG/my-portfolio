@@ -43,11 +43,11 @@ const CompNavbar = forwardRef<HTMLDivElement>((_, ref) => {
 
   return (
     <div ref={ref} role="navigation" aria-label={t('a11y.mainNav')}
-      className="fixed top-4 left-1/2 z-50 w-[95%] max-w-5xl -translate-x-1/2"
+      className="fixed top-0 left-0 z-50 w-full"
     >
-      {/* Pill navbar */}
-      <nav className="rounded-full border border-white/8 bg-white/3 px-4 backdrop-blur-md transition-all duration-300 sm:px-6">
-        <div className="flex h-16 items-center justify-between">
+      {/* Full-width navbar */}
+      <nav className="border-b border-white/5 bg-black/60 px-6 backdrop-blur-xl transition-all duration-300">
+        <div className="container mx-auto flex h-20 max-w-6xl items-center justify-between">
 
           {/* Logo */}
           <a href="#" className="text-xl font-bold tracking-tight text-white">
