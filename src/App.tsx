@@ -21,12 +21,11 @@ export default function App() {
   }, [i18n.language, t]);
 
   return (
-    <div className="App overflow-x-hidden bg-[#07070a] font-sans text-white antialiased scroll-smooth">
+    <div className="App overflow-x-hidden bg-[#020203] font-sans text-white antialiased scroll-smooth">
       {/* Ambient Glowing Orbs */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        <div className="animate-blob absolute -top-[20%] -left-[10%] h-[500px] w-[500px] rounded-full bg-emerald-600/20 blur-[120px]" />
-        <div className="animate-blob animation-delay-2000 absolute top-[20%] -right-[10%] h-[400px] w-[400px] rounded-full bg-blue-600/20 blur-[100px]" />
-        <div className="animate-blob animation-delay-4000 absolute -bottom-[20%] left-[20%] h-[600px] w-[600px] rounded-full bg-purple-600/10 blur-[130px]" />
+        <div className="animate-blob absolute -top-[10%] -left-[10%] h-[600px] w-[600px] rounded-full bg-blue-600/10 blur-[130px]" />
+        <div className="animate-blob animation-delay-4000 absolute -bottom-[10%] -right-[10%] h-[700px] w-[700px] rounded-full bg-purple-600/10 blur-[150px]" />
       </div>
 
       <a href="#main" className="skip-link">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { HiDownload, HiArrowDown } from "react-icons/hi";
+import { HiDownload } from "react-icons/hi";
 import { FaWhatsapp, FaGithub, FaBehance } from "react-icons/fa";
 import CompNavbar from "../../components/Navbar/CompNavbar";
 import { useDynamicHeight } from "../../hooks/useDynamicHeight";
@@ -40,119 +40,76 @@ export default function Hero() {
         id="home"
         style={{
           minHeight: heroHeight,
-          paddingTop: `${navbarHeight + 16}px`
+          paddingTop: `${navbarHeight + 32}px`
         }}
-        className="flex w-full flex-col px-6 md:px-12"
+        className="relative flex w-full flex-col items-center justify-center px-6 overflow-hidden"
       >
-        {/* Main Content Wrapper - Centers content of Hero */}
-        <div className="flex flex-1 flex-col-reverse items-center justify-center gap-8 md:flex-row md:gap-0">
-          {/* Avatar */}
-          <div className="relative flex-shrink-0 transition-transform duration-700 hover:scale-105 md:mr-16">
-            {/* Glowing pulse behind avatar */}
-            <div className="absolute inset-0 animate-pulse rounded-full bg-gradient-to-tr from-emerald-500 to-blue-500 opacity-40 blur-xl" />
-            <img
-              src="/images/avatar.png"
-              alt="Avatar de Cauan Gabriel - Desenvolvedor Front-end e Designer"
-              width={312}
-              height={312}
-              fetchPriority="high"
-              draggable="false"
-              className="relative z-10 h-28 w-28 select-none rounded-full border border-white/10 bg-[#0a0a0a] object-cover ring-2 ring-white/10 sm:h-36 sm:w-36 md:h-[312px] md:w-[312px]"
-            />
-          </div>
+        <div className="container relative z-10 mx-auto max-w-6xl">
+          <div className="flex flex-col items-center gap-12 text-center md:flex-row md:text-left">
 
-          {/* Text Content */}
-          <div
-            className={`magnetic-entrance w-full max-w-xl text-center transition-all duration-700 md:text-left ${visible ? 'visible' : ''}`}
-          >
-            {/* Greeting */}
-            <span className="mb-2 block text-xl font-medium text-emerald-400 sm:text-2xl">
-              {greeting}
-            </span>
+            {/* Avatar Spotlight */}
+            <div className="relative group transition-all duration-500 group-hover:scale-105">
+              <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-emerald-500 to-blue-500 opacity-25 blur transition duration-1000 group-hover:opacity-50 group-hover:duration-200"></div>
+              <div className="relative h-48 w-48 overflow-hidden rounded-full border border-white/10 bg-[#0a0a0c] p-1 sm:h-56 sm:w-56 md:h-72 md:w-72">
+                <img
+                  src="/images/avatar.png"
+                  alt="Cauan Gabriel"
+                  className="h-full w-full rounded-full object-cover"
+                  fetchPriority="high"
+                />
+              </div>
+            </div>
 
-            <h1 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
-              {t('hero.title')}{" "}
-              <span className="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent">
-                Cauan Gabriel
-              </span>
-            </h1>
+            {/* Content Module */}
+            <div className={`magnetic-entrance flex-1 ${visible ? 'visible' : ''}`}>
+              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-1.5 text-sm font-medium text-emerald-400 backdrop-blur-sm mb-6">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                {greeting}
+              </div>
 
-            <p className="mt-3 text-base leading-relaxed text-gray-400 md:mt-4 md:text-lg">
-              {t('hero.subtitle')}
-            </p>
+              <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl leading-[1.1]">
+                {t('hero.title')}{" "}
+                <br></br><span className="bg-gradient-to-r from-emerald-400 via-blue-400 to-emerald-500 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-x">
+                  Cauan Gabriel
+                </span>
+              </h1>
 
-            {/* CTAs */}
-            <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:justify-center md:justify-start">
-              {/* Download CV */}
-              <button
-                onClick={() => {
-                  track('download_cv');
-                  const link = document.createElement("a");
-                  link.href = "/cv.pdf";
-                  link.download = "Cauan Gabriel da Silva Resende Nascimento - CV.pdf";
-                  link.click();
-                }}
-                aria-label={t('hero.downloadCv')}
-                className="inline-flex min-w-[180px] max-w-full transform items-center justify-center rounded-full bg-blue-500 px-4 py-2.5 text-lg font-medium text-white transition-all hover:scale-105 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-              >
-                <HiDownload className="mr-2 h-5 w-5" />
-                {t('hero.downloadCv')}
-              </button>
+              <p className="mt-6 text-lg leading-relaxed text-slate-400 max-w-2xl md:text-xl">
+                {t('hero.subtitle')}
+              </p>
 
-              {/* Contact / WhatsApp */}
-              <a
-                href="#contact"
-                onClick={() => track('click_contact_hero')}
-                aria-label={t('hero.contactMe')}
-                className="group inline-flex min-w-[180px] max-w-full transform items-center justify-center rounded-full bg-green-500 px-4 py-2.5 text-lg font-medium text-white transition-all hover:scale-105 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
-              >
-                <FaWhatsapp className="mr-2 h-5 w-5" />
-                {t('hero.contactMe')}
-                <div className="ml-3 flex h-8 w-8 items-center justify-center rounded-full bg-green-600 p-1 transition-transform group-hover:bg-green-700">
-                  <HiArrowDown className="h-4 w-4 text-white" />
+              {/* Action Hub */}
+              <div className="mt-10 flex flex-wrap gap-4 justify-center md:justify-start">
+                <button
+                  onClick={() => {
+                    track('download_cv');
+                    window.open("/cv.pdf", "_blank");
+                  }}
+                  className="px-8 py-4 bg-white text-black font-bold rounded-2xl hover:bg-slate-200 transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.1)] active:scale-95"
+                >
+                  <HiDownload className="w-5 h-5" />
+                  {t('hero.downloadCv')}
+                </button>
+
+                <div className="flex gap-2">
+                  <a href="https://github.com/LoadCG" target="_blank" className="p-4 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all text-white active:scale-95 hover:border-emerald-500/30">
+                    <FaGithub className="w-6 h-6" />
+                  </a>
+                  <a href="https://www.behance.net/cauanresende" target="_blank" className="p-4 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all text-white active:scale-95 hover:border-blue-500/30">
+                    <FaBehance className="w-6 h-6" />
+                  </a>
+                  <a href="https://wa.link/uudby2" target="_blank" className="p-4 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all text-white active:scale-95 hover:border-green-500/30">
+                    <FaWhatsapp className="w-6 h-6" />
+                  </a>
                 </div>
-              </a>
-
-              {/* GitHub */}
-              <a
-                href="https://github.com/LoadCG"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => track('click_github_hero')}
-                aria-label="GitHub de Cauan Gabriel"
-                className="inline-flex min-w-[120px] flex-1 transform items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-lg font-medium text-gray-400 transition-all hover:scale-105 hover:border-emerald-500/30 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-600 sm:min-w-[150px] md:flex-initial"
-              >
-                <FaGithub className="mr-2 h-5 w-5" />
-                GitHub
-              </a>
-
-              {/* Behance */}
-              <a
-                href="https://www.behance.net/cauanresende"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => track('click_behance_hero')}
-                aria-label="Portfólio Behance de Cauan Gabriel"
-                className="inline-flex min-w-[120px] flex-1 transform items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-lg font-medium text-gray-400 transition-all hover:scale-105 hover:border-blue-500/30 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-600 sm:min-w-[150px] md:flex-initial"
-              >
-                <FaBehance className="mr-2 h-6 w-6" />
-                Behance
-              </a>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Scroll indicator - Stays at bottom of flow */}
-        <div className="py-8 text-center md:py-12">
-          <a href="#about" className="group mx-auto flex w-fit flex-col items-center justify-center outline-none">
-            <p className="mb-2 hidden text-xs font-medium text-gray-400 transition-colors duration-300 group-hover:text-emerald-400 sm:block sm:text-sm">
-              {t('hero.scrollText')}
-            </p>
-            <div className="animate-bounce">
-              <HiArrowDown className="h-7 w-7 text-emerald-400 transition-colors duration-300 group-hover:text-white drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
-            </div>
-          </a>
-        </div>
       </section>
     </>
   );

@@ -100,16 +100,17 @@ export default function CustomCursor() {
 
     return (
         <div
-            className={`pointer-events-none fixed z-[9999] -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-500 hidden md:block ${isHovering
-                    ? `h-12 w-12 ${colorClasses[cursorColor].hover}`
-                    : `h-4 w-4 ${colorClasses[cursorColor].default} shadow-none`
+            className={`pointer-events-none fixed z-[9999] -translate-x-1/2 -translate-y-1/2 rounded-full cursor-gradient-border p-[1.5px] transition-all duration-500 hidden md:block ${isHovering ? "h-12 w-12" : "h-5 w-5"
                 } ${isClicking ? "scale-75 opacity-80" : "scale-100"} ${isVisible ? "opacity-100" : "opacity-0"} ${isSwitching ? "scale-[1.1] transition-transform duration-200" : ""}`}
             style={{
                 left: `${dotPosition.x}px`,
                 top: `${dotPosition.y}px`,
                 transitionTimingFunction: "cubic-bezier(0.23, 1, 0.32, 1)",
-                transitionProperty: "height, width, background-color, border-color, opacity, transform, box-shadow",
+                transitionProperty: "height, width, opacity, transform",
             }}
-        />
+        >
+            <div className={`h-full w-full rounded-full transition-colors duration-500 ${isHovering ? colorClasses[cursorColor].hover : colorClasses[cursorColor].default
+                }`} />
+        </div>
     );
 }

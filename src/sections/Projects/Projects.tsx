@@ -106,26 +106,27 @@ export default function Projects() {
     <section id="projects" className="min-h-screen w-full px-4 py-20">
       <div ref={sectionRef} className="magnetic-entrance mx-auto max-w-6xl">
         {/* Header */}
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-            {t('projects.titleWhite')}{" "}
-            <span className="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent">
-              {t('projects.title')}
-            </span>
+        <div className="mb-16 md:mb-24 text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest w-fit mb-6">
+            <HiOutlineCode className="w-3 h-3" />
+            {t('projects.titleWhite')}
+          </div>
+          <h2 className="text-4xl font-extrabold text-white md:text-5xl lg:text-7xl">
+            {t('projects.title')}
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-gray-400">
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-400">
             {t('projects.subtitle')}
           </p>
         </div>
 
         {/* Tabs */}
-        <div className="relative mb-12 flex flex-col justify-center gap-2 sm:flex-row sm:gap-0">
-          <div className="relative flex w-full flex-col gap-2 rounded-2xl bg-white/5 p-1.5 backdrop-blur-md sm:w-auto sm:flex-row sm:gap-0 sm:rounded-full">
+        <div className="relative mb-16 flex flex-col justify-center gap-2 sm:flex-row sm:gap-0">
+          <div className="relative flex w-full flex-col gap-2 rounded-3xl bg-white/5 p-2 backdrop-blur-md sm:w-auto sm:flex-row sm:gap-0 sm:rounded-full border border-white/10">
             {/* Sliding Indicator */}
             <div
-              className={`absolute top-1.5 bottom-1.5 hidden transition-all duration-300 sm:block ${activeTab === 0
-                ? 'left-1.5 w-[calc(50%-1.5px)] rounded-full bg-emerald-600 shadow-lg shadow-emerald-500/20'
-                : 'left-[calc(50%+1.5px)] w-[calc(50%-3px)] rounded-full bg-blue-500 shadow-lg shadow-blue-500/20'
+              className={`absolute top-2 bottom-2 hidden transition-all duration-500 cubic-bezier(0.23,1,0.32,1) sm:block ${activeTab === 0
+                ? 'left-2 w-[calc(50%-8px)] rounded-full bg-emerald-500/10 border border-emerald-500/20'
+                : 'left-[calc(50%+4px)] w-[calc(50%-8px)] rounded-full bg-blue-500/10 border border-blue-500/20'
                 }`}
             />
 
@@ -221,25 +222,30 @@ const ProjectCard = ({ project, t, index }: { project: Project; t: TFunction; in
     <>
       <div
         style={{ transitionDelay: `${index * 150}ms` }}
-        className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-emerald-500/30 hover:shadow-2xl hover:shadow-emerald-500/10"
+        className="group relative flex h-full flex-col overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-emerald-500/30 hover:shadow-2xl hover:shadow-emerald-500/10"
       >
-        <div className="relative h-48 w-full overflow-hidden bg-[#07070a]">
+        <div className="relative h-56 w-full overflow-hidden bg-[#07070a]">
           <img
             src={project.image}
             alt={`Banner do projeto ${t(project.titleKey)}`}
             loading="lazy"
-            className="block h-full w-full object-cover transition-transform duration-700 ease-out will-change-transform [backface-visibility:hidden] [transform:translateZ(0)] group-hover:scale-110"
+            className="block h-full w-full object-cover transition-opacity duration-700 ease-out will-change-transform [backface-visibility:hidden] [transform:translateZ(0)]"
           />
           {/* Image Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07070a] via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#020203] via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-80" />
+
+          {/* Category Badge */}
+          <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white text-[10px] font-bold uppercase tracking-widest backdrop-blur-md">
+            {project.category}
+          </div>
         </div>
 
-        <div className="flex flex-1 flex-col justify-between p-6">
+        <div className="flex flex-1 flex-col justify-between p-8">
           <div>
-            <h5 className="mb-3 text-xl font-bold text-white transition-colors group-hover:text-emerald-400">
+            <h5 className="mb-3 text-2xl font-bold text-white transition-colors group-hover:text-emerald-400">
               {t(project.titleKey)}
             </h5>
-            <p className="mb-6 text-sm leading-relaxed text-gray-400">
+            <p className="mb-6 text-sm leading-relaxed text-slate-400 line-clamp-3">
               {t(project.descriptionKey)}
             </p>
           </div>
@@ -247,19 +253,16 @@ const ProjectCard = ({ project, t, index }: { project: Project; t: TFunction; in
           <button
             onClick={handleProjectClick}
             aria-label={`${t('projects.viewProject')} ${t(project.titleKey)}`}
-            className="group/btn relative mt-auto inline-flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-white/5 px-4 py-3 text-sm font-bold text-white transition-all hover:bg-emerald-600 hover:text-white"
+            className="group/btn relative mt-auto inline-flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-white/5 border border-white/10 px-4 py-3.5 text-sm font-bold text-white transition-all hover:bg-white hover:text-black active:scale-95"
           >
-            <span className="relative z-10 flex items-center">
+            <span className="relative z-10 flex items-center gap-2">
               {t('projects.viewProject')}
-              <svg className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </span>
           </button>
         </div>
-
-        {/* Inner Glow Effect */}
-        <div className="pointer-events-none absolute inset-0 rounded-2xl border border-white/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
       </div>
 
       <div

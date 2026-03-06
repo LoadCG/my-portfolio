@@ -15,12 +15,34 @@ html {
 }
 
 /* ===================== Global ===================== */
+:root {
+  --bg-main: #020203;
+  --bg-card: #0a0a0c;
+  --bg-accent: #111114;
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --accent-emerald: #10b981;
+  --accent-blue: #3b82f6;
+  --border-glass: rgba(255, 255, 255, 0.08);
+}
+
 body {
-  background-color: #07070a;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: "Inter", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Outfit", sans-serif;
 }
 
 /* Hide default cursor globally on larger screens to use CustomCursor */
@@ -181,4 +203,38 @@ select:focus {
 option {
   background-color: #0f0f14;
   color: white;
+}
+
+/* ===================== Senior Cursor Animations ===================== */
+@keyframes border-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.cursor-gradient-border {
+  background: linear-gradient(270deg, #10b981, #3b82f6, #10b981);
+  background-size: 200% 200%;
+  animation: border-flow 4s ease infinite !important;
+}
+
+@keyframes gradient-x {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.animate-gradient-x {
+  animation: gradient-x 6s ease infinite;
 }
