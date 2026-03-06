@@ -89,7 +89,7 @@ export default function Hero() {
                     track('download_cv');
                     window.open("/cv.pdf", "_blank");
                   }}
-                  className="px-8 py-4 bg-white text-black font-bold rounded-2xl hover:bg-slate-200 transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.1)] active:scale-95"
+                  className="animate-shimmer px-8 py-4 bg-white text-black font-bold rounded-2xl hover:bg-slate-200 transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.1)] active:scale-95"
                 >
                   <HiDownload className="w-5 h-5" />
                   {t('hero.downloadCv')}

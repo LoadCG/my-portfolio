@@ -222,7 +222,7 @@ const ProjectCard = ({ project, t, index }: { project: Project; t: TFunction; in
     <>
       <div
         style={{ transitionDelay: `${index * 150}ms` }}
-        className="group relative flex h-full flex-col overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-emerald-500/30 hover:shadow-2xl hover:shadow-emerald-500/10"
+        className="group relative flex h-full flex-col overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-emerald-500/20 hover:bg-white/[0.07] hover:shadow-2xl hover:shadow-emerald-500/10"
       >
         <div className="relative h-56 w-full overflow-hidden bg-[#07070a]">
           <img
@@ -242,7 +242,7 @@ const ProjectCard = ({ project, t, index }: { project: Project; t: TFunction; in
 
         <div className="flex flex-1 flex-col justify-between p-8">
           <div>
-            <h5 className="mb-3 text-2xl font-bold text-white transition-colors group-hover:text-emerald-400">
+            <h5 className="mb-3 text-2xl font-bold tracking-tight text-white transition-colors group-hover:text-emerald-400">
               {t(project.titleKey)}
             </h5>
             <p className="mb-6 text-sm leading-relaxed text-slate-400 line-clamp-3">
@@ -253,7 +253,7 @@ const ProjectCard = ({ project, t, index }: { project: Project; t: TFunction; in
           <button
             onClick={handleProjectClick}
             aria-label={`${t('projects.viewProject')} ${t(project.titleKey)}`}
-            className="group/btn relative mt-auto inline-flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-white/5 border border-white/10 px-4 py-3.5 text-sm font-bold text-white transition-all hover:bg-white hover:text-black active:scale-95"
+            className="group/btn animate-shimmer relative mt-auto inline-flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-white/5 border border-white/10 px-4 py-3.5 text-sm font-bold text-white transition-all hover:bg-white hover:text-black active:scale-95"
           >
             <span className="relative z-10 flex items-center gap-2">
               {t('projects.viewProject')}

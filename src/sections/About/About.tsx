@@ -40,18 +40,18 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-auto">
 
           {/* Bio Card (Full Width) */}
-          <div className="md:col-span-3 group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 p-8 md:p-12 backdrop-blur-md transition-all hover:border-emerald-500/30">
+          <div className="md:col-span-3 group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 p-8 md:p-12 backdrop-blur-md transition-all duration-500 hover:border-emerald-500/20 hover:bg-white/[0.07]">
             <div className="relative z-10">
               <p
-                className="text-lg leading-relaxed text-slate-400"
+                className="text-lg leading-relaxed text-slate-400 font-medium"
                 dangerouslySetInnerHTML={{ __html: t('about.content') }}
               />
             </div>
           </div>
 
           {/* Timeline Card (Full Width Bottom) */}
-          <div className="md:col-span-3 group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 p-8 md:p-12 backdrop-blur-md transition-all hover:border-white/20">
-            <h3 className="text-2xl font-bold text-white mb-10">
+          <div className="md:col-span-3 group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 p-8 md:p-12 backdrop-blur-md transition-all duration-500 hover:border-white/20 hover:bg-white/[0.07]">
+            <h3 className="text-2xl font-bold tracking-tight text-white mb-10">
               Jornada Profissional
             </h3>
             <CompHorizontalTimeline />

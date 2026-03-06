@@ -9,9 +9,14 @@ const CompNavbar = forwardRef<HTMLDivElement>((_, ref) => {
   const { t } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('home');
+  const [scrolled, setScrolled] = useState(false);
 
-  // Scroll spy via IntersectionObserver
+  // Scroll spy & background toggle
   useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check on mount
+
     const observers: IntersectionObserver[] = [];
 
     SECTIONS.forEach((id) => {
@@ -46,8 +51,10 @@ const CompNavbar = forwardRef<HTMLDivElement>((_, ref) => {
       className="fixed top-0 left-0 z-50 w-full"
     >
       {/* Full-width navbar */}
-      <nav className="border-b border-white/5 bg-black/60 px-6 backdrop-blur-xl transition-all duration-300">
-        <div className="container mx-auto flex h-20 max-w-6xl items-center justify-between">
+      <nav className={`border-b border-white/5 transition-all duration-300 px-6 ${scrolled ? 'bg-black/80 backdrop-blur-2xl py-0' : 'bg-transparent backdrop-blur-none py-2'
+        }`}>
+        <div className={`container mx-auto flex items-center justify-between transition-all duration-500 ${scrolled ? 'h-16' : 'h-20'
+          } max-w-6xl`}>
 
           {/* Logo */}
           <a href="#" className="text-xl font-bold tracking-tight text-white">
