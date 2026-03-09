@@ -105,7 +105,7 @@ export default function Contact() {
               <span className="mt-4 text-[10px] font-bold uppercase tracking-widest text-slate-500">GitHub</span>
             </a>
             {/* Behance */}
-            <a href="https://www.behance.net/cauanresende" target="_blank" data-cursor-color="blue" className="group rounded-[2.5rem] border border-white/10 bg-white/5 p-6 flex flex-col items-center justify-center transition-all hover:bg-blue-600/10 hover:border-blue-600/30">
+            <a href="https://www.behance.net/cauansilva1" target="_blank" data-cursor-color="blue" className="group rounded-[2.5rem] border border-white/10 bg-white/5 p-6 flex flex-col items-center justify-center transition-all hover:bg-blue-600/10 hover:border-blue-600/30">
               <FaBehance className="w-10 h-10 text-slate-400 group-hover:text-blue-500 transition-colors" />
               <span className="mt-4 text-[10px] font-bold uppercase tracking-widest text-slate-500">Behance</span>
             </a>
