@@ -27,7 +27,11 @@ export default function AdminDashboard() {
     // CV Manager States
     const [cvUrl, setCvUrl] = useState<string | null>(null);
     const [cvFileName, setCvFileName] = useState<string | null>(null);
+    const [cvFileSize, setCvFileSize] = useState<number | null>(null);
     const [cvUploading, setCvUploading] = useState(false);
+    const [cvLoading, setCvLoading] = useState(true);
+    const [cvConfirmDelete, setCvConfirmDelete] = useState(false);
+    const [isDragOver, setIsDragOver] = useState(false);
     const cvInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -60,34 +64,40 @@ export default function AdminDashboard() {
     };
 
     const buscarCurriculo = async () => {
+        setCvLoading(true);
         const { data } = await supabase.storage.from('curriculum').list('', { limit: 10 });
         const cvFile = data?.find(f => f.name.endsWith('.pdf'));
         if (cvFile) {
             const { data: urlData } = supabase.storage.from('curriculum').getPublicUrl(cvFile.name);
             setCvUrl(urlData.publicUrl);
             setCvFileName(cvFile.name);
+            setCvFileSize(cvFile.metadata?.size ?? null);
         } else {
             setCvUrl(null);
             setCvFileName(null);
+            setCvFileSize(null);
         }
+        setCvLoading(false);
     };
 
     const fazerUploadCurriculo = async (file: File) => {
-        if (!file || !file.name.endsWith('.pdf')) {
-            showToast('Por favor, selecione um arquivo PDF.', 'error');
+        if (!file) return;
+        if (file.type !== 'application/pdf' && !file.name.endsWith('.pdf')) {
+            showToast('Apenas arquivos PDF são aceitos.', 'error');
+            return;
+        }
+        const MAX_SIZE_MB = 5;
+        if (file.size > MAX_SIZE_MB * 1024 * 1024) {
+            showToast(`O arquivo excede o limite de ${MAX_SIZE_MB}MB.`, 'error');
             return;
         }
         setCvUploading(true);
-        // Delete old file first if it exists
-        if (cvFileName) {
-            await supabase.storage.from('curriculum').remove([cvFileName]);
-        }
         const { error } = await supabase.storage.from('curriculum').upload('cv.pdf', file, {
             contentType: 'application/pdf',
             upsert: true,
         });
         if (error) {
-            showToast('Erro ao fazer upload do currículo.', 'error');
+            showToast(`Erro no upload: ${error.message}`, 'error');
         } else {
             showToast('Currículo atualizado com sucesso!', 'success');
             await buscarCurriculo();
@@ -98,7 +108,6 @@ export default function AdminDashboard() {
 
     const deletarCurriculo = async () => {
         if (!cvFileName) return;
-        if (!confirm('Tem certeza que deseja remover o currículo atual?')) return;
         const { error } = await supabase.storage.from('curriculum').remove([cvFileName]);
         if (error) {
             showToast('Erro ao remover o currículo.', 'error');
@@ -106,7 +115,22 @@ export default function AdminDashboard() {
             showToast('Currículo removido.', 'success');
             setCvUrl(null);
             setCvFileName(null);
+            setCvFileSize(null);
         }
+        setCvConfirmDelete(false);
+    };
+
+    const formatFileSize = (bytes: number) => {
+        if (bytes < 1024) return `${bytes} B`;
+        if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+        return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+    };
+
+    const handleDrop = (e: React.DragEvent) => {
+        e.preventDefault();
+        setIsDragOver(false);
+        const file = e.dataTransfer.files?.[0];
+        if (file) fazerUploadCurriculo(file);
     };
 
     const handleLogout = async () => {
@@ -239,48 +263,106 @@ export default function AdminDashboard() {
                         Currículo
                     </h2>
                     <div className="p-6 rounded-[2rem] border border-white/5 bg-white/[0.02] backdrop-blur-md">
-                        {cvUrl && cvFileName ? (
+
+                        {/* Loading skeleton */}
+                        {cvLoading ? (
+                            <div className="flex items-center gap-4 animate-pulse">
+                                <div className="w-12 h-12 rounded-xl bg-white/5 shrink-0" />
+                                <div className="flex-1 space-y-2">
+                                    <div className="h-4 bg-white/5 rounded-lg w-1/3" />
+                                    <div className="h-3 bg-white/5 rounded-lg w-1/5" />
+                                </div>
+                            </div>
+                        ) : cvUrl && cvFileName ? (
+                            /* File exists — show card */
                             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                                 <div className="flex items-center gap-3 flex-1 min-w-0">
-                                    <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+                                    <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 shrink-0">
                                         <HiDocument className="w-6 h-6 text-emerald-400" />
                                     </div>
                                     <div className="min-w-0">
                                         <p className="font-bold text-white truncate">{cvFileName}</p>
-                                        <p className="text-xs text-slate-500">Arquivo atual no Supabase Storage</p>
+                                        <p className="text-xs text-slate-500">
+                                            {cvFileSize ? formatFileSize(cvFileSize) : 'Supabase Storage'}
+                                            {' · '}<span className="text-emerald-500/70">Publicado</span>
+                                        </p>
                                     </div>
                                 </div>
-                                <div className="flex items-center gap-2 shrink-0">
-                                    <a
-                                        href={cvUrl}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/10 hover:bg-white/5 transition-all text-slate-300 hover:text-white text-sm font-bold"
-                                    >
-                                        <HiDocumentDownload className="w-4 h-4" />
-                                        Ver PDF
-                                    </a>
-                                    <label className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 transition-all text-emerald-400 text-sm font-bold cursor-pointer ${cvUploading ? 'opacity-50 pointer-events-none' : ''}`}>
-                                        <HiUpload className="w-4 h-4" />
-                                        {cvUploading ? 'Enviando...' : 'Substituir'}
-                                        <input ref={cvInputRef} type="file" accept=".pdf" className="hidden" onChange={e => e.target.files?.[0] && fazerUploadCurriculo(e.target.files[0])} />
-                                    </label>
-                                    <button
-                                        onClick={deletarCurriculo}
-                                        className="p-2.5 rounded-xl border border-white/10 hover:bg-red-500 hover:border-red-500 transition-all text-red-500 hover:text-white"
-                                        title="Remover currículo"
-                                    >
-                                        <HiTrash className="w-4 h-4" />
-                                    </button>
-                                </div>
+
+                                {cvConfirmDelete ? (
+                                    /* Inline delete confirmation */
+                                    <div className="flex items-center gap-2 shrink-0 animate-in slide-in-from-right-4 duration-200">
+                                        <span className="text-sm text-slate-400 font-medium hidden sm:block">Confirmar exclusão?</span>
+                                        <button
+                                            onClick={() => setCvConfirmDelete(false)}
+                                            className="px-4 py-2.5 rounded-xl border border-white/10 text-slate-400 hover:text-white text-sm font-bold transition-all hover:bg-white/5"
+                                        >
+                                            Cancelar
+                                        </button>
+                                        <button
+                                            onClick={deletarCurriculo}
+                                            className="px-4 py-2.5 rounded-xl bg-red-500 hover:bg-red-400 text-white text-sm font-bold transition-all active:scale-95"
+                                        >
+                                            Excluir
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <div className="flex items-center gap-2 shrink-0">
+                                        <a
+                                            href={cvUrl}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/10 hover:bg-white/5 transition-all text-slate-300 hover:text-white text-sm font-bold"
+                                        >
+                                            <HiDocumentDownload className="w-4 h-4" />
+                                            Ver PDF
+                                        </a>
+                                        <label className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 transition-all text-emerald-400 text-sm font-bold cursor-pointer ${cvUploading ? 'opacity-50 pointer-events-none' : ''}`}>
+                                            {cvUploading ? (
+                                                <><div className="w-4 h-4 border-2 border-emerald-400/30 border-t-emerald-400 rounded-full animate-spin" /> Enviando...</>
+                                            ) : (
+                                                <><HiUpload className="w-4 h-4" /> Substituir</>
+                                            )}
+                                            <input ref={cvInputRef} type="file" accept="application/pdf,.pdf" className="hidden" onChange={e => e.target.files?.[0] && fazerUploadCurriculo(e.target.files[0])} />
+                                        </label>
+                                        <button
+                                            onClick={() => setCvConfirmDelete(true)}
+                                            className="p-2.5 rounded-xl border border-white/10 hover:bg-red-500/10 hover:border-red-500/40 transition-all text-slate-500 hover:text-red-400"
+                                            title="Remover currículo"
+                                        >
+                                            <HiTrash className="w-4 h-4" />
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         ) : (
-                            <label className={`flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-white/10 rounded-2xl cursor-pointer hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all group ${cvUploading ? 'opacity-50 pointer-events-none' : ''}`}>
-                                <HiUpload className="w-8 h-8 text-slate-600 group-hover:text-emerald-400 transition-colors mb-2" />
-                                <p className="text-slate-500 group-hover:text-slate-300 font-bold transition-colors">{cvUploading ? 'Enviando...' : 'Clique para fazer upload do currículo (.pdf)'}</p>
-                                <p className="text-xs text-slate-600 mt-1">O arquivo ficará disponível publicamente via Supabase Storage</p>
-                                <input ref={cvInputRef} type="file" accept=".pdf" className="hidden" onChange={e => e.target.files?.[0] && fazerUploadCurriculo(e.target.files[0])} />
-                            </label>
+                            /* No file — drag & drop upload zone */
+                            <div
+                                onDragOver={e => { e.preventDefault(); setIsDragOver(true); }}
+                                onDragLeave={() => setIsDragOver(false)}
+                                onDrop={handleDrop}
+                                className={`flex flex-col items-center justify-center w-full h-40 border-2 border-dashed rounded-2xl transition-all duration-200 ${
+                                    isDragOver
+                                        ? 'border-emerald-500/60 bg-emerald-500/10 scale-[1.01]'
+                                        : 'border-white/10 bg-transparent'
+                                } ${cvUploading ? 'opacity-60 pointer-events-none' : 'cursor-pointer'}`}
+                            >
+                                {cvUploading ? (
+                                    <>
+                                        <div className="w-8 h-8 border-2 border-emerald-500/30 border-t-emerald-500 rounded-full animate-spin mb-3" />
+                                        <p className="text-emerald-400 font-bold text-sm">Enviando currículo...</p>
+                                    </>
+                                ) : (
+                                    <label className="flex flex-col items-center justify-center w-full h-full cursor-pointer group">
+                                        <HiUpload className={`w-8 h-8 mb-2 transition-colors duration-200 ${isDragOver ? 'text-emerald-400' : 'text-slate-600 group-hover:text-emerald-400'}`} />
+                                        <p className={`font-bold text-sm transition-colors duration-200 ${isDragOver ? 'text-emerald-400' : 'text-slate-500 group-hover:text-slate-300'}`}>
+                                            {isDragOver ? 'Solte o arquivo aqui' : 'Arraste o PDF ou clique para selecionar'}
+                                        </p>
+                                        <p className="text-xs text-slate-600 mt-1">Somente PDF · Máx. 5MB</p>
+                                        <input ref={cvInputRef} type="file" accept="application/pdf,.pdf" className="hidden" onChange={e => e.target.files?.[0] && fazerUploadCurriculo(e.target.files[0])} />
+                                    </label>
+                                )}
+                            </div>
                         )}
                     </div>
                 </div>
