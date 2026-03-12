@@ -7,6 +7,7 @@ import CompNavbar from "../../components/Navbar/CompNavbar";
 import { useDynamicHeight } from "../../hooks/useDynamicHeight";
 import { useTranslation } from 'react-i18next';
 import { track } from '@vercel/analytics';
+import { supabase } from '../../lib/supabase';
 
 export default function Hero() {
   const { t, i18n } = useTranslation();
@@ -14,9 +15,23 @@ export default function Hero() {
   const [navbarHeight, setNavbarHeight] = useState(50);
   const heroHeight = useDynamicHeight(navbarHeight);
   const [greeting, setGreeting] = useState("");
+  const [cvUrl, setCvUrl] = useState("/cv.pdf");
 
   // Fade-in on mount + Dynamic Greeting
   const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const buscarUrlCurriculo = async () => {
+      const { data } = await supabase.storage.from('curriculum').list('', { limit: 10 });
+      const cvFile = data?.find(f => f.name.endsWith('.pdf'));
+      if (cvFile) {
+        const { data: urlData } = supabase.storage.from('curriculum').getPublicUrl(cvFile.name);
+        setCvUrl(urlData.publicUrl);
+      }
+    };
+    buscarUrlCurriculo();
+  }, []);
+
   useEffect(() => {
     if (navbarRef.current) setNavbarHeight(navbarRef.current.offsetHeight);
 
@@ -98,7 +113,7 @@ export default function Hero() {
                 <button
                   onClick={() => {
                     track('download_cv');
-                    window.open("/cv.pdf", "_blank");
+                    window.open(cvUrl, "_blank");
                   }}
                   className="animate-shimmer px-8 py-4 bg-white text-black font-bold rounded-2xl hover:bg-slate-200 transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.1)] active:scale-95"
                 >

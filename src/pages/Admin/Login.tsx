@@ -86,6 +86,12 @@ export default function AdminLogin() {
                         </button>
                     </form>
                 </div>
+                
+                <div className="mt-6 text-center">
+                    <a href="/admin/forgot-password" className="text-sm text-slate-400 hover:text-emerald-400 transition-colors">
+                        Esqueceu sua senha?
+                    </a>
+                </div>
 
                 <div className="mt-8 text-center">
                     <a href="/" className="text-sm text-slate-500 hover:text-white transition-colors">

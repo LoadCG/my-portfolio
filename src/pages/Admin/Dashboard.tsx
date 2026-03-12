@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { User } from '@supabase/supabase-js';
 import { supabase, ProjectRow } from "../../lib/supabase";
-import { HiPlus, HiLogout, HiTrash, HiPencilAlt, HiViewGrid, HiX, HiUpload, HiExternalLink } from "react-icons/hi";
+import { HiPlus, HiLogout, HiTrash, HiPencilAlt, HiViewGrid, HiX, HiUpload, HiExternalLink, HiDocumentDownload, HiDocument } from "react-icons/hi";
 
 export default function AdminDashboard() {
     const [projects, setProjects] = useState<ProjectRow[]>([]);
@@ -24,6 +24,12 @@ export default function AdminDashboard() {
     });
     const [saving, setSaving] = useState(false);
 
+    // CV Manager States
+    const [cvUrl, setCvUrl] = useState<string | null>(null);
+    const [cvFileName, setCvFileName] = useState<string | null>(null);
+    const [cvUploading, setCvUploading] = useState(false);
+    const cvInputRef = useRef<HTMLInputElement>(null);
+
     useEffect(() => {
         const checkUser = async () => {
             const { data } = await supabase.auth.getSession();
@@ -32,6 +38,7 @@ export default function AdminDashboard() {
             } else {
                 setUser(data.session.user);
                 fetchProjects();
+                buscarCurriculo();
             }
         };
         checkUser();
@@ -50,6 +57,56 @@ export default function AdminDashboard() {
 
         if (data) setProjects(data);
         setLoading(false);
+    };
+
+    const buscarCurriculo = async () => {
+        const { data } = await supabase.storage.from('curriculum').list('', { limit: 10 });
+        const cvFile = data?.find(f => f.name.endsWith('.pdf'));
+        if (cvFile) {
+            const { data: urlData } = supabase.storage.from('curriculum').getPublicUrl(cvFile.name);
+            setCvUrl(urlData.publicUrl);
+            setCvFileName(cvFile.name);
+        } else {
+            setCvUrl(null);
+            setCvFileName(null);
+        }
+    };
+
+    const fazerUploadCurriculo = async (file: File) => {
+        if (!file || !file.name.endsWith('.pdf')) {
+            showToast('Por favor, selecione um arquivo PDF.', 'error');
+            return;
+        }
+        setCvUploading(true);
+        // Delete old file first if it exists
+        if (cvFileName) {
+            await supabase.storage.from('curriculum').remove([cvFileName]);
+        }
+        const { error } = await supabase.storage.from('curriculum').upload('cv.pdf', file, {
+            contentType: 'application/pdf',
+            upsert: true,
+        });
+        if (error) {
+            showToast('Erro ao fazer upload do currículo.', 'error');
+        } else {
+            showToast('Currículo atualizado com sucesso!', 'success');
+            await buscarCurriculo();
+        }
+        setCvUploading(false);
+        if (cvInputRef.current) cvInputRef.current.value = '';
+    };
+
+    const deletarCurriculo = async () => {
+        if (!cvFileName) return;
+        if (!confirm('Tem certeza que deseja remover o currículo atual?')) return;
+        const { error } = await supabase.storage.from('curriculum').remove([cvFileName]);
+        if (error) {
+            showToast('Erro ao remover o currículo.', 'error');
+        } else {
+            showToast('Currículo removido.', 'success');
+            setCvUrl(null);
+            setCvFileName(null);
+        }
     };
 
     const handleLogout = async () => {
@@ -172,6 +229,59 @@ export default function AdminDashboard() {
                     <div className="p-8 rounded-[2rem] border border-white/5 bg-white/[0.02] backdrop-blur-md">
                         <h3 className="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4">Dev</h3>
                         <div className="text-3xl font-bold text-emerald-400">{projects.filter(p => p.category === 'development').length}</div>
+                    </div>
+                </div>
+
+                {/* CV Manager Section */}
+                <div className="mb-12">
+                    <h2 className="text-xl font-bold flex items-center gap-2 mb-6 text-slate-200">
+                        <HiDocument className="text-emerald-500 w-6 h-6" />
+                        Currículo
+                    </h2>
+                    <div className="p-6 rounded-[2rem] border border-white/5 bg-white/[0.02] backdrop-blur-md">
+                        {cvUrl && cvFileName ? (
+                            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                                <div className="flex items-center gap-3 flex-1 min-w-0">
+                                    <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+                                        <HiDocument className="w-6 h-6 text-emerald-400" />
+                                    </div>
+                                    <div className="min-w-0">
+                                        <p className="font-bold text-white truncate">{cvFileName}</p>
+                                        <p className="text-xs text-slate-500">Arquivo atual no Supabase Storage</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-2 shrink-0">
+                                    <a
+                                        href={cvUrl}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/10 hover:bg-white/5 transition-all text-slate-300 hover:text-white text-sm font-bold"
+                                    >
+                                        <HiDocumentDownload className="w-4 h-4" />
+                                        Ver PDF
+                                    </a>
+                                    <label className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 transition-all text-emerald-400 text-sm font-bold cursor-pointer ${cvUploading ? 'opacity-50 pointer-events-none' : ''}`}>
+                                        <HiUpload className="w-4 h-4" />
+                                        {cvUploading ? 'Enviando...' : 'Substituir'}
+                                        <input ref={cvInputRef} type="file" accept=".pdf" className="hidden" onChange={e => e.target.files?.[0] && fazerUploadCurriculo(e.target.files[0])} />
+                                    </label>
+                                    <button
+                                        onClick={deletarCurriculo}
+                                        className="p-2.5 rounded-xl border border-white/10 hover:bg-red-500 hover:border-red-500 transition-all text-red-500 hover:text-white"
+                                        title="Remover currículo"
+                                    >
+                                        <HiTrash className="w-4 h-4" />
+                                    </button>
+                                </div>
+                            </div>
+                        ) : (
+                            <label className={`flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-white/10 rounded-2xl cursor-pointer hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all group ${cvUploading ? 'opacity-50 pointer-events-none' : ''}`}>
+                                <HiUpload className="w-8 h-8 text-slate-600 group-hover:text-emerald-400 transition-colors mb-2" />
+                                <p className="text-slate-500 group-hover:text-slate-300 font-bold transition-colors">{cvUploading ? 'Enviando...' : 'Clique para fazer upload do currículo (.pdf)'}</p>
+                                <p className="text-xs text-slate-600 mt-1">O arquivo ficará disponível publicamente via Supabase Storage</p>
+                                <input ref={cvInputRef} type="file" accept=".pdf" className="hidden" onChange={e => e.target.files?.[0] && fazerUploadCurriculo(e.target.files[0])} />
+                            </label>
+                        )}
                     </div>
                 </div>
 
