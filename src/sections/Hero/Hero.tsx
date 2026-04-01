@@ -37,8 +37,9 @@ export default function Hero() {
 
     // Calculate greeting based on local time
     const hour = new Date().getHours();
-    const isPt = i18n.language === 'pt';
-    const isEs = i18n.language === 'es';
+    const lang = i18n.language.slice(0, 2); // normalize "pt-BR" -> "pt"
+    const isPt = lang === 'pt';
+    const isEs = lang === 'es';
     let g = "";
     if (hour >= 5 && hour < 12) {
       if (isPt) g = 'Bom dia 👋';

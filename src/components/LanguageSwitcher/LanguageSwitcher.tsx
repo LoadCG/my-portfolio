@@ -14,7 +14,7 @@ export const LanguageSwitcher = () => {
     { code: 'es', label: 'Español', short: 'ES' },
   ];
 
-  const currentLang = languages.find(l => l.code === i18n.language) || languages[0];
+  const currentLang = languages.find(l => i18n.language.startsWith(l.code)) || languages[0];
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -53,13 +53,13 @@ export const LanguageSwitcher = () => {
               <button
                 key={lang.code}
                 onClick={() => changeLanguage(lang.code)}
-                className={`flex w-full items-center justify-between px-3 py-3 rounded-xl text-[11px] font-bold tracking-tight transition-all duration-200 ${i18n.language === lang.code
+                className={`flex w-full items-center justify-between px-3 py-3 rounded-xl text-[11px] font-bold tracking-tight transition-all duration-200 ${i18n.language.startsWith(lang.code)
                   ? 'bg-emerald-500/10 text-emerald-400'
                   : 'text-slate-400 hover:bg-white/5 hover:text-white'
                   }`}
               >
                 {lang.label}
-                {i18n.language === lang.code && (
+                {i18n.language.startsWith(lang.code) && (
                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
                 )}
               </button>

@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { User } from '@supabase/supabase-js';
 import { supabase, ProjectRow } from "../../lib/supabase";
+import { fetchMetadata, translateText } from "../../lib/adminServices";
 import { HiPlus, HiLogout, HiTrash, HiPencilAlt, HiViewGrid, HiX, HiUpload, HiExternalLink, HiDocumentDownload, HiDocument } from "react-icons/hi";
 
 export default function AdminDashboard() {
@@ -23,6 +24,79 @@ export default function AdminDashboard() {
         image_url: "", link: "", category: "development" as 'design' | 'development'
     });
     const [saving, setSaving] = useState(false);
+    const [isMagicLoading, setIsMagicLoading] = useState(false);
+
+    // Smart Paste & Translation Handlers
+    const handleSmartPaste = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const url = e.target.value;
+        if (!url || (!url.includes('http://') && !url.includes('https://'))) return;
+
+        setIsMagicLoading(true);
+        showToast("Analisando link...", "success");
+
+        const metadata = await fetchMetadata(url);
+        
+        if (metadata) {
+            setFormData(prev => ({
+                ...prev,
+                title_pt: metadata.title || prev.title_pt,
+                desc_pt: metadata.description || prev.desc_pt,
+                image_url: metadata.image || prev.image_url,
+                link: url
+            }));
+            
+            showToast("Dados extraídos! Traduzindo...", "success");
+
+            // Auto-translate to other languages
+            const [titleEn, titleEs, descEn, descEs] = await Promise.all([
+                metadata.title ? translateText(metadata.title, 'en') : Promise.resolve(''),
+                metadata.title ? translateText(metadata.title, 'es') : Promise.resolve(''),
+                metadata.description ? translateText(metadata.description, 'en') : Promise.resolve(''),
+                metadata.description ? translateText(metadata.description, 'es') : Promise.resolve('')
+            ]);
+
+            setFormData(prev => ({
+                ...prev,
+                title_en: titleEn || prev.title_en,
+                title_es: titleEs || prev.title_es,
+                desc_en: descEn || prev.desc_en,
+                desc_es: descEs || prev.desc_es
+            }));
+            
+            showToast("✨ Preenchimento Mágico Concluído!", "success");
+        } else {
+            showToast("Não foi possível extrair os dados desse link.", "error");
+        }
+        setIsMagicLoading(false);
+    };
+
+    const handleAutoTranslate = async () => {
+        if (!formData.title_pt && !formData.desc_pt) {
+            showToast("Preencha o título e descrição em Português primeiro.", "error");
+            return;
+        }
+
+        setIsMagicLoading(true);
+        showToast("Traduzindo para Inglês e Espanhol...", "success");
+
+        const [titleEn, titleEs, descEn, descEs] = await Promise.all([
+            formData.title_pt ? translateText(formData.title_pt, 'en') : Promise.resolve(''),
+            formData.title_pt ? translateText(formData.title_pt, 'es') : Promise.resolve(''),
+            formData.desc_pt ? translateText(formData.desc_pt, 'en') : Promise.resolve(''),
+            formData.desc_pt ? translateText(formData.desc_pt, 'es') : Promise.resolve('')
+        ]);
+
+        setFormData(prev => ({
+            ...prev,
+            title_en: titleEn || prev.title_en,
+            title_es: titleEs || prev.title_es,
+            desc_en: descEn || prev.desc_en,
+            desc_es: descEs || prev.desc_es
+        }));
+
+        setIsMagicLoading(false);
+        showToast("Tradução automática concluída!", "success");
+    };
 
     // CV Manager States
     const [cvUrl, setCvUrl] = useState<string | null>(null);
@@ -428,12 +502,41 @@ export default function AdminDashboard() {
                             </div>
 
                             <form onSubmit={handleSubmit} className="space-y-8">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                {/* Smart Paste Input */}
+                                <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-4 flex items-center gap-4 transition-all">
+                                    <div className="p-3 bg-emerald-500/20 rounded-xl shrink-0">
+                                        <HiExternalLink className="w-6 h-6 text-emerald-400" />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                        <label className="block text-xs font-bold text-emerald-400 uppercase tracking-widest mb-1 truncate">Colagem Automágica (Smart Paste 🪄)</label>
+                                        <input
+                                            type="url"
+                                            onChange={handleSmartPaste}
+                                            placeholder="Cole o link (Ex: behance.net/gallery/... ou github.com/...)"
+                                            className="w-full bg-transparent border-none text-white focus:outline-none placeholder:text-emerald-500/50 text-sm truncate"
+                                            disabled={isMagicLoading}
+                                        />
+                                    </div>
+                                    {isMagicLoading && <div className="w-6 h-6 border-2 border-emerald-400/30 border-t-emerald-400 rounded-full animate-spin shrink-0" />}
+                                </div>
+
+                                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 transition-opacity duration-300 ${isMagicLoading ? 'opacity-50 pointer-events-none' : 'opacity-100'}`}>
 
                                     {/* Left Column: Language Content */}
                                     <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-6 flex flex-col">
                                         <div className="flex items-center justify-between mb-6">
-                                            <h3 className="text-emerald-500 text-xs font-bold uppercase tracking-widest">Conteúdo Traduzido</h3>
+                                            <div className="flex items-center gap-3">
+                                                <h3 className="text-emerald-500 text-xs font-bold uppercase tracking-widest">Conteúdo Traduzido</h3>
+                                                <button
+                                                    type="button"
+                                                    onClick={handleAutoTranslate}
+                                                    disabled={isMagicLoading}
+                                                    title="Auto-traduzir do Português"
+                                                    className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 transition-colors disabled:opacity-50 flex items-center gap-1 text-xs font-bold"
+                                                >
+                                                    🪄 Em Massa
+                                                </button>
+                                            </div>
 
                                             {/* Language Tabs */}
                                             <div className="flex bg-black/50 p-1 rounded-xl border border-white/5">
